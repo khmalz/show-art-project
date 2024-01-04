@@ -18,6 +18,14 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+Route::get('/project', function () {
+    return view('project.index');
+})->name('project.index');
+
+Route::get('/project/detail', function () {
+    return view('project.show');
+})->name('project.show');
+
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->name('dashboard');

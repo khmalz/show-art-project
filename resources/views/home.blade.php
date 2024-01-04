@@ -85,6 +85,12 @@
                     </div>
                 </div>
             </div>
+
+            <div class="d-flex justify-content-center">
+                <div>
+                    <button class="btn btn-info text-white">Lihat lainnya</button>
+                </div>
+            </div>
         </div>
     </section>
     <!-- End Project -->
