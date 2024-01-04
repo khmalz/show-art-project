@@ -1,132 +1,91 @@
 @extends('layouts.main')
 
 @section('content')
-    <section class="header-one" id="header">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
-                    <div class="header-thumb">
-                        <h1 class="wow fadeIn" data-wow-delay="1.6s">Showcase Project</h1>
-                        <h3 class="wow fadeInUp" data-wow-delay="1.9s">RPL - SMKN 46 Jakarta</h3>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="portfolio">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-12 col-sm-12">
-
-                    <!-- iso section -->
-                    <div class="iso-section wow fadeInUp" data-wow-delay="2.6s">
-
-                        <ul class="clearfix filter-wrapper">
-                            <li><a class="selected opc-main-bg" data-filter="*" href="{{ url('#') }}">All</a></li>
-                            <li><a class="opc-main-bg" data-filter=".graphic" href="{{ url('#') }}">Graphic</a>
-                            </li>
-                            <li><a class="opc-main-bg" data-filter=".template" href="{{ url('#') }}">Web
-                                    template</a></li>
-                            <li><a class="opc-main-bg" data-filter=".photoshop" href="{{ url('#') }}">Photoshop</a>
-                            </li>
-                            <li><a class="opc-main-bg" data-filter=".branding" href="{{ url('#') }}">Branding</a>
-                            </li>
-                        </ul>
-
-                        <!-- iso box section -->
-                        <div class="iso-box-section wow fadeInUp" data-wow-delay="1s">
-                            <div class="iso-box-wrapper col4-iso-box">
-
-                                <div class="iso-box photoshop branding col-md-4 col-sm-6">
-                                    <div class="portfolio-thumb">
-                                        <img class="img-responsive" src="{{ asset('assets/images/portfolio-img1.jpg') }}"
-                                            alt="Portfolio">
-                                        <div class="portfolio-overlay">
-                                            <div class="portfolio-item">
-                                                <a href="{{ url('single-project.html') }}"><i class="fa fa-link"></i></a>
-                                                <h2>Project One</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="iso-box graphic template col-md-4 col-sm-6">
-                                    <div class="portfolio-thumb">
-                                        <img class="img-responsive" src="{{ asset('assets/images/portfolio-img2.jpg') }}"
-                                            alt="Portfolio">
-                                        <div class="portfolio-overlay">
-                                            <div class="portfolio-item">
-                                                <a href="{{ url('single-project.html') }}"><i class="fa fa-link"></i></a>
-                                                <h2>Project Two</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="iso-box template graphic col-md-4 col-sm-6">
-                                    <div class="portfolio-thumb">
-                                        <img class="img-responsive" src="{{ asset('assets/images/portfolio-img3.jpg') }}"
-                                            alt="Portfolio">
-                                        <div class="portfolio-overlay">
-                                            <div class="portfolio-item">
-                                                <a href="{{ url('single-project.html') }}"><i class="fa fa-link"></i></a>
-                                                <h2>Project Three</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="iso-box graphic template col-md-4 col-sm-6">
-                                    <div class="portfolio-thumb">
-                                        <img class="img-responsive" src="{{ asset('assets/images/portfolio-img4.jpg') }}"
-                                            alt="Portfolio">
-                                        <div class="portfolio-overlay">
-                                            <div class="portfolio-item">
-                                                <a href="{{ url('single-project.html') }}"><i class="fa fa-link"></i></a>
-                                                <h2>Project Four</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="iso-box photoshop branding col-md-4 col-sm-6">
-                                    <div class="portfolio-thumb">
-                                        <img class="img-responsive" src="{{ asset('assets/images/portfolio-img5.jpg') }}"
-                                            alt="Portfolio">
-                                        <div class="portfolio-overlay">
-                                            <div class="portfolio-item">
-                                                <a href="{{ url('single-project.html') }}"><i class="fa fa-link"></i></a>
-                                                <h2>Project Five</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="iso-box graphic branding col-md-4 col-sm-6">
-                                    <div class="portfolio-thumb">
-                                        <img class="img-responsive" src="{{ asset('assets/images/portfolio-img6.jpg') }}"
-                                            alt="Portfolio">
-                                        <div class="portfolio-overlay">
-                                            <div class="portfolio-item">
-                                                <a href="{{ url('single-project.html') }}"><i class="fa fa-link"></i></a>
-                                                <h2>Project Six</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
+    <!-- Start Banner Hero -->
+    <div class="carousel slide" id="template-mo-zay-hero-carousel" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 custom-box text-center">
+                            <h1 class="h1" style="font-weight: 400 !important">Showcase Project</h1>
+                            <p>RPL - SMKN 46 Jakarta</p>
                         </div>
-
                     </div>
-
                 </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Banner Hero -->
 
+    <!-- Start Project -->
+    <section>
+        <div class="container py-5">
+            <div class="row py-3 text-center">
+                <div class="col-lg-6 m-auto">
+                    <h1 class="h1">Project</h1>
+                    <p>
+                        Kumpulan hasil-hasil project dari jurusan RPL
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100">
+                        <a href="{{ url('shop-single.html') }}">
+                            <img class="card-img-top" src="{{ asset('/./assets/img/feature_prod_01.jpg') }}" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <ul class="list-unstyled d-flex justify-content-between">
+                                <li class="text-muted fw-semibold text-right">Orang 2</li>
+                            </ul>
+                            <a class="h2 text-decoration-none text-dark" href="{{ url('shop-single.html') }}">Gym
+                                Weight</a>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia
+                                deserunt.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100">
+                        <a href="{{ url('shop-single.html') }}">
+                            <img class="card-img-top" src="{{ asset('/./assets/img/feature_prod_02.jpg') }}" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <ul class="list-unstyled d-flex justify-content-between">
+                                <li class="text-muted fw-semibold text-right">Orang 2</li>
+                            </ul>
+                            <a class="h2 text-decoration-none text-dark" href="{{ url('shop-single.html') }}">Cloud
+                                Nike Shoes</a>
+                            <p class="card-text">
+                                Aenean gravida dignissim finibus. Nullam ipsum diam, posuere vitae pharetra sed, commodo
+                                ullamcorper.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100">
+                        <a href="{{ url('shop-single.html') }}">
+                            <img class="card-img-top" src="{{ asset('/./assets/img/feature_prod_03.jpg') }}" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <ul class="list-unstyled d-flex justify-content-between">
+                                <li class="text-muted fw-semibold text-right">Orang 2</li>
+                            </ul>
+                            <a class="h2 text-decoration-none text-dark" href="{{ url('shop-single.html') }}">Summer
+                                Addides Shoes</a>
+                            <p class="card-text">
+                                Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et
+                                scelerisque ipsum lobortis nec.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+    <!-- End Project -->
 @endsection

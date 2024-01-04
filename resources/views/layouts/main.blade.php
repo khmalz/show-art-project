@@ -2,59 +2,40 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-
-    <!-- Site title
-   ================================================== -->
     <title>Showcase Project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS
-   ================================================== -->
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/assets/img/apple-icon.png') }}" rel="apple-touch-icon">
+    <link type="image/x-icon" href="{{ asset('/assets/img/favicon.ico') }}" rel="shortcut icon">
 
-    <!-- Animate CSS
-   ================================================== -->
-    <link href="{{ asset('assets/css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/assets/css/templatemo.css') }}" rel="stylesheet">
+    <link href="{{ asset('/assets/css/custom.css') }}" rel="stylesheet">
 
-    <!-- Font Icons CSS
-   ================================================== -->
-    <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/ionicons.min.css') }}" rel="stylesheet">
+    <!-- Load fonts style after rendering the layout styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link href="{{ asset('/assets/css/fontawesome.min.css') }}" rel="stylesheet">
 
-    <!-- Main CSS
-   ================================================== -->
-    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-
-    <!-- Google web font
-   ================================================== -->
-    <link type='text/css' href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet'>
-
+    @stack('styles')
 </head>
 
 <body>
-
-    <div class="preloader">
-
-        <div class="sk-spinner sk-spinner-pulse"></div>
-
-    </div>
-
     @include('layouts.navbar')
 
     @yield('content')
 
     @include('layouts.footer')
 
-    <script src="{{ asset('assets/js/jquery.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/isotope.js') }}"></script>
-    <script src="{{ asset('assets/js/imagesloaded.min.js') }}"></script>
-    <script src="{{ asset('assets/js/wow.min.js') }}"></script>
-    <script src="{{ asset('assets/js/custom.js') }}"></script>
+    <!-- Start Script -->
+    <script src="{{ asset('/assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('/assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('/assets/js/templatemo.js') }}"></script>
+    <script src="{{ asset('/assets/js/custom.js') }}"></script>
+    <!-- End Script -->
+
+    @stack('scripts')
 
 </body>
 

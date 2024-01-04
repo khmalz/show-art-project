@@ -1,0 +1,11 @@
+.custom-box {
+    border: 4px solid #d1d1d1;
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+.fw-semibold {
+    font-weight: 500 !important;
+}
