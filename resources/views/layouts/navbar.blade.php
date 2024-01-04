@@ -13,7 +13,7 @@
 
                         <div class="menu-container">
 
-                            <div class="inline circle dark">
+                            <div class="circle dark inline">
                                 <i class="icon ion-navicon"></i>
                             </div>
 
@@ -26,6 +26,7 @@
                                         <li><a href="{{ url('blog.html') }}">Blog</a></li>
                                         <li><a href="{{ url('contact.html') }}">Contact</a></li>
                                         @auth
+                                            <li><a>Welcome. {{ auth()->user()->name }}</a></li>
                                             <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                                         @else
                                             <li><a href="{{ route('login') }}">Login</a></li>
