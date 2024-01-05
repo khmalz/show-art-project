@@ -1,8 +1,8 @@
 @extends('layouts.main')
 
 @section('content')
-    <header class="flex h-[520px] items-center justify-center bg-no-repeat"
-        style="background-image: url({{ asset('assets/img/header-bg.jpg') }});">
+    <header
+        class="flex h-[520px] items-center justify-center bg-[url('{{ asset('assets/img/header-bg.jpg') }}')] bg-no-repeat">
         <div
             class="flex w-full max-w-md flex-col items-center justify-center gap-y-3 rounded border-2 border-gray-300 bg-white px-5 py-10 text-black md:max-w-2xl">
             <h3 class="text-3xl font-semibold md:text-5xl">Showcase Project</h3>

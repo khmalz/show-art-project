@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .nav-active {
+        @apply bg-primary-500 text-white md:bg-transparent md:p-0 md:text-primary-700;
+    }
+
+    .nav-unactive {
+        @apply text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-primary-700;
+    }
+}

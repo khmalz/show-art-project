@@ -1,11 +1,11 @@
 <nav class="container">
-    <div class="fixed start-0 top-0 z-20 w-full border-gray-200 bg-white">
+    <div class="fixed start-0 top-0 z-20 w-full border-gray-200 bg-white shadow">
         <div class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
-            <a class="flex items-center space-x-3 rtl:space-x-reverse" href="https://flowbite.com/">
+            <a class="flex items-center space-x-3" href="{{ route('home') }}">
                 <span class="self-center whitespace-nowrap text-2xl font-semibold text-primary-700 md:text-3xl">Showcase
                     Project</span>
             </a>
-            <div class="flex items-center space-x-3 rtl:space-x-reverse md:order-2 md:space-x-0">
+            <div class="flex items-center space-x-3 md:order-2 md:space-x-0">
                 @auth
                     <button
                         class="flex rounded-full bg-gray-800 text-sm focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 md:me-0"
@@ -60,18 +60,18 @@
             </div>
             <div class="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto" id="navbar-user">
                 <ul
-                    class="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium rtl:space-x-reverse md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0">
+                    class="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0">
                     <li>
-                        <a class="block rounded bg-primary-500 px-3 py-2 text-white md:bg-transparent md:p-0 md:text-primary-700"
-                            href="#" aria-current="page">Home</a>
+                        <a class="{{ request()->routeIs('home') ? 'nav-active' : 'nav-unactive' }} block rounded px-3 py-2"
+                            href="{{ route('home') }}" aria-current="page">Home</a>
                     </li>
                     <li>
-                        <a class="block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-primary-700"
+                        <a class="{{ request()->routeIs('about') ? 'nav-active' : 'nav-unactive' }} block rounded px-3 py-2"
                             href="#">About</a>
                     </li>
                     <li>
-                        <a class="block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-primary-700"
-                            href="#">Project</a>
+                        <a class="{{ request()->routeIs('project.*') ? 'nav-active' : 'nav-unactive' }} block rounded px-3 py-2"
+                            href="{{ route('project.index') }}">Project</a>
                     </li>
                 </ul>
             </div>
