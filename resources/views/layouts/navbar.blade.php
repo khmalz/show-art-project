@@ -2,7 +2,7 @@
     <div class="fixed start-0 top-0 z-20 w-full border-gray-200 bg-white">
         <div class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
             <a class="flex items-center space-x-3 rtl:space-x-reverse" href="https://flowbite.com/">
-                <span class="self-center whitespace-nowrap text-2xl font-semibold text-primary-500 md:text-3xl">Showcase
+                <span class="self-center whitespace-nowrap text-2xl font-semibold text-primary-700 md:text-3xl">Showcase
                     Project</span>
             </a>
             <div class="flex items-center space-x-3 rtl:space-x-reverse md:order-2 md:space-x-0">
@@ -44,7 +44,7 @@
                         </ul>
                     </div>
                 @else
-                    <a class="rounded-lg bg-primary-500 px-4 py-2 text-center text-sm font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300"
+                    <a class="rounded-lg bg-primary-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300"
                         type="button" href="{{ route('login') }}">Login</a>
                 @endauth
                 <button
@@ -62,15 +62,15 @@
                 <ul
                     class="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium rtl:space-x-reverse md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0">
                     <li>
-                        <a class="block rounded bg-primary-500 px-3 py-2 text-white md:bg-transparent md:p-0 md:text-primary-500"
+                        <a class="block rounded bg-primary-500 px-3 py-2 text-white md:bg-transparent md:p-0 md:text-primary-700"
                             href="#" aria-current="page">Home</a>
                     </li>
                     <li>
-                        <a class="block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-primary-500"
+                        <a class="block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-primary-700"
                             href="#">About</a>
                     </li>
                     <li>
-                        <a class="block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-primary-500"
+                        <a class="block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-primary-700"
                             href="#">Project</a>
                     </li>
                 </ul>

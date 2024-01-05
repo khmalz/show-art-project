@@ -134,7 +134,7 @@
         </div>
 
         <div>
-            <a class="mt-10 block text-center text-primary-500 hover:underline" href="#">Lihat
+            <a class="mt-10 block text-center text-primary-800 hover:text-primary-900 hover:underline" href="#">Lihat
                 Selengkapnya..</a>
         </div>
     </main>
