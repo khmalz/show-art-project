@@ -1,150 +1,141 @@
 @extends('layouts.main')
 
 @section('content')
-    <!-- Start Banner Hero -->
-    <div class="carousel slide" id="template-mo-zay-hero-carousel" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-6 custom-box text-center">
-                            <h1 class="h1" style="font-weight: 400 !important">Showcase Project</h1>
-                            <p>RPL - SMKN 46 Jakarta</p>
+    <header class="flex h-[520px] items-center justify-center bg-no-repeat"
+        style="background-image: url({{ asset('assets/img/header-bg.jpg') }});">
+        <div
+            class="flex w-full max-w-md flex-col items-center justify-center gap-y-3 rounded border-2 border-gray-300 bg-white px-5 py-10 text-black md:max-w-2xl">
+            <h3 class="text-3xl font-semibold md:text-5xl">Showcase Project</h3>
+            <h5 class="text-lg md:text-xl">RPL - SMKN 46 Jakarta</h5>
+        </div>
+    </header>
+
+    <main class="container" id="project">
+        <div class="mt-10 flex flex-col items-center gap-y-5">
+            <h2 class="text-6xl font-thin">Project</h2>
+            <h6 class="text-lg">Kumpulan hasil-hasil project dari jurusan RPL</h6>
+        </div>
+
+        <div class="flex">
+            <div class="mx-auto mt-10 grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3">
+
+                <div class="flex max-w-md flex-col justify-between rounded-lg border border-gray-200 bg-white shadow">
+                    <div>
+                        <a href="#">
+                            <img class="rounded-t-lg" src="{{ asset('assets/img/project/large-your-business.webp') }}"
+                                alt="" />
+                        </a>
+                        <div class="p-5">
+                            <div class="mb-2 flex gap-x-2.5">
+                                <span class="rounded bg-gray-800 px-2.5 py-0.5 text-xs font-medium text-white">PHP</span>
+                                <span
+                                    class="rounded bg-gray-800 px-2.5 py-0.5 text-xs font-medium text-white">Laravel</span>
+                            </div>
+
+                            <a href="#">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Noteworthy
+                                    technology acquisitions 2024</h5>
+                            </a>
+                            <p class="mb-3 font-normal text-gray-700">Here are the biggest enterprise technology
+                                acquisitions of 2021 so far, in reverse chronological order. Lorem ipsum dolor sit amet.</p>
                         </div>
                     </div>
+
+                    <div class="p-5">
+                        <p>By <a class="font-semibold hover:underline" href="#">khmalz</a> | 21 Days ago</p>
+                    </div>
                 </div>
+
+                <div class="flex max-w-md flex-col justify-between rounded-lg border border-gray-200 bg-white shadow">
+                    <div>
+                        <a href="#">
+                            <img class="rounded-t-lg" src="{{ asset('assets/img/project/project-management.png') }}"
+                                alt="" />
+                        </a>
+                        <div class="p-5">
+                            <div class="mb-2 flex gap-x-2.5">
+                                <span class="rounded bg-gray-800 px-2.5 py-0.5 text-xs font-medium text-white">PHP</span>
+                                <span
+                                    class="rounded bg-gray-800 px-2.5 py-0.5 text-xs font-medium text-white">Laravel</span>
+                            </div>
+
+                            <a href="#">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Noteworthy
+                                    technology acquisitions 2024</h5>
+                            </a>
+                            <p class="mb-3 font-normal text-gray-700">Here are the biggest enterprise technology
+                                acquisitions of 2021 so far, in reverse chronological order. Lorem ipsum dolor sit amet
+                                consectetur adipisicing elit. Veniam, velit..</p>
+                        </div>
+                    </div>
+
+                    <div class="p-5">
+                        <p>By <a class="font-semibold hover:underline" href="#">khmalz</a> | 21 Days ago</p>
+                    </div>
+                </div>
+
+                <div class="flex max-w-md flex-col justify-between rounded-lg border border-gray-200 bg-white shadow">
+                    <div>
+                        <a href="#">
+                            <img class="rounded-t-lg" src="{{ asset('assets/img/project/project-manager.png') }}"
+                                alt="" />
+                        </a>
+                        <div class="p-5">
+                            <div class="mb-2 flex gap-x-2.5">
+                                <span class="rounded bg-gray-800 px-2.5 py-0.5 text-xs font-medium text-white">PHP</span>
+                                <span
+                                    class="rounded bg-gray-800 px-2.5 py-0.5 text-xs font-medium text-white">Laravel</span>
+                            </div>
+
+                            <a href="#">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Noteworthy
+                                    technology acquisitions 2024</h5>
+                            </a>
+                            <p class="mb-3 font-normal text-gray-700">Here are the biggest enterprise technology
+                                acquisitions of 2021 so far, in reverse chronological order. Lorem ipsum dolor sit amet
+                                consectetur adipisicing elit.</p>
+                        </div>
+                    </div>
+
+                    <div class="p-5">
+                        <p>By <a class="font-semibold hover:underline" href="#">khmalz</a> | 21 Days ago</p>
+                    </div>
+                </div>
+
+                <div class="flex max-w-md flex-col justify-between rounded-lg border border-gray-200 bg-white shadow">
+                    <div>
+                        <a href="#">
+                            <img class="rounded-t-lg" src="{{ asset('assets/img/project/web-design.jpg') }}"
+                                alt="" />
+                        </a>
+                        <div class="p-5">
+                            <div class="mb-2 flex gap-x-2.5">
+                                <span class="rounded bg-gray-800 px-2.5 py-0.5 text-xs font-medium text-white">PHP</span>
+                                <span
+                                    class="rounded bg-gray-800 px-2.5 py-0.5 text-xs font-medium text-white">Laravel</span>
+                            </div>
+
+                            <a href="#">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Noteworthy
+                                    technology acquisitions 2024</h5>
+                            </a>
+                            <p class="mb-3 font-normal text-gray-700">Here are the biggest enterprise technology
+                                acquisitions of 2021 so far, in reverse chronological order. Lorem ipsum dolor sit amet
+                                consectetur.
+                        </div>
+                    </div>
+
+                    <div class="p-5">
+                        <p>By <a class="font-semibold hover:underline" href="#">khmalz</a> | 21 Days ago</p>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </div>
-    <!-- End Banner Hero -->
 
-    <!-- Start Project -->
-    <section>
-        <div class="container py-5">
-            <div class="row py-3 text-center">
-                <div class="col-lg-6 m-auto">
-                    <h1 class="h1">Project</h1>
-                    <p>
-                        Kumpulan hasil-hasil project dari jurusan RPL
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="{{ route('project.show') }}">
-                            <img class="card-img-top" src="{{ asset('assets/img/project/large-your-business.webp') }}"
-                                alt="...">
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted fw-semibold text-right">Orang 1</li>
-                            </ul>
-                            <ul class="list-unstyled d-flex gap-2">
-                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">Tailwind
-                                        CSS</span></li>
-                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">Javascript</span>
-                                </li>
-                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">React JS</span>
-                                </li>
-                            </ul>
-                            <a class="h2 text-decoration-none text-dark" href="{{ route('project.show') }}">Gym
-                                Weight</a>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia
-                                deserunt.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="{{ route('project.show') }}">
-                            <img class="card-img-top" src="{{ asset('assets/img/project/project-management.png') }}"
-                                alt="...">
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted fw-semibold text-right">Orang 3</li>
-                            </ul>
-                            <ul class="list-unstyled d-flex gap-2">
-                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">Tailwind
-                                        CSS</span></li>
-                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">Javascript</span>
-                                </li>
-                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">React JS</span>
-                                </li>
-                            </ul>
-                            <a class="h2 text-decoration-none text-dark" href="{{ route('project.show') }}">Gym
-                                Weight</a>
-                            <p class="card-text">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur, perspiciatis?
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="{{ route('project.show') }}">
-                            <img class="card-img-top" src="{{ asset('assets/img/project/project-manager.png') }}"
-                                alt="...">
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted fw-semibold text-right">Orang 2</li>
-                            </ul>
-                            <ul class="list-unstyled d-flex gap-2">
-                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">Tailwind
-                                        CSS</span></li>
-                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">Javascript</span>
-                                </li>
-                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">React JS</span>
-                                </li>
-                            </ul>
-                            <a class="h2 text-decoration-none text-dark" href="{{ route('project.show') }}">Gym
-                                Weight</a>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut quasi possimus facere, cumque
-                                minus perferendis dolores.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="{{ route('project.show') }}">
-                            <img class="card-img-top" src="{{ asset('assets/img/project/web-design.jpg') }}"
-                                alt="...">
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted fw-semibold text-right">Orang 1</li>
-                            </ul>
-                            <ul class="list-unstyled d-flex gap-2">
-                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">Tailwind
-                                        CSS</span></li>
-                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">Javascript</span>
-                                </li>
-                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">React JS</span>
-                                </li>
-                            </ul>
-                            <a class="h2 text-decoration-none text-dark" href="{{ route('project.show') }}">Gym
-                                Weight</a>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga temporibus repellat amet
-                                vitae?
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="d-flex justify-content-center">
-                <div>
-                    <button class="btn btn-info text-white">Lihat lainnya</button>
-                </div>
-            </div>
+        <div>
+            <a class="mt-10 block text-center text-primary-500 hover:underline" href="#">Lihat
+                Selengkapnya..</a>
         </div>
-    </section>
-    <!-- End Project -->
+    </main>
 @endsection

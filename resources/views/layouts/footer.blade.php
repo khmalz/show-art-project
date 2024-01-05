@@ -1,17 +1,9 @@
-    <!-- Start Footer -->
-    <footer class="bg-dark" id="tempaltemo_footer">
-        <div class="w-100 bg-black py-3">
-            <div class="container">
-                <div class="row pt-2">
-                    <div class="col-12">
-                        <p class="text-light text-left">
-                            Copyright &copy; 2023 SMKN 46 Jakarta
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
+<footer class="bg-white">
+    <div class="mx-auto w-full p-4 py-6 text-center lg:py-8">
+        <hr class="mx-auto my-6 border-gray-200 lg:my-8" />
+        <div class="flex items-center justify-center">
+            <span class="text-center text-sm text-gray-500">© 2023 SMKN 46 Jakarta. All Rights Reserved.
+            </span>
         </div>
-
-    </footer>
-    <!-- End Footer -->
+    </div>
+</footer>
