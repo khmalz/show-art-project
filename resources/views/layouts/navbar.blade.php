@@ -21,7 +21,7 @@
                         <a class="nav-link" href="#">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#project">Project</a>
+                        <a class="nav-link" href="{{ route('project.index') }}">Project</a>
                     </li>
                 </ul>
             </div>
@@ -47,8 +47,8 @@
                         </ul>
                     </div>
                 @else
-                    <a href="{{ route('login') }}" class="btn btn-success text-white" id="dropdownMenuButton1"
-                        type="button">
+                    <a class="btn btn-success text-white" id="dropdownMenuButton1" type="button"
+                        href="{{ route('login') }}">
                         Login
                     </a>
                 @endauth

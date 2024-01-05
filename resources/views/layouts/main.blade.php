@@ -24,7 +24,7 @@
 <body>
     @include('layouts.navbar')
 
-    @yield('content')
+    <div style="min-height: 100vh !important">@yield('content')</div>
 
     @include('layouts.footer')
 

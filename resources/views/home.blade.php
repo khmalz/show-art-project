@@ -32,14 +32,23 @@
             <div class="row">
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
-                        <a href="{{ url('shop-single.html') }}">
-                            <img class="card-img-top" src="{{ asset('/./assets/img/feature_prod_01.jpg') }}" alt="...">
+                        <a href="{{ route('project.show') }}">
+                            <img class="card-img-top" src="{{ asset('assets/img/project/large-your-business.webp') }}"
+                                alt="...">
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted fw-semibold text-right">Orang 2</li>
+                                <li class="text-muted fw-semibold text-right">Orang 1</li>
                             </ul>
-                            <a class="h2 text-decoration-none text-dark" href="{{ url('shop-single.html') }}">Gym
+                            <ul class="list-unstyled d-flex gap-2">
+                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">Tailwind
+                                        CSS</span></li>
+                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">Javascript</span>
+                                </li>
+                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">React JS</span>
+                                </li>
+                            </ul>
+                            <a class="h2 text-decoration-none text-dark" href="{{ route('project.show') }}">Gym
                                 Weight</a>
                             <p class="card-text">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia
@@ -50,36 +59,80 @@
                 </div>
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
-                        <a href="{{ url('shop-single.html') }}">
-                            <img class="card-img-top" src="{{ asset('/./assets/img/feature_prod_02.jpg') }}" alt="...">
+                        <a href="{{ route('project.show') }}">
+                            <img class="card-img-top" src="{{ asset('assets/img/project/project-management.png') }}"
+                                alt="...">
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted fw-semibold text-right">Orang 2</li>
+                                <li class="text-muted fw-semibold text-right">Orang 3</li>
                             </ul>
-                            <a class="h2 text-decoration-none text-dark" href="{{ url('shop-single.html') }}">Cloud
-                                Nike Shoes</a>
+                            <ul class="list-unstyled d-flex gap-2">
+                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">Tailwind
+                                        CSS</span></li>
+                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">Javascript</span>
+                                </li>
+                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">React JS</span>
+                                </li>
+                            </ul>
+                            <a class="h2 text-decoration-none text-dark" href="{{ route('project.show') }}">Gym
+                                Weight</a>
                             <p class="card-text">
-                                Aenean gravida dignissim finibus. Nullam ipsum diam, posuere vitae pharetra sed, commodo
-                                ullamcorper.
+                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur, perspiciatis?
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
-                        <a href="{{ url('shop-single.html') }}">
-                            <img class="card-img-top" src="{{ asset('/./assets/img/feature_prod_03.jpg') }}" alt="...">
+                        <a href="{{ route('project.show') }}">
+                            <img class="card-img-top" src="{{ asset('assets/img/project/project-manager.png') }}"
+                                alt="...">
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
                                 <li class="text-muted fw-semibold text-right">Orang 2</li>
                             </ul>
-                            <a class="h2 text-decoration-none text-dark" href="{{ url('shop-single.html') }}">Summer
-                                Addides Shoes</a>
+                            <ul class="list-unstyled d-flex gap-2">
+                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">Tailwind
+                                        CSS</span></li>
+                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">Javascript</span>
+                                </li>
+                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">React JS</span>
+                                </li>
+                            </ul>
+                            <a class="h2 text-decoration-none text-dark" href="{{ route('project.show') }}">Gym
+                                Weight</a>
                             <p class="card-text">
-                                Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et
-                                scelerisque ipsum lobortis nec.
+                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut quasi possimus facere, cumque
+                                minus perferendis dolores.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100">
+                        <a href="{{ route('project.show') }}">
+                            <img class="card-img-top" src="{{ asset('assets/img/project/web-design.jpg') }}"
+                                alt="...">
+                        </a>
+                        <div class="card-body">
+                            <ul class="list-unstyled d-flex justify-content-between">
+                                <li class="text-muted fw-semibold text-right">Orang 1</li>
+                            </ul>
+                            <ul class="list-unstyled d-flex gap-2">
+                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">Tailwind
+                                        CSS</span></li>
+                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">Javascript</span>
+                                </li>
+                                <li class="text-muted fw-semibold text-right"><span class="badge bg-dark">React JS</span>
+                                </li>
+                            </ul>
+                            <a class="h2 text-decoration-none text-dark" href="{{ route('project.show') }}">Gym
+                                Weight</a>
+                            <p class="card-text">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga temporibus repellat amet
+                                vitae?
                             </p>
                         </div>
                     </div>
