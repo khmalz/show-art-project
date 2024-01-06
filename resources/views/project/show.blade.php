@@ -1,800 +1,98 @@
-@extends('layouts.main')
-
-@push('styles')
-    <!-- Slick -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/slick.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/slick-theme.css') }}">
-@endpush
+@extends('layouts.main', ['grayBg' => true])
 
 @section('content')
-    <section class="bg-light">
-        <div class="container pb-5">
-            <div class="row">
-                <div class="col-lg-5 mt-5">
-                    <div class="card mb-3">
-                        <img class="card-img img-fluid" src="{{ asset('assets/img/product_single_10.jpg') }}"
-                            alt="Card image cap" id="product-detail">
+    <div class="container pt-5">
+        <div class="grid w-full grid-cols-1 gap-x-10 gap-y-3 lg:grid-cols-5">
+            <div class="lg:col-span-3">
+                <div id="controls-carousel" class="mt-5 grid w-full" data-carousel="static">
+                    <!-- Carousel wrapper -->
+                    <div class="relative h-80 overflow-hidden rounded-lg lg:h-[400px]">
+                        <a href="{{ asset('assets/img/project/large-your-business.webp') }}"
+                            class="project-lightbox hidden p-1 duration-700 ease-in-out" data-carousel-item>
+                            <img src="{{ asset('assets/img/project/large-your-business.webp') }}"
+                                class="h-72 w-full object-cover lg:h-96" alt="image 1">
+                        </a>
+                        <!-- Item 2 -->
+                        <a href="{{ asset('assets/img/project/project-management.png') }}"
+                            class="project-lightbox hidden p-1 duration-700 ease-in-out" data-carousel-item="active">
+                            <img src="{{ asset('assets/img/project/project-management.png') }}"
+                                class="h-72 w-full object-cover lg:h-96" alt="image 2">
+                        </a>
+                        <!-- Item 3 -->
+                        <a href="{{ asset('assets/img/project/project-manager.png') }}"
+                            class="project-lightbox hidden p-1 duration-700 ease-in-out" data-carousel-item>
+                            <img src="{{ asset('assets/img/project/project-manager.png') }}"
+                                class="h-72 w-full object-cover lg:h-96" full alt="image 3">
+                        </a>
+                        <!-- Item 4 -->
+                        <a href="{{ asset('assets/img/project/web-design.jpg') }}"
+                            class="project-lightbox hidden p-1 duration-700 ease-in-out" data-carousel-item>
+                            <img src="{{ asset('assets/img/project/web-design.jpg') }}"
+                                class="h-72 w-full object-cover lg:h-96" alt="image 4">
+                        </a>
                     </div>
-                    <div class="row">
-                        <!--Start Controls-->
-                        <div class="col-1 align-self-center">
-                            <a href="{{ url('#multi-item-example') }}" role="button" data-bs-slide="prev">
-                                <i class="text-dark fas fa-chevron-left"></i>
+
+                    <!-- Slider controls -->
+                    <div class="flex space-x-2 p-1">
+                        <button type="button"
+                            class="group flex h-full cursor-pointer items-center justify-center focus:outline-none"
+                            data-carousel-prev>
+                            <span
+                                class="inline-flex h-10 w-10 items-center justify-center bg-black/20 group-hover:bg-black/10 group-focus:outline-none group-focus:ring-black">
+                                <svg class="h-4 w-4 text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M5 1 1 5l4 4" />
+                                </svg>
                                 <span class="sr-only">Previous</span>
-                            </a>
-                        </div>
-                        <!--End Controls-->
-                        <!--Start Carousel Wrapper-->
-                        <div id="multi-item-example" class="col-10 carousel slide carousel-multi-item"
-                            data-bs-ride="carousel">
-                            <!--Start Slides-->
-                            <div class="carousel-inner product-links-wap" role="listbox">
-
-                                <!--First slide-->
-                                <div class="carousel-item active">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <a href="{{ url('#') }}">
-                                                <img class="card-img img-fluid"
-                                                    src="{{ asset('assets/img/product_single_01.jpg') }}"
-                                                    alt="Product Image 1">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="{{ url('#') }}">
-                                                <img class="card-img img-fluid"
-                                                    src="{{ asset('assets/img/product_single_02.jpg') }}"
-                                                    alt="Product Image 2">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="{{ url('#') }}">
-                                                <img class="card-img img-fluid"
-                                                    src="{{ asset('assets/img/product_single_03.jpg') }}"
-                                                    alt="Product Image 3">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/.First slide-->
-
-                                <!--Second slide-->
-                                <div class="carousel-item">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <a href="{{ url('#') }}">
-                                                <img class="card-img img-fluid"
-                                                    src="{{ asset('assets/img/product_single_04.jpg') }}"
-                                                    alt="Product Image 4">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="{{ url('#') }}">
-                                                <img class="card-img img-fluid"
-                                                    src="{{ asset('assets/img/product_single_05.jpg') }}"
-                                                    alt="Product Image 5">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="{{ url('#') }}">
-                                                <img class="card-img img-fluid"
-                                                    src="{{ asset('assets/img/product_single_06.jpg') }}"
-                                                    alt="Product Image 6">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/.Second slide-->
-
-                                <!--Third slide-->
-                                <div class="carousel-item">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <a href="{{ url('#') }}">
-                                                <img class="card-img img-fluid"
-                                                    src="{{ asset('assets/img/product_single_07.jpg') }}"
-                                                    alt="Product Image 7">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="{{ url('#') }}">
-                                                <img class="card-img img-fluid"
-                                                    src="{{ asset('assets/img/product_single_08.jpg') }}"
-                                                    alt="Product Image 8">
-                                            </a>
-                                        </div>
-                                        <div class="col-4">
-                                            <a href="{{ url('#') }}">
-                                                <img class="card-img img-fluid"
-                                                    src="{{ asset('assets/img/product_single_09.jpg') }}"
-                                                    alt="Product Image 9">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--/.Third slide-->
-                            </div>
-                            <!--End Slides-->
-                        </div>
-                        <!--End Carousel Wrapper-->
-                        <!--Start Controls-->
-                        <div class="col-1 align-self-center">
-                            <a href="{{ url('#multi-item-example') }}" role="button" data-bs-slide="next">
-                                <i class="text-dark fas fa-chevron-right"></i>
+                            </span>
+                        </button>
+                        <button type="button"
+                            class="group flex h-full cursor-pointer items-center justify-center focus:outline-none"
+                            data-carousel-next>
+                            <span
+                                class="inline-flex h-10 w-10 items-center justify-center bg-black/20 group-hover:bg-black/10 group-focus:outline-none group-focus:ring-black">
+                                <svg class="h-4 w-4 text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 9 4-4-4-4" />
+                                </svg>
                                 <span class="sr-only">Next</span>
-                            </a>
-                        </div>
-                        <!--End Controls-->
+                            </span>
+                        </button>
                     </div>
                 </div>
-                <!-- col end -->
-                <div class="col-lg-7 mt-5">
-                    <div class="card">
-                        <div class="card-body">
-                            <h1 class="h2">Active Wear</h1>
-                            <p class="h3 py-2">$25.00</p>
-                            <p class="py-2">
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-warning"></i>
-                                <i class="fa fa-star text-secondary"></i>
-                                <span class="list-inline-item text-dark">Rating 4.8 | 36 Comments</span>
-                            </p>
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <h6>Brand:</h6>
-                                </li>
-                                <li class="list-inline-item">
-                                    <p class="text-muted"><strong>Easy Wear</strong></p>
-                                </li>
-                            </ul>
-
-                            <h6>Description:</h6>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temp incididunt
-                                ut labore et dolore magna aliqua. Quis ipsum suspendisse. Donec condimentum elementum
-                                convallis. Nunc sed orci a diam ultrices aliquet interdum quis nulla.</p>
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <h6>Avaliable Color :</h6>
-                                </li>
-                                <li class="list-inline-item">
-                                    <p class="text-muted"><strong>White / Black</strong></p>
-                                </li>
-                            </ul>
-
-                            <h6>Specification:</h6>
-                            <ul class="list-unstyled pb-3">
-                                <li>Lorem ipsum dolor sit</li>
-                                <li>Amet, consectetur</li>
-                                <li>Adipiscing elit,set</li>
-                                <li>Duis aute irure</li>
-                                <li>Ut enim ad minim</li>
-                                <li>Dolore magna aliqua</li>
-                                <li>Excepteur sint</li>
-                            </ul>
-
-                            <form action="" method="GET">
-                                <input type="hidden" name="product-title" value="Activewear">
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item">Size :
-                                                <input type="hidden" name="product-size" id="product-size"
-                                                    value="S">
-                                            </li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">S</span>
-                                            </li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">M</span>
-                                            </li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">L</span>
-                                            </li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">XL</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-auto">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item text-right">
-                                                Quantity
-                                                <input type="hidden" name="product-quanity" id="product-quanity"
-                                                    value="1">
-                                            </li>
-                                            <li class="list-inline-item"><span class="btn btn-success"
-                                                    id="btn-minus">-</span></li>
-                                            <li class="list-inline-item"><span class="badge bg-secondary"
-                                                    id="var-value">1</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success"
-                                                    id="btn-plus">+</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="row pb-3">
-                                    <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg" name="submit"
-                                            value="buy">Buy</button>
-                                    </div>
-                                    <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg" name="submit"
-                                            value="addtocard">Add To Cart</button>
-                                    </div>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
+            </div>
+            <div class="w-full border bg-white p-5 shadow-sm lg:col-span-2">
+                <h6 class="mb-8 text-sm font-semibold">Khmalz</h6>
+                <h3 class="mb-1 text-xl">Noteworthy technology acquisitions 2024</h3>
+                <div class="mb-6 flex gap-x-2.5">
+                    <span class="rounded bg-gray-800 px-2.5 py-0.5 text-xs font-medium text-white">PHP</span>
+                    <span class="rounded bg-gray-800 px-2.5 py-0.5 text-xs font-medium text-white">Laravel</span>
                 </div>
+                <p class="mt-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. In, consequatur repudiandae.
+                    Fugit, repudiandae. Sapiente aut voluptatibus, perspiciatis tempora, eos libero molestias beatae
+                    expedita dolore ad illum non. Nam cumque officia obcaecati quia, unde repellat praesentium qui
+                    cupiditate est commodi omnis et nobis delectus quasi at id placeat quisquam ut reiciendis? Dolorem,
+                    facere. Obcaecati sapiente fugit aperiam cum ipsam, eaque laudantium. Corporis blanditiis excepturi quia
+                    optio ullam. Vero eveniet nihil cumque?</p>
+                <p class="mt-2">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor sunt quasi, deleniti iusto
+                    incidunt
+                    quidem. Earum hic cupiditate qui eius, dignissimos obcaecati modi perspiciatis iusto similique dolorum
+                    voluptas adipisci consequatur, aut labore corrupti eligendi in! Eveniet quisquam illum ipsum hic
+                    dolores. Laborum neque, voluptate hic obcaecati vitae fuga id quod expedita voluptatibus voluptas
+                    perspiciatis sed illo, reiciendis alias. Eum.</p>
             </div>
         </div>
-    </section>
-    <!-- Close Content -->
-
-    <!-- Start Article -->
-    <section class="py-5">
-        <div class="container">
-            <div class="row p-2 pb-3 text-left">
-                <h4>Related Products</h4>
-            </div>
-
-            <!--Start Carousel Wrapper-->
-            <div id="carousel-related-product">
-
-                <div class="p-2 pb-3">
-                    <div class="product-wap card rounded-0">
-                        <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid" src="{{ asset('assets/img/shop_08.jpg') }}">
-                            <div
-                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="{{ url('shop-single.html') }}"><i
-                                                class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="fas fa-cart-plus"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <a href="{{ url('shop-single.html') }}" class="h3 text-decoration-none">Red Clothing</a>
-                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                <li>M/L/X/XL</li>
-                                <li class="pt-2">
-                                    <span class="product-color-dot color-dot-red rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-blue rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-black rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-light rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-green rounded-circle float-left ml-1"></span>
-                                </li>
-                            </ul>
-                            <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                </li>
-                            </ul>
-                            <p class="mb-0 text-center">$20.00</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-2 pb-3">
-                    <div class="product-wap card rounded-0">
-                        <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid" src="{{ asset('assets/img/shop_09.jpg') }}">
-                            <div
-                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="{{ url('shop-single.html') }}"><i
-                                                class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="fas fa-cart-plus"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <a href="{{ url('shop-single.html') }}" class="h3 text-decoration-none">White Shirt</a>
-                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                <li>M/L/X/XL</li>
-                                <li class="pt-2">
-                                    <span class="product-color-dot color-dot-red rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-blue rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-black rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-light rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-green rounded-circle float-left ml-1"></span>
-                                </li>
-                            </ul>
-                            <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                </li>
-                            </ul>
-                            <p class="mb-0 text-center">$25.00</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-2 pb-3">
-                    <div class="product-wap card rounded-0">
-                        <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid" src="{{ asset('assets/img/shop_10.jpg') }}">
-                            <div
-                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="{{ url('shop-single.html') }}"><i
-                                                class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="fas fa-cart-plus"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <a href="{{ url('shop-single.html') }}" class="h3 text-decoration-none">Oupidatat non</a>
-                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                <li>M/L/X/XL</li>
-                                <li class="pt-2">
-                                    <span class="product-color-dot color-dot-red rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-blue rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-black rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-light rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-green rounded-circle float-left ml-1"></span>
-                                </li>
-                            </ul>
-                            <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                </li>
-                            </ul>
-                            <p class="mb-0 text-center">$45.00</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-2 pb-3">
-                    <div class="product-wap card rounded-0">
-                        <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid" src="{{ asset('assets/img/shop_11.jpg') }}">
-                            <div
-                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="{{ url('shop-single.html') }}"><i
-                                                class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="fas fa-cart-plus"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <a href="{{ url('shop-single.html') }}" class="h3 text-decoration-none">Black Fashion</a>
-                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                <li>M/L/X/XL</li>
-                                <li class="pt-2">
-                                    <span class="product-color-dot color-dot-red rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-blue rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-black rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-light rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-green rounded-circle float-left ml-1"></span>
-                                </li>
-                            </ul>
-                            <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                </li>
-                            </ul>
-                            <p class="mb-0 text-center">$60.00</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-2 pb-3">
-                    <div class="product-wap card rounded-0">
-                        <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid" src="{{ asset('assets/img/shop_08.jpg') }}">
-                            <div
-                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="{{ url('shop-single.html') }}"><i
-                                                class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="fas fa-cart-plus"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <a href="{{ url('shop-single.html') }}" class="h3 text-decoration-none">Oupidatat non</a>
-                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                <li class="">M/L/X/XL</li>
-                                <li class="pt-2">
-                                    <span class="product-color-dot color-dot-red rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-blue rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-black rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-light rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-green rounded-circle float-left ml-1"></span>
-                                </li>
-                            </ul>
-                            <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                </li>
-                            </ul>
-                            <p class="mb-0 text-center">$80.00</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-2 pb-3">
-                    <div class="product-wap card rounded-0">
-                        <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid" src="{{ asset('assets/img/shop_09.jpg') }}">
-                            <div
-                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="{{ url('shop-single.html') }}"><i
-                                                class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="fas fa-cart-plus"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <a href="{{ url('shop-single.html') }}" class="h3 text-decoration-none">Oupidatat non</a>
-                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                <li>M/L/X/XL</li>
-                                <li class="pt-2">
-                                    <span class="product-color-dot color-dot-red rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-blue rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-black rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-light rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-green rounded-circle float-left ml-1"></span>
-                                </li>
-                            </ul>
-                            <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                </li>
-                            </ul>
-                            <p class="mb-0 text-center">$110.00</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-2 pb-3">
-                    <div class="product-wap card rounded-0">
-                        <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid" src="{{ asset('assets/img/shop_10.jpg') }}">
-                            <div
-                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="{{ url('shop-single.html') }}"><i
-                                                class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="fas fa-cart-plus"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <a href="{{ url('shop-single.html') }}" class="h3 text-decoration-none">Oupidatat non</a>
-                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                <li>M/L/X/XL</li>
-                                <li class="pt-2">
-                                    <span class="product-color-dot color-dot-red rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-blue rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-black rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-light rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-green rounded-circle float-left ml-1"></span>
-                                </li>
-                            </ul>
-                            <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                </li>
-                            </ul>
-                            <p class="mb-0 text-center">$125.00</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-2 pb-3">
-                    <div class="product-wap card rounded-0">
-                        <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid" src="{{ asset('assets/img/shop_11.jpg') }}">
-                            <div
-                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="{{ url('shop-single.html') }}"><i
-                                                class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="fas fa-cart-plus"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <a href="{{ url('shop-single.html') }}" class="h3 text-decoration-none">Oupidatat non</a>
-                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                <li>M/L/X/XL</li>
-                                <li class="pt-2">
-                                    <span class="product-color-dot color-dot-red rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-blue rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-black rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-light rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-green rounded-circle float-left ml-1"></span>
-                                </li>
-                            </ul>
-                            <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                </li>
-                            </ul>
-                            <p class="mb-0 text-center">$160.00</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-2 pb-3">
-                    <div class="product-wap card rounded-0">
-                        <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid" src="{{ asset('assets/img/shop_08.jpg') }}">
-                            <div
-                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="{{ url('shop-single.html') }}"><i
-                                                class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="fas fa-cart-plus"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <a href="{{ url('shop-single.html') }}" class="h3 text-decoration-none">Oupidatat non</a>
-                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                <li>M/L/X/XL</li>
-                                <li class="pt-2">
-                                    <span class="product-color-dot color-dot-red rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-blue rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-black rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-light rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-green rounded-circle float-left ml-1"></span>
-                                </li>
-                            </ul>
-                            <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                </li>
-                            </ul>
-                            <p class="mb-0 text-center">$180.00</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-2 pb-3">
-                    <div class="product-wap card rounded-0">
-                        <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid" src="{{ asset('assets/img/shop_09.jpg') }}">
-                            <div
-                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="{{ url('shop-single.html') }}"><i
-                                                class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="fas fa-cart-plus"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <a href="{{ url('shop-single.html') }}" class="h3 text-decoration-none">Oupidatat non</a>
-                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                <li>M/L/X/XL</li>
-                                <li class="pt-2">
-                                    <span class="product-color-dot color-dot-red rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-blue rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-black rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-light rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-green rounded-circle float-left ml-1"></span>
-                                </li>
-                            </ul>
-                            <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                </li>
-                            </ul>
-                            <p class="mb-0 text-center">$220.00</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-2 pb-3">
-                    <div class="product-wap card rounded-0">
-                        <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid" src="{{ asset('assets/img/shop_10.jpg') }}">
-                            <div
-                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="{{ url('shop-single.html') }}"><i
-                                                class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="fas fa-cart-plus"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <a href="{{ url('shop-single.html') }}" class="h3 text-decoration-none">Oupidatat non</a>
-                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                <li>M/L/X/XL</li>
-                                <li class="pt-2">
-                                    <span class="product-color-dot color-dot-red rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-blue rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-black rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-light rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-green rounded-circle float-left ml-1"></span>
-                                </li>
-                            </ul>
-                            <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                </li>
-                            </ul>
-                            <p class="mb-0 text-center">$250.00</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-2 pb-3">
-                    <div class="product-wap card rounded-0">
-                        <div class="card rounded-0">
-                            <img class="card-img rounded-0 img-fluid" src="{{ asset('assets/img/shop_11.jpg') }}">
-                            <div
-                                class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                <ul class="list-unstyled">
-                                    <li><a class="btn btn-success text-white" href="{{ url('shop-single.html') }}"><i
-                                                class="far fa-heart"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success mt-2 text-white"
-                                            href="{{ url('shop-single.html') }}"><i class="fas fa-cart-plus"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <a href="{{ url('shop-single.html') }}" class="h3 text-decoration-none">Oupidatat non</a>
-                            <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                <li>M/L/X/XL</li>
-                                <li class="pt-2">
-                                    <span class="product-color-dot color-dot-red rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-blue rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-black rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-light rounded-circle float-left ml-1"></span>
-                                    <span class="product-color-dot color-dot-green rounded-circle float-left ml-1"></span>
-                                </li>
-                            </ul>
-                            <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                </li>
-                            </ul>
-                            <p class="mb-0 text-center">$300.00</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-    <!-- End Article -->
+    </div>
 @endsection
 
 @push('scripts')
-    <!-- Start Slider Script -->
-    <script src="{{ asset('assets/js/slick.min.js') }}"></script>
     <script>
-        $('#carousel-related-product').slick({
-            infinite: true,
-            arrows: false,
-            slidesToShow: 4,
-            slidesToScroll: 3,
-            dots: true,
-            responsive: [{
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3
-                    }
-                },
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 3
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 3
-                    }
-                }
-            ]
+        document.addEventListener('DOMContentLoaded', () => {
+            const portfolioLightbox = GLightbox({
+                selector: '.project-lightbox'
+            });
         });
     </script>
-    <!-- End Slider Script -->
 @endpush

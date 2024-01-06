@@ -22,7 +22,7 @@
 <body>
     @include('layouts.navbar')
 
-    <div class="min-h-screen pt-16">@yield('content')</div>
+    <div class="{{ !empty($grayBg) ? 'bg-[#e9eef5]' : '' }} min-h-screen pt-16">@yield('content')</div>
 
     @include('layouts.footer')
 
