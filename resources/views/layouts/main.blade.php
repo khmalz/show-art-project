@@ -27,11 +27,10 @@
     @include('layouts.footer')
 
     <!-- Start Script -->
-    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
-    <!-- End Script -->
 
     @stack('scripts')
+    <!-- End Script -->
 
 </body>
 

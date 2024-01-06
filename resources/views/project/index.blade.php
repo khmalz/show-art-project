@@ -10,46 +10,68 @@
                         <a class="text-sm text-primary-700" href="{{ route('project.index') }}">Reset all filters</a>
                     </div>
                     <div>
-                        <div class="mb-4 mt-3">
-                            <label for="title" class="mb-2 block text-sm font-medium text-gray-900">Title</label>
-                            <input type="text" id="title"
-                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 selection:bg-primary-500 selection:text-white focus:border-primary-500 focus:ring-primary-500"
-                                placeholder="Title" required>
-                        </div>
-                        <div class="mt-5">
-                            <h6 class="mb-2 font-medium">Framework</h6>
-                            <div class="mb-4 flex items-center">
-                                <input id="laravel-checkbox" type="checkbox" value=""
-                                    class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500">
-                                <label for="laravel-checkbox"
-                                    class="ms-2 text-sm font-medium text-gray-900 selection:bg-primary-500 selection:text-white">Laravel</label>
+                        <form method="GET">
+                            <div class="mb-5 mt-3">
+                                <label for="selectSearch"
+                                    class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Select
+                                    an option to search</label>
+                                <select id="selectSearch" onclick="filterInput(this)"
+                                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500">
+                                    <option selected value="title">Title</option>
+                                    <option value="developer">Developer</option>
+                                </select>
                             </div>
-                            <div class="mb-4 flex items-center">
-                                <input id="react-checkbox" type="checkbox" value=""
-                                    class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500">
-                                <label for="react-checkbox"
-                                    class="ms-2 text-sm font-medium text-gray-900 selection:bg-primary-500 selection:text-white">React</label>
+                            <div class="mb-5">
+                                <div id="titleInput">
+                                    <label for="title" class="mb-2 block text-sm font-medium text-gray-900">Title</label>
+                                    <input type="text" id="title" name="title"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 selection:bg-primary-500 selection:text-white focus:border-primary-500 focus:ring-primary-500"
+                                        placeholder="Title">
+                                </div>
+
+                                <div class="hidden" id="developerInput">
+                                    <label for="developer"
+                                        class="mb-2 block text-sm font-medium text-gray-900">Developer</label>
+                                    <input type="text" id="developer" name="developer"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 selection:bg-primary-500 selection:text-white focus:border-primary-500 focus:ring-primary-500"
+                                        placeholder="Developer">
+                                </div>
                             </div>
-                        </div>
-                        <div class="mt-5">
-                            <h6 class="mb-2 font-medium">Language</h6>
-                            <div class="mb-4 flex items-center">
-                                <input id="javascript-checkbox" type="checkbox" value=""
-                                    class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500">
-                                <label for="javascript-checkbox"
-                                    class="ms-2 text-sm font-medium text-gray-900 selection:bg-primary-500 selection:text-white">Javascript</label>
+                            <div class="mb-5">
+                                <h6 class="mb-2 font-medium">Framework</h6>
+                                <div class="mb-4 flex items-center">
+                                    <input id="laravel-checkbox" type="checkbox" value=""
+                                        class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500">
+                                    <label for="laravel-checkbox"
+                                        class="ms-2 text-sm font-medium text-gray-900 selection:bg-primary-500 selection:text-white">Laravel</label>
+                                </div>
+                                <div class="mb-4 flex items-center">
+                                    <input id="react-checkbox" type="checkbox" value=""
+                                        class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500">
+                                    <label for="react-checkbox"
+                                        class="ms-2 text-sm font-medium text-gray-900 selection:bg-primary-500 selection:text-white">React</label>
+                                </div>
                             </div>
-                            <div class="mb-4 flex items-center">
-                                <input id="php-checkbox" type="checkbox" value=""
-                                    class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500">
-                                <label for="php-checkbox"
-                                    class="ms-2 text-sm font-medium text-gray-900 selection:bg-primary-500 selection:text-white">PHP</label>
+                            <div class="mb-5">
+                                <h6 class="mb-2 font-medium">Language</h6>
+                                <div class="mb-4 flex items-center">
+                                    <input id="javascript-checkbox" type="checkbox" value=""
+                                        class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500">
+                                    <label for="javascript-checkbox"
+                                        class="ms-2 text-sm font-medium text-gray-900 selection:bg-primary-500 selection:text-white">Javascript</label>
+                                </div>
+                                <div class="mb-4 flex items-center">
+                                    <input id="php-checkbox" type="checkbox" value=""
+                                        class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500">
+                                    <label for="php-checkbox"
+                                        class="ms-2 text-sm font-medium text-gray-900 selection:bg-primary-500 selection:text-white">PHP</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mt-5">
-                            <button
-                                class="rounded-md bg-primary-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300">Search</button>
-                        </div>
+                            <div class="mb-5">
+                                <button type="submit"
+                                    class="rounded-md bg-primary-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300">Search</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -76,15 +98,36 @@
                             </svg>
                             <span class="sr-only">Close menu</span>
                         </button>
-                        <form class="mb-6">
+                        <form method="GET" class="mb-6">
                             <a class="text-blue-700 hover:text-blue-800" href="{{ route('project.index') }}">Reset all
                                 filters</a>
                             <div class="mt-5">
-                                <div class="mb-4">
-                                    <label for="title" class="mb-2 block text-sm font-medium text-gray-900">Title</label>
-                                    <input type="text" id="title"
-                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
-                                        placeholder="Title" required>
+                                <div class="mb-5 mt-3">
+                                    <label for="selectSearchDrawer"
+                                        class="mb-2 block text-sm font-medium text-gray-900">Select
+                                        an option to search</label>
+                                    <select id="selectSearchDrawer" onclick="filterInput(this, true)"
+                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500">
+                                        <option selected value="title">Title</option>
+                                        <option value="developer">Developer</option>
+                                    </select>
+                                </div>
+                                <div class="mb-5">
+                                    <div id="titleInputDrawer">
+                                        <label for="title"
+                                            class="mb-2 block text-sm font-medium text-gray-900">Title</label>
+                                        <input type="text" id="title" name="title"
+                                            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 selection:bg-blue-500 selection:text-white focus:border-blue-500 focus:ring-blue-500"
+                                            placeholder="Title">
+                                    </div>
+
+                                    <div class="hidden" id="developerInputDrawer">
+                                        <label for="developer"
+                                            class="mb-2 block text-sm font-medium text-gray-900">Developer</label>
+                                        <input type="text" id="developer" name="developer"
+                                            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 selection:bg-blue-500 selection:text-white focus:border-blue-500 focus:ring-blue-500"
+                                            placeholder="Developer">
+                                    </div>
                                 </div>
                                 <h6 class="mb-2 font-medium">Framework</h6>
                                 <div class="mb-4 flex items-center">
@@ -253,3 +296,18 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        function filterInput(el, drawer = false) {
+            let inputPrefix = drawer ? 'Drawer' : '';
+            let selectedOption = $(el).val();
+
+            $(`#titleInput${inputPrefix}, #developerInput${inputPrefix}`).addClass('hidden');
+
+            if (selectedOption === 'title' || selectedOption === 'developer') {
+                $(`#${selectedOption}Input${inputPrefix}`).removeClass('hidden');
+            }
+        }
+    </script>
+@endpush
