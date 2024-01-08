@@ -26,6 +26,14 @@ Route::get('/project/detail', function () {
     return view('project.show');
 })->name('project.show');
 
+Route::get('/project/create', function () {
+    return view('project.create');
+})->name('project.create');
+
+Route::post('/project', function (\Illuminate\Http\Request $request) {
+    return $request;
+})->name('project.store');
+
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->name('dashboard');

@@ -5,6 +5,8 @@ use Illuminate\Support\ServiceProvider;
 
 return [
 
+    'tiny_api_key' => env('TINY_API_KEY', ''),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
