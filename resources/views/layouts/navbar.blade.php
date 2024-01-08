@@ -12,8 +12,8 @@
                         id="user-menu-button" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom"
                         type="button" aria-expanded="false">
                         <span class="sr-only">Open user menu</span>
-                        <img class="h-8 w-8 rounded-full bg-white"
-                            src="{{ asset('assets/admin/assets/img/avatars/person.png') }}" alt="user photo" />
+                        <img class="h-8 w-8 rounded-full bg-white" src="{{ asset('assets/admin/img/person.png') }}"
+                            alt="user photo" />
                     </button>
                     <!-- Dropdown menu -->
                     <div class="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded-lg bg-white text-base shadow dark:divide-gray-600 dark:bg-gray-700"

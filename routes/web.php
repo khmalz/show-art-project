@@ -36,6 +36,6 @@ Route::post('/project', function (\Illuminate\Http\Request $request) {
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');
-})->name('dashboard');
+})->middleware(['auth', 'role:admin'])->name('dashboard');
 
 require __DIR__ . '/auth.php';

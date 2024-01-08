@@ -1,57 +1,80 @@
 @extends('auth.layouts.app', ['titlePage' => 'Login'])
 
 @section('content')
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="card-group d-block d-md-flex row">
-                <div class="card col-md-7 mb-0 p-4">
-                    <div class="card-body">
-                        <h1>Login</h1>
-                        <p class="text-medium-emphasis">Sign In to your account</p>
-                        @if (session('fail'))
-                            <div class="alert alert-danger py-2">
-                                {{ session('fail') }}
+    <main>
+        <div class="container">
+
+            <main class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-4 col-lg-6 col-md-8 d-flex flex-column align-items-center justify-content-center">
+
+                            <div class="d-flex justify-content-center py-4">
+                                <a href="{{ route('home') }}" class="logo d-flex align-items-center w-auto">
+                                    <span class="d-none d-lg-block">Showcase Project</span>
+                                </a>
                             </div>
-                        @endif
-                        <form action="{{ route('login') }}" method="post">
-                            @csrf
-                            <div class="input-group mb-3">
-                                <span class="input-group-text">
-                                    <svg class="icon">
-                                        <use
-                                            xlink:href="{{ asset('assets/admin/vendors/@coreui/icons/svg/free.svg#cil-envelope-open') }}">
-                                        </use>
-                                    </svg></span>
-                                <input class="form-control" name="email" type="email" placeholder="Email" autofocus
-                                    autocomplete="email" />
+
+                            <div class="card mb-3">
+
+                                <div class="card-body">
+
+                                    <div class="pb-2 pt-4">
+                                        <h5 class="card-title fs-4 pb-0 text-center">Login to Your Account</h5>
+                                        @if ($errors->any())
+                                            <p class="small text-danger text-center">Email/Password salah</p>
+                                        @endif
+                                    </div>
+
+                                    <form class="row g-3" action="{{ route('login') }}" method="POST">
+                                        @csrf
+
+                                        <div class="col-12">
+                                            <label for="yourEmail" class="form-label">Email</label>
+                                            <div class="input-group has-validation">
+                                                <span class="input-group-text" id="inputGroupPrepend"><i
+                                                        class="bx bx-envelope"></i></span>
+                                                <input type="email" name="email" class="form-control" id="yourEmail"
+                                                    required>
+                                                <div class="invalid-feedback">Please enter your email.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="yourPassword" class="form-label">Password</label>
+                                            <div class="input-group has-validation">
+                                                <span class="input-group-text" id="inputGroupPrepend"><i
+                                                        class='bx bxs-lock'></i></span>
+                                                <input type="password" name="password" class="form-control"
+                                                    id="yourPassword" required>
+                                                <div class="invalid-feedback">Please enter your password.</div>
+                                            </div>
+                                            <div class="col-12 mt-2">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="showPassword">
+                                                    <label class="form-check-label" for="showPassword">
+                                                        Show Password
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <button class="btn btn-primary w-100" type="submit">Login</button>
+                                        </div>
+                                        <div class="col-12">
+                                            <p class="small mb-0">Don't have account? <a
+                                                    href="{{ route('register') }}">Create an account</a></p>
+                                        </div>
+                                    </form>
+
+                                </div>
                             </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text">
-                                    <svg class="icon">
-                                        <use
-                                            xlink:href="{{ asset('assets/admin/vendors/@coreui/icons/svg/free.svg#cil-lock-locked') }}">
-                                        </use>
-                                    </svg></span>
-                                <input class="form-control" name="password" type="password" placeholder="Password"
-                                    autocomplete="current-password" />
-                            </div>
-                            <button class="btn btn-block btn-info text-white" type="submit">
-                                Login
-                            </button>
-                        </form>
-                    </div>
-                </div>
-                <div class="card col-md-5 bg-primary py-5 text-white">
-                    <div class="card-body text-center">
-                        <div>
-                            <h2>Sign up</h2>
-                            <p>Doesn't have an account?</p>
-                            <a class="btn btn-outline-light mt-3" type="button" href="{{ route('register') }}">Register
-                                Now!</a>
                         </div>
                     </div>
                 </div>
-            </div>
+
+            </main>
+
         </div>
-    </div>
+    </main>
 @endsection
