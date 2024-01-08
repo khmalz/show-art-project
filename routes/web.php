@@ -34,8 +34,18 @@ Route::post('/project', function (\Illuminate\Http\Request $request) {
     return $request;
 })->name('project.store');
 
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-})->middleware(['auth', 'role:admin'])->name('dashboard');
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard.index');
+    })->name('dashboard');
+
+    Route::get('/list/project', function () {
+        return view('admin.project.list');
+    })->name('admin.project.list');
+
+    Route::get('/list/user', function () {
+        return view('admin.user.list');
+    })->name('admin.user.list');
+});
 
 require __DIR__ . '/auth.php';

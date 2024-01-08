@@ -14,7 +14,8 @@
          <li class="nav-heading">Project</li>
 
          <li class="nav-item">
-             <a class="nav-link {{ request()->routeIs('admin.project.*') ? null : 'collapsed' }}" href="#">
+             <a class="nav-link {{ request()->routeIs('admin.project.*') ? null : 'collapsed' }}"
+                 href="{{ route('admin.project.list') }}">
                  <i class='bx bx-folder'></i>
                  <span>List</span>
              </a>
@@ -23,7 +24,8 @@
          <li class="nav-heading">Account</li>
 
          <li class="nav-item">
-             <a class="nav-link {{ request()->routeIs('user.*') ? null : 'collapsed' }}" href="#">
+             <a class="nav-link {{ request()->routeIs('admin.user.*') ? null : 'collapsed' }}"
+                 href="{{ route('admin.user.list') }}">
                  <i class="bi bi-person"></i>
                  <span>User</span>
              </a>
