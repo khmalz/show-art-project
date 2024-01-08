@@ -57,7 +57,7 @@
                     <div class="mb-3">
                         <label class="mb-2 block text-sm font-medium text-gray-900" for="multipleFiles">Upload Photo</label>
                         <input
-                            class="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 file:bg-blue-600 file:text-blue-600 focus:outline-none"
+                            class="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 file:!bg-blue-600 file:text-blue-600 focus:outline-none"
                             id="multipleFiles" name="images[]" type="file" onchange="previewImageMultiple()" multiple>
 
                         <p class="mt-1 text-sm text-gray-500" id="file_input_help">SVG, PNG, JPG or GIF
