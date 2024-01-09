@@ -10,7 +10,7 @@
         <div class="mx-auto w-full max-w-5xl bg-white">
             <div class="p-5">
                 <h3 class="mb-5 text-2xl font-semibold">Input Project</h3>
-                <form action="{{ route('project.store') }}" method="POST">
+                <form action="{{ route('project.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3 grid gap-4 md:grid-cols-2">
                         <div>
@@ -18,14 +18,16 @@
                                 Name</label>
                             <input
                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
-                                id="name" type="text" placeholder="John" disabled>
+                                id="name" type="text" value="{{ auth()->user()->name }}" placeholder="John"
+                                disabled>
                         </div>
                         <div>
                             <label class="mb-2 block text-sm font-medium text-gray-900" for="email">Email
                                 address</label>
                             <input
                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
-                                id="email" type="email" placeholder="john.doe@company.com" disabled>
+                                id="email" type="email" value="{{ auth()->user()->email }}"
+                                placeholder="john.doe@company.com" disabled>
                         </div>
                     </div>
                     <div class="mb-3">
@@ -33,7 +35,8 @@
                             Title</label>
                         <input
                             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
-                            id="title" name="title" type="text" placeholder="Title" required>
+                            id="title" name="title" type="text" value="{{ old('title') }}" placeholder="Title"
+                            required>
                     </div>
                     <div class="mb-3">
                         <label class="mb-2 block text-sm font-medium text-gray-900" for="Multiselect">
@@ -41,11 +44,9 @@
                         <div class="relative flex w-full">
                             <select class="block w-full cursor-pointer rounded-sm focus:outline-none" id="select-tag"
                                 name="tags[]" multiple placeholder="Select tags..." autocomplete="off" multiple>
-                                <option value="javascript">Javascript</option>
-                                <option value="php">PHP</option>
-                                <option value="laravel">Laravel</option>
-                                <option value="react">React</option>
-                                <option value="typescript">Typescript</option>
+                                @foreach ($tags as $tag)
+                                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>

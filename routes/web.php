@@ -25,7 +25,6 @@ Route::middleware(['auth', 'role:siswa'])->group(function () {
 Route::get('/project', [ProjectController::class, 'index'])->name('project.index');
 Route::get('/project/{project}', [ProjectController::class, 'show'])->name('project.show');
 
-
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard.index');

@@ -155,9 +155,9 @@
                                 <div
                                     class="flex max-w-lg flex-col justify-between rounded-lg border border-gray-200 bg-white shadow">
                                     <div>
-                                        <a href="#">
+                                        <a href="{{ route('project.show', $project) }}">
                                             <img class="rounded-t-lg"
-                                                src="{{ $project->images->isNotEmpty() ? \Illuminate\Support\Facades\Storage::url($project->images[0]->path) : asset('assets/img/project/large-your-business.webp') }}"
+                                                src="{{ count($project->images) > 0 ? \Illuminate\Support\Facades\Storage::url($project->images[0]->path) : asset('assets/img/project/large-your-business.webp') }}"
                                                 alt="{{ $project->title }}" />
                                         </a>
                                         <div class="p-5">
@@ -168,11 +168,11 @@
                                                 @endforeach
                                             </div>
 
-                                            <a href="#">
+                                            <a href="{{ route('project.show', $project) }}">
                                                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
                                                     {{ $project->title }}</h5>
                                             </a>
-                                            <p class="mb-3 font-normal text-gray-700">{{ $project->description }}</p>
+                                            <p class="mb-3 font-normal text-gray-700">{!! $project->description !!}</p>
                                         </div>
                                     </div>
 

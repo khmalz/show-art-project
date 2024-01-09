@@ -40,7 +40,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view("project.create");
+        $tags = Tag::all();
+
+        return view("project.create", compact('tags'));
     }
 
     /**
@@ -48,7 +50,35 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'string'],
+            'tags' => ['required', 'array', 'min:1'],
+            'tags.*' => ['string'],
+            'description' => ['required', 'string'],
+            'images' => ['required', 'array', 'min:1'],
+            'images.*' => ['file', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+        ]);
+
+        $user = $request->user();
+
+        $project = $user->projects()->create([
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+
+        $tags = collect($request->tags);
+        $project->tags()->attach($tags);
+
+        $images = $request->file('images');
+        foreach ($images as $image) {
+            $imagePath = $image->store('images');
+
+            $project->images()->create([
+                'path' => $imagePath,
+            ]);
+        }
+
+        return to_route("project.index")->with('success', 'Success input your project');
     }
 
     /**
@@ -56,7 +86,9 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        return view("project.show");
+        $project->load('developer', 'images', 'tags');
+
+        return view("project.show", compact("project"));
     }
 
     /**
