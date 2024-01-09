@@ -18,14 +18,14 @@ class Project extends Model
         "description",
     ];
 
-    public function user(): BelongsTo
+    public function developer(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function images(): HasMany
     {
-        return $this->hasMany(Image::class);
+        return $this->hasMany(Image::class, 'project_id');
     }
 
     public function tags(): BelongsToMany

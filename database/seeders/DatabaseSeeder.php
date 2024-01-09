@@ -24,13 +24,13 @@ class DatabaseSeeder extends Seeder
         $admin->assignRole('admin');
 
         $siswa1 = User::factory()->create([
-            'name' => 'Siswa1',
+            'name' => 'Siswa 1',
             'email' => 'siswa1@gmail.com',
         ]);
         $siswa1->assignRole('siswa');
 
         $siswa2 = User::factory()->create([
-            'name' => 'Siswa2',
+            'name' => 'Siswa 2',
             'email' => 'siswa2@gmail.com',
         ]);
         $siswa2->assignRole('siswa');

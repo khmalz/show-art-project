@@ -24,12 +24,6 @@ class ProjectSeeder extends Seeder
                     'description' => "Deskripsi proyek {$i} dari siswa {$siswa->name}.",
                 ]);
 
-                for ($j = 1; $j <= rand(1, 5); $j++) {
-                    $project->images()->create([
-                        'path' => "path/to/image{$j}.jpg",
-                    ]);
-                }
-
                 $tags = Tag::inRandomOrder()->limit(3)->get(); // Ambil 3 tag secara acak
                 $project->tags()->attach($tags);
             }

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,21 +18,13 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/project', function () {
-    return view('project.index');
-})->name('project.index');
+Route::middleware(['auth', 'role:siswa'])->group(function () {
+    Route::resource('project', ProjectController::class)->except('index', 'show');
+});
 
-Route::get('/project/detail', function () {
-    return view('project.show');
-})->name('project.show');
+Route::get('/project', [ProjectController::class, 'index'])->name('project.index');
+Route::get('/project/{project}', [ProjectController::class, 'show'])->name('project.show');
 
-Route::get('/project/create', function () {
-    return view('project.create');
-})->name('project.create');
-
-Route::post('/project', function (\Illuminate\Http\Request $request) {
-    return $request;
-})->name('project.store');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/dashboard', function () {
