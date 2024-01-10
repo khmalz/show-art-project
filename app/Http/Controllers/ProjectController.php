@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -112,6 +113,14 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        if (count($project->images) > 0) {
+            foreach ($project->images as $image) {
+                Storage::delete($image->path);
+            }
+        }
+
+        $project->delete();
+
+        return to_route('project.index')->with("success", "Success delete your project");
     }
 }

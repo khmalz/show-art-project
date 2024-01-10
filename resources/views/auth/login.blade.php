@@ -10,7 +10,7 @@
                         <div class="col-xl-4 col-lg-6 col-md-8 d-flex flex-column align-items-center justify-content-center">
 
                             <div class="d-flex justify-content-center py-4">
-                                <a href="{{ route('home') }}" class="logo d-flex align-items-center w-auto">
+                                <a class="logo d-flex align-items-center w-auto" href="{{ route('home') }}">
                                     <span class="d-none d-lg-block">Showcase Project</span>
                                 </a>
                             </div>
@@ -30,27 +30,27 @@
                                         @csrf
 
                                         <div class="col-12">
-                                            <label for="yourEmail" class="form-label">Email</label>
+                                            <label class="form-label" for="yourEmail">Email</label>
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend"><i
                                                         class="bx bx-envelope"></i></span>
-                                                <input type="email" name="email" class="form-control" id="yourEmail"
-                                                    required>
+                                                <input class="form-control" id="yourEmail" name="email" type="email"
+                                                    required autocomplete="email">
                                                 <div class="invalid-feedback">Please enter your email.</div>
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <label for="yourPassword" class="form-label">Password</label>
+                                            <label class="form-label" for="yourPassword">Password</label>
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend"><i
                                                         class='bx bxs-lock'></i></span>
-                                                <input type="password" name="password" class="form-control"
-                                                    id="yourPassword" required>
+                                                <input class="form-control" id="yourPassword" name="password"
+                                                    type="password" required autocomplete="new-password">
                                                 <div class="invalid-feedback">Please enter your password.</div>
                                             </div>
                                             <div class="col-12 mt-2">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="showPassword">
+                                                    <input class="form-check-input" id="showPassword" type="checkbox">
                                                     <label class="form-check-label" for="showPassword">
                                                         Show Password
                                                     </label>

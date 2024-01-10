@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SiswaListProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,8 @@ Route::get('/', function () {
 })->name('home');
 
 Route::middleware(['auth', 'role:siswa'])->group(function () {
+    Route::get('/my-project', SiswaListProjectController::class)->name('my-project');
+
     Route::resource('project', ProjectController::class)->except('index', 'show');
 });
 

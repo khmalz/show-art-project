@@ -30,6 +30,12 @@
                                         href="{{ route('dashboard') }}">Dashboard</a>
                                 </li>
                             @endrole
+                            @role('siswa')
+                                <li>
+                                    <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        href="{{ route('my-project') }}">My Project</a>
+                                </li>
+                            @endrole
                             <li>
                                 <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
                                     href="#">Settings</a>
@@ -70,7 +76,7 @@
                             href="#">About</a>
                     </li>
                     <li>
-                        <a class="{{ request()->routeIs('project.*') ? 'nav-active' : 'nav-unactive' }} block rounded px-3 py-2"
+                        <a class="{{ request()->routeIs('project.*') || request()->routeIs('my-project') ? 'nav-active' : 'nav-unactive' }} block rounded px-3 py-2"
                             href="{{ route('project.index') }}">Project</a>
                     </li>
                 </ul>
