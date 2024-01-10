@@ -19,15 +19,15 @@
                                 Name</label>
                             <input
                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
-                                id="name" type="text" value="{{ auth()->user()->name }}" placeholder="John"
-                                disabled>
+                                id="name" type="text" value="{{ auth()->user()->name }}" autocomplete="name"
+                                placeholder="John" disabled>
                         </div>
                         <div>
                             <label class="mb-2 block text-sm font-medium text-gray-900" for="email">Email
                                 address</label>
                             <input
                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
-                                id="email" type="email" value="{{ auth()->user()->email }}"
+                                id="email" type="email" value="{{ auth()->user()->email }}" autocomplete="email"
                                 placeholder="john.doe@company.com" disabled>
                         </div>
                     </div>
@@ -36,11 +36,11 @@
                             Title</label>
                         <input
                             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
-                            id="title" name="title" type="text" value="{{ old('title') }}" placeholder="Title"
-                            required>
+                            id="title" name="title" type="text" value="{{ old('title', $project->title) }}"
+                            placeholder="Title" required>
                     </div>
                     <div class="mb-3">
-                        <label class="mb-2 block text-sm font-medium text-gray-900" for="Multiselect">
+                        <label class="mb-2 block text-sm font-medium text-gray-900" for="select-tag">
                             Tags</label>
                         <div class="relative flex w-full">
                             <select class="block w-full cursor-pointer rounded-sm focus:outline-none" id="select-tag"
@@ -105,40 +105,7 @@
     <script src="https://cdn.tiny.cloud/1/{{ config('app.tiny_api_key') }}/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
     <script>
-        tinymce.init({
-            selector: '#description',
-            plugins: 'wordcount',
-        });
-
         let selectTom = new TomSelect('#select-tag');
-
-        document.addEventListener('DOMContentLoaded', function() {
-            let descriptionContent = $("#description").data('description')
-
-            function Setcontent() {
-                var ContentSet =
-                    tinymce.get('description').setContent(descriptionContent);
-            }
-
-            var buttonSet = document.getElementById('buttonOne');
-            buttonSet.addEventListener('click', Setcontent);
-
-            // ERROR TINY MCE
-
-            const tags = $("#select-tag").data('tags');
-
-            if (tags) {
-                let tagsArray;
-
-                if (typeof tags === 'string') {
-                    tagsArray = tags.split(',').map(tag => parseInt(tag));
-                } else {
-                    tagsArray = [parseInt(tags)];
-                }
-
-                selectTom.setValue(tagsArray)
-            }
-        })
 
         const dt = new DataTransfer();
 
@@ -194,7 +161,7 @@
                     for (let i = 0; i < dt.items.length; i++) {
                         if (file.name === dt.items[i].getAsFile().name) {
                             duplicate = true;
-                            break; // Keluar dari loop ketika ada file duplikat
+                            break;
                         } else {
                             duplicate = false
                         }
@@ -229,5 +196,33 @@
 
             imageInput.files = dt.files;
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            let descriptionContent = $("#description").data('description')
+
+            tinymce.init({
+                selector: "#description",
+                plugins: 'wordcount',
+                setup: function(editor) {
+                    editor.on('init', function(e) {
+                        editor.setContent(descriptionContent);
+                    });
+                }
+            });
+
+            const tags = $("#select-tag").data('tags');
+
+            if (tags) {
+                let tagsArray;
+
+                if (typeof tags === 'string') {
+                    tagsArray = tags.split(',').map(tag => parseInt(tag));
+                } else {
+                    tagsArray = [parseInt(tags)];
+                }
+
+                selectTom.setValue(tagsArray)
+            }
+        })
     </script>
 @endpush
