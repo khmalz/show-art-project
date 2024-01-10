@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Project;
+use App\Models\RegisterActive;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -38,6 +39,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             TagSeeder::class,
             ProjectSeeder::class,
+        ]);
+
+        RegisterActive::create([
+            'active' => true,
         ]);
     }
 }

@@ -1,5 +1,5 @@
  <!-- ======= Sidebar ======= -->
- <aside id="sidebar" class="sidebar">
+ <aside class="sidebar" id="sidebar">
 
      <ul class="sidebar-nav" id="sidebar-nav">
 
@@ -50,7 +50,8 @@
          <li class="nav-heading">Extras</li>
 
          <li class="nav-item">
-             <a class="nav-link {{ request()->routeIs('admin.register-toggle') ? null : 'collapsed' }}" href="#">
+             <a class="nav-link {{ request()->routeIs('admin.register-toggle') ? null : 'collapsed' }}"
+                 href="{{ route('admin.register-toggle') }}">
                  <i class="bi bi-arrow-right-square"></i>
                  <span>Register Toggle</span>
              </a>

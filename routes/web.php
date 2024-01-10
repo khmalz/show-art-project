@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\ProjectListController;
+use App\Http\Controllers\Admin\RegisterToggleController;
+use App\Http\Controllers\Admin\RegisterToggleSystemController;
 use App\Http\Controllers\Admin\UserListController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SiswaListProjectController;
@@ -38,6 +40,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/list/project', ProjectListController::class)->name('admin.project.list');
 
     Route::get('/list/user', UserListController::class)->name('admin.user.list');
+
+    Route::get('/register-toogle', RegisterToggleController::class)->name('admin.register-toggle');
+    Route::patch('/register-toogle', RegisterToggleSystemController::class)->name('admin.register-toggle.update');
 });
 
 require __DIR__ . '/auth.php';
