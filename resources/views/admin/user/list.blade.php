@@ -1,7 +1,7 @@
 @extends('dashboard.layouts.main')
 
 @push('styles')
-    <link href="{{ asset('admin/assets/vendor/datatables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin/vendor/datatables/datatables.min.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -34,42 +34,44 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Nama 1</td>
-                                    <td>nama1@gmail.com</td>
-                                    <td>
-                                        <a class="btn btn-info btn-sm" href="#">
-                                            <i class='bx bxs-pencil'></i>
-                                            Edit
-                                        </a>
-                                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#modalDelete1">
-                                            <i class='bx bxs-trash-alt'></i>
-                                            Delete
-                                        </button>
-                                    </td>
-                                </tr>
-                                <div class="modal fade" id="modalDelete1" tabindex="-1" aria-labelledby="modalDeleteLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="modalDeleteLabel">Apakah Kamu Yakin?
-                                                </h5>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Cancel</button>
-                                                <form action="#" method="POST" class="d-inline">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                                </form>
+                                @foreach ($users as $user)
+                                    <tr>
+                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>
+                                            <a class="btn btn-info btn-sm" href="#">
+                                                <i class='bx bxs-pencil'></i>
+                                                Edit
+                                            </a>
+                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#modalDelete1" type="button">
+                                                <i class='bx bxs-trash-alt'></i>
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <div class="modal fade" id="modalDelete1" aria-labelledby="modalDeleteLabel"
+                                        aria-hidden="true" tabindex="-1">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalDeleteLabel">Apakah Kamu Yakin?
+                                                    </h5>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-secondary" data-bs-dismiss="modal"
+                                                        type="button">Cancel</button>
+                                                    <form class="d-inline" action="#" method="POST">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endforeach
                             </tbody>
                         </table>
 
@@ -82,12 +84,12 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('admin/assets/vendor/datatables/pdfmake/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/vendor/datatables/pdfmake/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('admin/assets/vendor/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/datatables/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/datatables/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/datatables/datatables.min.js') }}"></script>
 
     <script>
-        $(document).ready(function() {
+        document.addEventListener('DOMContentLoaded', function() {
             $("#dataTable").DataTable({
                 "dom": 'Bfrtip',
                 "responsive": true,
