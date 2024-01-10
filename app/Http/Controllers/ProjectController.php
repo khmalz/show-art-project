@@ -165,6 +165,8 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        abort_if($project->user_id !== auth()->user()->id, 403, 'Not Your Project');
+
         if (count($project->images) > 0) {
             foreach ($project->images as $image) {
                 Storage::delete($image->path);
@@ -173,6 +175,6 @@ class ProjectController extends Controller
 
         $project->delete();
 
-        return to_route('project.index')->with("success", "Success delete your project");
+        return to_route('my-project')->with("success", "Success delete your project");
     }
 }
