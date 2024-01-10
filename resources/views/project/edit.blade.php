@@ -10,8 +10,9 @@
         <div class="mx-auto w-full max-w-5xl bg-white">
             <div class="p-5">
                 <h3 class="mb-5 text-2xl font-semibold">Input Project</h3>
-                <form action="{{ route('project.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('project.update', $project) }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PATCH')
                     <div class="mb-3 grid gap-4 md:grid-cols-2">
                         <div>
                             <label class="mb-2 block text-sm font-medium text-gray-900" for="name">
@@ -43,7 +44,9 @@
                             Tags</label>
                         <div class="relative flex w-full">
                             <select class="block w-full cursor-pointer rounded-sm focus:outline-none" id="select-tag"
-                                name="tags[]" multiple placeholder="Select tags..." autocomplete="off" multiple>
+                                name="tags[]"
+                                data-tags="{{ implode(',', old('tags', $project->tags->pluck('id')->toArray())) }}" multiple
+                                placeholder="Select tags..." autocomplete="off" multiple>
                                 @foreach ($tags as $tag)
                                     <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                                 @endforeach
@@ -53,8 +56,12 @@
                     <div class="mb-3">
                         <label class="mb-2 block text-sm font-medium text-gray-900" for="description">Your
                             Description</label>
-                        <textarea id="description" name="description" placeholder="Write your thoughts here..."></textarea>
+                        <textarea id="description" name="description" data-description="{{ old('description', $project->description) }}"
+                            placeholder="Write your thoughts here..."></textarea>
                     </div>
+                    <button
+                        class="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto"
+                        id="buttonOne" type="button">Tiny</button>
                     <div class="mb-3">
                         <label class="mb-2 block text-sm font-medium text-gray-900" for="multipleFiles">Upload Photo</label>
                         <input
@@ -64,13 +71,26 @@
                         <p class="mt-1 text-sm text-gray-500" id="file_input_help">SVG, PNG, JPG or GIF
                             (MAX. 2 MB).</p>
                     </div>
+                    <div id="deleted-id-image-ori" hidden></div>
                     <div class="mb-3">
                         <div class="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3" id="image-container">
+                            @foreach ($project->images as $image)
+                                <div class="relative" id="image-ori{{ $image->id }}">
+                                    <button
+                                        class="delete-button focus:ring-bg-gray-100/80 absolute -top-2 left-0 m-4 rounded-full bg-gray-100/80 px-2 text-white focus:border-blue-300 focus:outline-none"
+                                        type="button" onclick="deleteImageOri(this, {{ $image->id }})">
+                                        <i class="fas fa-times text-2xl"></i>
+                                    </button>
+                                    <img class="h-56 w-full rounded-md border shadow-sm" data-name="${file.name}"
+                                        src="{{ \Illuminate\Support\Facades\Storage::url($image->path) }}"
+                                        alt="image-ori{{ $image->id }}">
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                     <button
                         class="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto"
-                        type="submit">Create</button>
+                        type="submit">Update</button>
                 </form>
             </div>
         </div>
@@ -80,6 +100,8 @@
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+    <script></script>
+
     <script src="https://cdn.tiny.cloud/1/{{ config('app.tiny_api_key') }}/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
     <script>
@@ -90,7 +112,55 @@
 
         let selectTom = new TomSelect('#select-tag');
 
+        document.addEventListener('DOMContentLoaded', function() {
+            let descriptionContent = $("#description").data('description')
+
+            function Setcontent() {
+                var ContentSet =
+                    tinymce.get('description').setContent(descriptionContent);
+            }
+
+            var buttonSet = document.getElementById('buttonOne');
+            buttonSet.addEventListener('click', Setcontent);
+
+            // ERROR TINY MCE
+
+            const tags = $("#select-tag").data('tags');
+
+            if (tags) {
+                let tagsArray;
+
+                if (typeof tags === 'string') {
+                    tagsArray = tags.split(',').map(tag => parseInt(tag));
+                } else {
+                    tagsArray = [parseInt(tags)];
+                }
+
+                selectTom.setValue(tagsArray)
+            }
+        })
+
         const dt = new DataTransfer();
+
+        function deleteImageOri(el, imageId) {
+            // Temukan elemen terdekat dengan ID yang sesuai
+            const confirmDelete = confirm(
+                "Apakah Anda yakin ingin menghapus gambar ini? \nTidak bisa dikembalikan kembali");
+
+            if (confirmDelete) {
+                const imageDiv = $(el).closest(`#image-ori${imageId}`);
+
+                if (imageDiv) {
+                    imageDiv.remove();
+
+                    const deletedImageInput = `
+                        <input type="text" name="img_deleted[]" value="${imageId}">
+                    `;
+
+                    $("#deleted-id-image-ori").append(deletedImageInput);
+                }
+            }
+        }
 
         function deleteImagePre(el, imageId) {
             // Temukan elemen preview terdekat dengan ID yang sesuai

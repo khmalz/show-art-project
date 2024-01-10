@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Tag;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
@@ -97,7 +99,15 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        $project->load('developer', 'images', 'tags');
+
+        abort_if($project->user_id !== auth()->user()->id, 403, 'Not Your Project');
+
+        $tags = Tag::all();
+
+        // return $project;
+
+        return view("project.edit", compact("project", 'tags'));
     }
 
     /**
@@ -105,7 +115,49 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $data = $request->validate([
+            'title' => ['required', 'string'],
+            'tags' => ['required', 'array', 'min:1'],
+            'tags.*' => ['string'],
+            'description' => ['required', 'string'],
+            'images' => ['nullable', 'array'],
+            'images.*' => ['file', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            $project->update($data);
+
+            $deleted = $request->img_deleted;
+
+            if ($deleted) {
+                Image::destroy($deleted);
+            }
+
+            if ($request->hasFile('images')) {
+                $images = $request->file('images');
+
+                foreach ($images as $image) {
+                    $imagePath = $image->store('evidences');
+
+                    $project->images()->create([
+                        'path' => $imagePath,
+                    ]);
+                }
+            }
+
+            $project->tags()->sync($request->tags);
+
+            DB::commit();
+
+            return to_route('my-project', $project)->with('success', 'Successfully updated your project');
+        } catch (\Exception $e) {
+            // Rollback database transaksi jika terjadi error
+            DB::rollback();
+
+            return back()->with('error', 'Failed to save changes: ' . $e->getMessage());
+        }
     }
 
     /**
