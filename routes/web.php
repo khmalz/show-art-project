@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ProjectListController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SiswaListProjectController;
 use Illuminate\Support\Facades\Route;
@@ -33,9 +34,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         return view('dashboard.index');
     })->name('dashboard');
 
-    Route::get('/list/project', function () {
-        return view('admin.project.list');
-    })->name('admin.project.list');
+    Route::get('/list/project', ProjectListController::class)->name('admin.project.list');
 
     Route::get('/list/user', function () {
         return view('admin.user.list');

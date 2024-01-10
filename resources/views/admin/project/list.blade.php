@@ -1,7 +1,7 @@
 @extends('dashboard.layouts.main')
 
 @push('styles')
-    <link href="{{ asset('admin/assets/vendor/datatables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin/vendor/datatables/datatables.min.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -28,25 +28,38 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
+                                    <th scope="col">Title</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Email</th>
+                                    <th scope="col">Tag</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td class="text-capitalize">Coba</td>
-                                    <td>coba@gmail.com</td>
-                                    <td>1 Jan 2023</td>
-                                    <td>
-                                        <a class="btn btn-info btn-sm text-white" href="#">
-                                            <i class='bx bxs-info-circle'></i>
-                                            Show
-                                        </a>
-                                    </td>
-                                </tr>
+                                @foreach ($projects as $project)
+                                    <tr>
+                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <td class="text-capitalize">
+                                            {{ strlen($project->title) > 30 ? substr($project->title, 0, 30) . '...' : $project->title }}
+                                        </td>
+                                        <td>{{ $project->developer->name }}</td>
+                                        <td>
+                                            @foreach ($project->tags->take(3) as $index => $tag)
+                                                <span class="badge text-bg-primary">{{ $tag->name }}</span>
+                                                @if ($index == 2 && count($project->tags) > 3)
+                                                    <span class="badge text-bg-primary">lainnya..</span>
+                                                @endif
+                                            @endforeach
+                                        </td>
+                                        <td>{{ $project->created_at->format('d M Y') }}</td>
+                                        <td>
+                                            <a class="btn btn-info btn-sm text-white" href="#">
+                                                <i class='bx bxs-info-circle'></i>
+                                                Show
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
 
@@ -59,12 +72,12 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('admin/assets/vendor/datatables/pdfmake/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/vendor/datatables/pdfmake/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('admin/assets/vendor/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/datatables/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/datatables/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/datatables/datatables.min.js') }}"></script>
 
     <script>
-        $(document).ready(function() {
+        document.addEventListener('DOMContentLoaded', function() {
             $("#dataTable").DataTable({
                 "dom": 'Bfrtip',
                 "responsive": true,

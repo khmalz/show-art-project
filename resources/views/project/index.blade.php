@@ -162,10 +162,10 @@
                                         </a>
                                         <div class="p-5">
                                             <div class="mb-2 flex flex-wrap gap-x-2.5 gap-y-2">
-                                                @foreach ($project->tags->take(5) as $index => $tag)
+                                                @foreach ($project->tags->take(3) as $index => $tag)
                                                     <span
-                                                        class="rounded bg-gray-800 px-2.5 py-0.5 text-xs font-medium text-white">{{ $tag->name }}</span>
-                                                    @if ($index == 4 && count($project->tags) > 3)
+                                                        class="rounded bg-gray-800 px-1.5 py-0.5 text-xs font-medium text-white">{{ $tag->name }}</span>
+                                                    @if ($index == 2 && count($project->tags) > 3)
                                                         <span
                                                             class="rounded bg-gray-800 px-2.5 py-0.5 text-xs font-medium text-white">lainnya..
                                                         </span>
