@@ -25,7 +25,7 @@
                                 <i class="bi bi-stack"></i>
                             </div>
                             <div class="ps-3">
-                                <h6>12</h6>
+                                <h6>{{ $countProject }}</h6>
                             </div>
                         </div>
 
