@@ -154,53 +154,49 @@
                             @foreach ($projects as $project)
                                 <div
                                     class="flex max-w-lg flex-col justify-between rounded-lg border border-gray-200 bg-white shadow transition-transform duration-500 hover:scale-105">
-                                    <div>
-                                        <a href="{{ route('project.show', $project) }}">
+                                    <a href="{{ route('project.show', $project) }}">
+                                        <div>
                                             <img class="h-64 w-full rounded-t-lg object-cover"
                                                 src="{{ count($project->images) > 0 ? \Illuminate\Support\Facades\Storage::url($project->images[0]->path) : asset('assets/img/project/large-your-business.webp') }}"
                                                 alt="{{ $project->title }}" />
-                                        </a>
-                                        <div class="p-5">
-                                            <div class="mb-2 flex flex-wrap gap-x-2.5 gap-y-2">
-                                                @foreach ($project->tags->take(3) as $index => $tag)
-                                                    <span
-                                                        class="rounded bg-gray-800 px-1.5 py-0.5 text-xs font-medium text-white">{{ $tag->name }}</span>
-                                                    @if ($index == 2 && count($project->tags) > 3)
+                                            <div class="p-5">
+                                                <div class="mb-2 flex flex-wrap gap-x-2.5 gap-y-2">
+                                                    @foreach ($project->tags->take(3) as $index => $tag)
                                                         <span
-                                                            class="rounded bg-gray-800 px-2.5 py-0.5 text-xs font-medium text-white">lainnya..
-                                                        </span>
-                                                    @endif
-                                                @endforeach
-
-                                            </div>
-
-                                            <a href="{{ route('project.show', $project) }}">
+                                                            class="rounded bg-gray-800 px-1.5 py-0.5 text-xs font-medium text-white">{{ $tag->name }}</span>
+                                                        @if ($index == 2 && count($project->tags) > 3)
+                                                            <span
+                                                                class="rounded bg-gray-800 px-2.5 py-0.5 text-xs font-medium text-white">lainnya..
+                                                            </span>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
                                                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
                                                     {{ $project->title }}</h5>
-                                            </a>
-                                            <p class="mb-3 font-normal text-gray-700">{!! $project->description !!}</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex items-center justify-between p-5">
-                                        <p>By <a class="font-semibold hover:underline"
-                                                href="#">{{ $project->developer->name }}</a> |
-                                            {{ $project->created_at->diffForHumans() }}
-                                        </p>
-                                        @if (request()->routeIs('my-project'))
-                                            <div>
-                                                <a class="mb-2 rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300"
-                                                    href="{{ route('project.edit', $project) }}">Edit</a>
-                                                <form class="inline-block"
-                                                    action="{{ route('project.destroy', $project) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <a class="mb-2 cursor-pointer rounded-lg bg-red-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300"
-                                                        onclick="return confirm('Are you sure you want to delete?') ? this.parentElement.submit() : null">Delete</a>
-                                                </form>
+                                                <p class="mb-3 font-normal text-gray-700">{!! $project->description !!}</p>
                                             </div>
-                                        @endif
-                                    </div>
+                                        </div>
+                                        <div
+                                            class="flex flex-col gap-y-3 p-5 md:flex-row md:items-center md:justify-between">
+                                            <p>By <span class="font-semibold hover:underline" href="#">
+                                                    {{ $project->developer->name }}</span> |
+                                                {{ $project->created_at->diffForHumans() }}
+                                            </p>
+                                            @if (request()->routeIs('my-project'))
+                                                <div>
+                                                    <a class="mb-2 rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300"
+                                                        href="{{ route('project.edit', $project) }}">Edit</a>
+                                                    <form class="inline-block"
+                                                        action="{{ route('project.destroy', $project) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <a class="mb-2 cursor-pointer rounded-lg bg-red-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300"
+                                                            onclick="return confirm('Are you sure you want to delete?') ? this.parentElement.submit() : null">Delete</a>
+                                                    </form>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </a>
                                 </div>
                             @endforeach
                         </div>
