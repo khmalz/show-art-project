@@ -37,10 +37,6 @@
                                 </li>
                             @endrole
                             <li>
-                                <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
-                                    href="#">Settings</a>
-                            </li>
-                            <li>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <a class="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white"
@@ -70,10 +66,6 @@
                     <li>
                         <a class="{{ request()->routeIs('home') ? 'nav-active' : 'nav-unactive' }} block rounded px-3 py-2"
                             href="{{ route('home') }}" aria-current="page">Home</a>
-                    </li>
-                    <li>
-                        <a class="{{ request()->routeIs('about') ? 'nav-active' : 'nav-unactive' }} block rounded px-3 py-2"
-                            href="#">About</a>
                     </li>
                     <li>
                         <a class="{{ request()->routeIs('project.*') || request()->routeIs('my-project') ? 'nav-active' : 'nav-unactive' }} block rounded px-3 py-2"
