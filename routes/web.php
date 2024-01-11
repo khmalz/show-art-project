@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\SiswaListProjectController;
 use App\Http\Controllers\Admin\ProjectListController;
+use App\Http\Controllers\Admin\ProjectShowController;
 use App\Http\Controllers\Admin\RegisterToggleController;
 use App\Http\Controllers\Admin\RegisterToggleSystemController;
 
@@ -39,6 +40,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::name('admin.')->group(function () {
         Route::get('/list/project', ProjectListController::class)->name('project.list');
+        Route::get('/list/project/{project}', ProjectShowController::class)->name('project.show');
 
         Route::resource('user', UserController::class)->except('create', 'store', 'show');
         Route::resource('tag', TagController::class)->except('show');

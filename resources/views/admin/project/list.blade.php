@@ -53,7 +53,8 @@
                                         </td>
                                         <td>{{ $project->created_at->format('d M Y') }}</td>
                                         <td>
-                                            <a class="btn btn-info btn-sm text-white" href="#">
+                                            <a class="btn btn-info btn-sm text-white"
+                                                href="{{ route('admin.project.show', $project) }}">
                                                 <i class='bx bxs-info-circle'></i>
                                                 Show
                                             </a>
