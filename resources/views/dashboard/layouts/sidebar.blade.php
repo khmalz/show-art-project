@@ -22,7 +22,8 @@
          </li>
 
          <li class="nav-item">
-             <a class="nav-link {{ request()->routeIs('admin.tag.*') ? null : 'collapsed' }}" href="#">
+             <a class="nav-link {{ request()->routeIs('admin.tag.*') ? null : 'collapsed' }}"
+                 href="{{ route('admin.tag.index') }}">
                  <i class='bx bx-layer'></i>
                  <span>Tag</span>
              </a>

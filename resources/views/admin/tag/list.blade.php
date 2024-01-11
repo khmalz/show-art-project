@@ -6,11 +6,11 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>User</h1>
+        <h1>Tag</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                <li class="breadcrumb-item active">User</li>
+                <li class="breadcrumb-item active">Tag</li>
             </ol>
         </nav>
     </div>
@@ -22,38 +22,39 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">User Accounts</h5>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="card-title">Tag List</h5>
+                            <a class="btn btn-success" href="{{ route('admin.tag.create') }}">Add Tag</a>
+                        </div>
                         <!-- Table with stripped rows -->
                         <table class="table" id="dataTable">
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Email</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($tags as $tag)
                                     <tr>
                                         <th scope="row">{{ $loop->iteration }}</th>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $tag->name }}</td>
                                         <td>
-                                            <a class="text-white btn btn-info btn-sm"
-                                                href="{{ route('admin.user.edit', $user) }}">
+                                            <a class="btn btn-info btn-sm text-white"
+                                                href="{{ route('admin.tag.edit', $tag) }}">
                                                 <i class='bx bxs-pencil'></i>
                                                 Edit
                                             </a>
                                             <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#modalDelete{{ $user->id }}" type="button">
+                                                data-bs-target="#modalDelete{{ $tag->id }}" type="button">
                                                 <i class='bx bxs-trash-alt'></i>
                                                 Delete
                                             </button>
                                         </td>
                                     </tr>
-                                    <div class="modal fade" id="modalDelete{{ $user->id }}" aria-labelledby="modalDeleteLabel"
-                                        aria-hidden="true" tabindex="-1">
+                                    <div class="modal fade" id="modalDelete{{ $tag->id }}"
+                                        aria-labelledby="modalDeleteLabel" aria-hidden="true" tabindex="-1">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -63,7 +64,7 @@
                                                 <div class="modal-footer">
                                                     <button class="btn btn-secondary" data-bs-dismiss="modal"
                                                         type="button">Cancel</button>
-                                                    <form class="d-inline" action="{{ route('admin.user.destroy', $user) }}"
+                                                    <form class="d-inline" action="{{ route('admin.tag.destroy', $tag) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('delete')
@@ -96,6 +97,9 @@
                 "dom": 'Bfrtip',
                 "responsive": true,
                 "autoWidth": false,
+                "order": [
+                    [1, 'asc']
+                ],
                 "buttons": [{
                         extend: "copy",
                         exportOptions: {

@@ -1,13 +1,14 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\SiswaListProjectController;
 use App\Http\Controllers\Admin\ProjectListController;
 use App\Http\Controllers\Admin\RegisterToggleController;
 use App\Http\Controllers\Admin\RegisterToggleSystemController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\SiswaListProjectController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/list/project', ProjectListController::class)->name('project.list');
 
         Route::resource('user', UserController::class)->except('create', 'store', 'show');
+        Route::resource('tag', TagController::class)->except('show');
 
         Route::get('/register-toogle', RegisterToggleController::class)->name('register-toggle');
         Route::patch('/register-toogle', RegisterToggleSystemController::class)->name('register-toggle.update');
