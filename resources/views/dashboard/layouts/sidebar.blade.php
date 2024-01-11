@@ -25,7 +25,7 @@
 
          <li class="nav-item">
              <a class="nav-link {{ request()->routeIs('admin.user.*') ? null : 'collapsed' }}"
-                 href="{{ route('admin.user.list') }}">
+                 href="{{ route('admin.user.index') }}">
                  <i class="bi bi-person"></i>
                  <span>User</span>
              </a>

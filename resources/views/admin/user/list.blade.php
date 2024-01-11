@@ -40,7 +40,8 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>
-                                            <a class="btn btn-info btn-sm" href="#">
+                                            <a class="text-white btn btn-info btn-sm"
+                                                href="{{ route('admin.user.edit', $user) }}">
                                                 <i class='bx bxs-pencil'></i>
                                                 Edit
                                             </a>
@@ -62,7 +63,8 @@
                                                 <div class="modal-footer">
                                                     <button class="btn btn-secondary" data-bs-dismiss="modal"
                                                         type="button">Cancel</button>
-                                                    <form class="d-inline" action="#" method="POST">
+                                                    <form class="d-inline" action="{{ route('admin.user.destroy', $user) }}"
+                                                        method="POST">
                                                         @csrf
                                                         @method('delete')
                                                         <button class="btn btn-danger" type="submit">Delete</button>

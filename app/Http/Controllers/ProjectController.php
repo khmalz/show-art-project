@@ -132,14 +132,19 @@ class ProjectController extends Controller
             $deleted = $request->img_deleted;
 
             if ($deleted) {
-                Image::destroy($deleted);
+                $images = Image::whereIn('id', $deleted)->get();
+
+                foreach ($images as $image) {
+                    Storage::delete($image->path);
+                    $image->delete();
+                }
             }
 
             if ($request->hasFile('images')) {
                 $images = $request->file('images');
 
                 foreach ($images as $image) {
-                    $imagePath = $image->store('evidences');
+                    $imagePath = $image->store('images');
 
                     $project->images()->create([
                         'path' => $imagePath,

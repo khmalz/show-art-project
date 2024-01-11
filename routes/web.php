@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectListController;
 use App\Http\Controllers\Admin\RegisterToggleController;
 use App\Http\Controllers\Admin\RegisterToggleSystemController;
-use App\Http\Controllers\Admin\UserListController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SiswaListProjectController;
 use Illuminate\Support\Facades\Route;
@@ -36,12 +36,14 @@ Route::get('/project/{project}', [ProjectController::class, 'show'])->name('proj
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
-    Route::get('/list/project', ProjectListController::class)->name('admin.project.list');
+    Route::name('admin.')->group(function () {
+        Route::get('/list/project', ProjectListController::class)->name('project.list');
 
-    Route::get('/list/user', UserListController::class)->name('admin.user.list');
+        Route::resource('user', UserController::class)->except('create', 'store', 'show');
 
-    Route::get('/register-toogle', RegisterToggleController::class)->name('admin.register-toggle');
-    Route::patch('/register-toogle', RegisterToggleSystemController::class)->name('admin.register-toggle.update');
+        Route::get('/register-toogle', RegisterToggleController::class)->name('register-toggle');
+        Route::patch('/register-toogle', RegisterToggleSystemController::class)->name('register-toggle.update');
+    });
 });
 
 require __DIR__ . '/auth.php';
