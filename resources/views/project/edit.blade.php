@@ -7,15 +7,15 @@
 @section('content')
     <div class="container pt-8">
 
-        <div class="w-full max-w-5xl mx-auto bg-white">
+        <div class="mx-auto w-full max-w-5xl bg-white">
             <div class="p-5">
                 <h3 class="mb-5 text-2xl font-semibold">Input Project</h3>
                 <form action="{{ route('project.update', $project) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
-                    <div class="grid gap-4 mb-3 md:grid-cols-2">
+                    <div class="mb-3 grid gap-4 md:grid-cols-2">
                         <div>
-                            <label class="block mb-2 text-sm font-medium text-gray-900" for="name">
+                            <label class="mb-2 block text-sm font-medium text-gray-900" for="name">
                                 Name</label>
                             <input
                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
@@ -23,7 +23,7 @@
                                 placeholder="John" disabled>
                         </div>
                         <div>
-                            <label class="block mb-2 text-sm font-medium text-gray-900" for="email">Email
+                            <label class="mb-2 block text-sm font-medium text-gray-900" for="email">Email
                                 address</label>
                             <input
                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="block mb-2 text-sm font-medium text-gray-900" for="title">
+                        <label class="mb-2 block text-sm font-medium text-gray-900" for="title">
                             Title</label>
                         <input
                             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
@@ -40,10 +40,10 @@
                             placeholder="Title" required>
                     </div>
                     <div class="mb-3">
-                        <label class="block mb-2 text-sm font-medium text-gray-900" for="select-tag">
+                        <label class="mb-2 block text-sm font-medium text-gray-900" for="select-tag">
                             Tags</label>
                         <div class="relative flex w-full">
-                            <select class="block w-full rounded-sm cursor-pointer focus:outline-none" id="select-tag"
+                            <select class="block w-full cursor-pointer rounded-sm focus:outline-none" id="select-tag"
                                 name="tags[]"
                                 data-tags="{{ implode(',', old('tags', $project->tags->pluck('id')->toArray())) }}" multiple
                                 placeholder="Select tags..." autocomplete="off" multiple>
@@ -54,19 +54,22 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="block mb-2 text-sm font-medium text-gray-900" for="description">Your
+                        <label class="mb-2 block text-sm font-medium text-gray-900" for="description">Your
                             Description</label>
                         <textarea id="description" name="description" data-description="{{ old('description', $project->description) }}"
                             placeholder="Write your thoughts here..."></textarea>
                     </div>
                     <div class="mb-3">
-                        <label class="block mb-2 text-sm font-medium text-gray-900" for="multipleFiles">Upload Photo</label>
+                        <label class="mb-2 block text-sm font-medium text-gray-900" for="multipleFiles">Upload Photo</label>
                         <input
                             class="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 file:!bg-blue-600 file:text-blue-600 focus:outline-none"
                             id="multipleFiles" name="images[]" type="file" onchange="previewImageMultiple()" multiple>
 
                         <p class="mt-1 text-sm text-gray-500" id="file_input_help">SVG, PNG, JPG or GIF
                             (MAX. 2 MB).</p>
+                        @error('images')
+                            <p class="text-sm font-semibold text-rose-500">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div id="deleted-id-image-ori" hidden></div>
                     <div class="mb-3">
@@ -74,11 +77,11 @@
                             @foreach ($project->images as $image)
                                 <div class="relative" id="image-ori{{ $image->id }}">
                                     <button
-                                        class="absolute left-0 px-2 m-4 text-white rounded-full delete-button focus:ring-bg-gray-100/80 -top-2 bg-gray-100/80 focus:border-blue-300 focus:outline-none"
+                                        class="delete-button focus:ring-bg-gray-100/80 absolute -top-2 left-0 m-4 rounded-full bg-gray-100/80 px-2 text-white focus:border-blue-300 focus:outline-none"
                                         type="button" onclick="deleteImageOri(this, {{ $image->id }})">
-                                        <i class="text-2xl fas fa-times"></i>
+                                        <i class="fas fa-times text-2xl"></i>
                                     </button>
-                                    <img class="w-full h-56 border rounded-md shadow-sm" data-name="${file.name}"
+                                    <img class="h-56 w-full rounded-md border shadow-sm" data-name="${file.name}"
                                         src="{{ \Illuminate\Support\Facades\Storage::url($image->path) }}"
                                         alt="image-ori{{ $image->id }}">
                                 </div>

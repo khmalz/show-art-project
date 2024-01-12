@@ -107,8 +107,6 @@ class ProjectController extends Controller
 
         $tags = Tag::all();
 
-        // return $project;
-
         return view("project.edit", compact("project", 'tags'));
     }
 
@@ -134,12 +132,13 @@ class ProjectController extends Controller
             $deleted = $request->img_deleted;
 
             if ($deleted) {
-                $images = Image::whereIn('id', $deleted)->get();
+                $imagesToDelete = Image::whereIn('id', $deleted)->get();
 
-                foreach ($images as $image) {
-                    Storage::delete($image->path);
-                    $image->delete();
-                }
+                $imagesToDelete->each->delete();
+            }
+
+            if (!$request->hasFile('images') && empty($project->images)) {
+                return back()->withErrors(['images' => 'At least one image must be uploaded or kept.'])->withInput();
             }
 
             if ($request->hasFile('images')) {
@@ -152,6 +151,12 @@ class ProjectController extends Controller
                         'path' => $imagePath,
                     ]);
                 }
+            }
+
+            if ($deleted) {
+                $imagesToDelete->each(function ($image) {
+                    Storage::delete($image->path);
+                });
             }
 
             $project->tags()->sync($request->tags);

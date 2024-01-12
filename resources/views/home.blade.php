@@ -25,7 +25,7 @@
                             class="flex max-w-lg flex-col justify-between rounded-lg border border-gray-200 bg-white shadow transition-transform duration-500 hover:scale-105">
                             <a href="{{ route('project.show', $project) }}">
                                 <img class="h-64 w-full rounded-t-lg object-cover"
-                                    src="{{ count($project->images) > 0 ? \Illuminate\Support\Facades\Storage::url($project->images[0]->path) : asset('assets/img/project/large-your-business.webp') }}"
+                                    src="{{ \Illuminate\Support\Facades\Storage::url($project->images[0]->path) }}"
                                     alt="{{ $project->title }}" />
                                 <div class="p-5">
                                     <div class="mb-2 flex flex-wrap gap-x-2.5 gap-y-2">
