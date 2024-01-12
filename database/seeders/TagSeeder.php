@@ -41,8 +41,17 @@ class TagSeeder extends Seeder
             // Containerization & Orchestration
             'Docker', 'Kubernetes',
 
+            // Web Servers
+            'Nginx', 'Apache',
+
             // DevOps
             'Jenkins', 'Travis CI', 'CircleCI', 'GitLab CI',
+
+            // Design
+            'Figma', 'Sketch', 'Adobe XD',
+
+            // Mobile
+            'Android', 'iOS',
 
             // Game Development
             'Unity', 'Unreal Engine',
