@@ -91,7 +91,9 @@ class ProjectController extends Controller
     {
         $project->load('developer', 'images', 'tags');
 
-        return view("project.show", compact("project"));
+        $imageChunk = $project->images->chunk(3);
+
+        return view("project.show", compact("project", "imageChunk"));
     }
 
     /**

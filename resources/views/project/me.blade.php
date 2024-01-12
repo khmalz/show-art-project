@@ -8,48 +8,26 @@
     <div class="container mt-3">
         <div class="flex space-x-10">
             <div class="hidden w-1/5 lg:block">
-                <div class="h-full w-full border-r-2 border-gray-200/75 p-3 shadow-sm">
+                <div class="w-full h-full p-3 border-r-2 shadow-sm border-gray-200/75">
                     <div class="flex items-center justify-between">
                         <p>Filter By: </p>
-                        <a class="text-sm text-primary-700" href="{{ route('project.index') }}">Reset all filters</a>
+                        <a class="text-sm text-primary-700" href="{{ route('my-project') }}">Reset all filters</a>
                     </div>
                     <div>
                         <form method="GET">
-                            <div class="mb-5 mt-3">
-                                <label class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-                                    for="selectSearch">Select
-                                    an option to search</label>
-                                <select
-                                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
-                                    id="selectSearch" name="searchBy" data-search-by="{{ request('searchBy') }}"
-                                    onchange="filterInput(this)">
-                                    <option value="title" selected>Title</option>
-                                    <option value="developer">
-                                        Developer</option>
-                                </select>
-                            </div>
                             <div class="mb-5">
                                 <div id="titleInput">
-                                    <label class="mb-2 block text-sm font-medium text-gray-900" for="title">Title</label>
+                                    <label class="block mb-2 text-sm font-medium text-gray-900" for="title">Title</label>
                                     <input
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 selection:bg-primary-500 selection:text-white focus:border-primary-500 focus:ring-primary-500"
                                         id="title" name="title" type="text" value="{{ request('title') }}"
                                         placeholder="Title">
                                 </div>
-
-                                <div class="hidden" id="developerInput">
-                                    <label class="mb-2 block text-sm font-medium text-gray-900"
-                                        for="developer">Developer</label>
-                                    <input
-                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 selection:bg-primary-500 selection:text-white focus:border-primary-500 focus:ring-primary-500"
-                                        id="developer" name="developer" type="text" value="{{ request('developer') }}"
-                                        placeholder="Developer">
-                                </div>
                             </div>
                             <div class="mb-5">
                                 <h6 class="mb-2 font-medium">
                                     Language/Framework</h6>
-                                <select class="block w-full cursor-pointer rounded-sm focus:outline-none"
+                                <select class="block w-full rounded-sm cursor-pointer focus:outline-none"
                                     id="langframew-select" name="tags[]"
                                     data-tags="{{ request('tags') ? implode(',', request('tags')) : '' }}" multiple
                                     placeholder="Select language/framework..." autocomplete="off" multiple>
@@ -60,7 +38,7 @@
                             </div>
                             <div class="mb-5">
                                 <button
-                                    class="rounded-md bg-primary-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300"
+                                    class="px-4 py-2 text-sm font-medium text-center text-white rounded-md bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300"
                                     type="submit">Search</button>
                             </div>
                         </form>
@@ -69,7 +47,7 @@
             </div>
 
             <div class="w-full lg:w-4/5">
-                <div class="mt-5 flex w-full justify-between self-baseline lg:justify-end">
+                <div class="flex justify-between w-full mt-5 self-baseline lg:justify-end">
                     <button
                         class="mb-2 me-2 block rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 lg:hidden"
                         data-drawer-target="drawer-contact" data-drawer-show="drawer-contact" type="button"
@@ -77,16 +55,16 @@
                     <a class="mb-2 me-2 rounded-lg bg-primary-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300"
                         href="{{ route('project.create') }}">Add your project</a>
                 </div>
-                <div class="fixed left-0 top-0 z-40 h-screen w-1/2 -translate-x-full overflow-y-auto bg-white p-4 transition-transform"
+                <div class="fixed top-0 left-0 z-40 w-1/2 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white"
                     id="drawer-contact" aria-labelledby="drawer-contact-label" tabindex="-1">
-                    <h5 class="mb-6 mt-4 inline-flex items-center text-base font-semibold uppercase text-gray-500"
+                    <h5 class="inline-flex items-center mt-4 mb-6 text-base font-semibold text-gray-500 uppercase"
                         id="drawer-label">
                         Filter
                     </h5>
                     <button
                         class="absolute end-2.5 top-2.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
                         data-drawer-hide="drawer-contact" type="button" aria-controls="drawer-contact">
-                        <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
@@ -94,42 +72,21 @@
                         <span class="sr-only">Close menu</span>
                     </button>
                     <form class="mb-6" method="GET">
-                        <a class="text-blue-700 hover:text-blue-800" href="{{ route('project.index') }}">Reset all
+                        <a class="text-blue-700 hover:text-blue-800" href="{{ route('my-project') }}">Reset all
                             filters</a>
                         <div class="mt-5">
-                            <div class="mb-5 mt-3">
-                                <label class="mb-2 block text-sm font-medium text-gray-900" for="selectSearchDrawer">Select
-                                    an option to search</label>
-                                <select
-                                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
-                                    id="selectSearchDrawer" name="searchBy" data-search-by="{{ request('searchBy') }}"
-                                    onchange="filterInput(this, true)">
-                                    <option value="title" selected>Title</option>
-                                    <option value="developer">
-                                        Developer</option>
-                                </select>
-                            </div>
                             <div class="mb-5">
                                 <div id="titleInputDrawer">
-                                    <label class="mb-2 block text-sm font-medium text-gray-900" for="title">Title</label>
+                                    <label class="block mb-2 text-sm font-medium text-gray-900" for="title">Title</label>
                                     <input
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 selection:bg-primary-500 selection:text-white focus:border-primary-500 focus:ring-primary-500"
                                         id="title" name="title" type="text" value="{{ request('title') }}"
                                         placeholder="Title">
                                 </div>
-
-                                <div class="hidden" id="developerInputDrawer">
-                                    <label class="mb-2 block text-sm font-medium text-gray-900"
-                                        for="developer">Developer</label>
-                                    <input
-                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 selection:bg-primary-500 selection:text-white focus:border-primary-500 focus:ring-primary-500"
-                                        id="developer" name="developer" type="text"
-                                        value="{{ request('developer') }}" placeholder="Developer">
-                                </div>
                             </div>
                             <div class="mb-5">
                                 <h6 class="mb-2 font-medium">Language/Framework</h6>
-                                <select class="block w-full cursor-pointer rounded-sm focus:outline-none"
+                                <select class="block w-full rounded-sm cursor-pointer focus:outline-none"
                                     id="langframewdraw-select" name="tags[]" multiple
                                     placeholder="Select language/framework..." autocomplete="off" multiple>
                                     @foreach ($tags as $tag)
@@ -144,18 +101,18 @@
                     </form>
                 </div>
 
-                <div class="mb-8 mt-5 flex flex-col">
+                <div class="flex flex-col mt-5 mb-8">
                     @if ($projects->isEmpty())
-                        <div class="mt-3 w-full rounded border bg-white p-4 text-center shadow">
+                        <div class="w-full p-4 mt-3 text-center bg-white border rounded shadow">
                             Data Not Found
                         </div>
                     @else
-                        <div class="mx-auto grid grid-cols-1 gap-7 lg:grid-cols-2">
+                        <div class="grid grid-cols-1 mx-auto gap-7 lg:grid-cols-2">
                             @foreach ($projects as $project)
                                 <div
-                                    class="flex max-w-lg flex-col justify-between rounded-lg border border-gray-200 bg-white shadow transition-transform duration-500 hover:scale-105">
+                                    class="flex flex-col justify-between max-w-lg transition-transform duration-500 bg-white border border-gray-200 rounded-lg shadow hover:scale-105">
                                     <a href="{{ route('project.show', $project) }}">
-                                        <img class="h-64 w-full rounded-t-lg object-cover"
+                                        <img class="object-cover w-full h-64 rounded-t-lg"
                                             src="{{ count($project->images) > 0 ? \Illuminate\Support\Facades\Storage::url($project->images[0]->path) : asset('assets/img/project/large-your-business.webp') }}"
                                             alt="{{ $project->title }}" />
                                         <div class="p-5">
@@ -175,19 +132,10 @@
                                             <p class="mb-3 font-normal text-gray-700">{!! $project->description !!}</p>
                                         </div>
                                     </a>
-                                    <div class="flex flex-col gap-y-3 p-5 md:flex-row md:items-center md:justify-between">
-                                        <p>By <a class="font-semibold hover:underline"
-                                                data-tooltip-target="tooltip-default{{ $loop->iteration }}"
-                                                data-tooltip-placement="bottom"
-                                                href="{{ route('project.index', ['searchBy' => 'developer', 'developer' => $project->developer->name]) }}">
-                                                {{ $project->developer->name }}</a> |
+                                    <div class="flex flex-col p-5 gap-y-3 md:flex-row md:items-center md:justify-between">
+                                        <p>By <span class="font-semibold">
+                                                You</span> |
                                             {{ $project->created_at->diffForHumans() }}
-
-                                        <div class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-1.5 py-2 text-xs font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
-                                            id="tooltip-default{{ $loop->iteration }}" role="tooltip">
-                                            see their project
-                                            <div class="tooltip-arrow" data-popper-arrow></div>
-                                        </div>
 
                                         </p>
                                         @if (request()->routeIs('my-project'))
@@ -218,21 +166,6 @@
     <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
 
     <script>
-        function filterInput(el, drawer = false) {
-            let inputPrefix = drawer ? 'Drawer' : '';
-            let selectedOption = $(el).val();
-
-            $(`#titleInput${inputPrefix}, #developerInput${inputPrefix}`).addClass('hidden');
-
-            if (selectedOption === 'title' || selectedOption === 'developer') {
-                $(`#${selectedOption}Input${inputPrefix}`).removeClass('hidden');
-
-                let otherOption = selectedOption === 'title' ? 'developer' : 'title';
-                $(`#${otherOption}Input${inputPrefix} input`).val('');
-            }
-        }
-
-
         let tomSelectLangFrame = new TomSelect('#langframew-select', {
             allowEmptyOption: true,
         });
@@ -241,13 +174,6 @@
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-            const searchBySelect = $("#selectSearch").data('search-by');
-
-            if (searchBySelect) {
-                $("#selectSearch").val(searchBySelect).trigger('change');
-                $("#selectSearchDrawer").val(searchBySelect).trigger('change');
-            }
-
             const tags = $("#langframew-select").data('tags');
 
             if (tags) {

@@ -19,11 +19,6 @@ class SiswaListProjectController extends Controller
             ->when(request('searchBy') == 'title', function ($query) {
                 $query->where('title', 'like', '%' . request('title') . '%');
             })
-            ->when(request('searchBy') == 'developer', function ($query) {
-                $query->whereHas('developer', function ($subQuery) {
-                    $subQuery->where('name', 'like', '%' . request('developer') . '%');
-                });
-            })
             ->when(request('tags'), function ($query) {
                 $query->whereHas('tags', function ($subQuery) {
                     $subQuery->whereIn('tags.id', request('tags'));
@@ -31,6 +26,6 @@ class SiswaListProjectController extends Controller
             })
             ->get();
 
-        return view("project.index", compact("projects", "tags"));
+        return view("project.me", compact("projects", "tags"));
     }
 }

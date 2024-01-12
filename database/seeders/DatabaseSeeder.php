@@ -16,7 +16,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(PermissionSeeder::class);
+        $this->call([
+            PermissionSeeder::class,
+            TagSeeder::class,
+        ]);
 
         $admin = User::factory()->create([
             'name' => 'Admin',
@@ -35,11 +38,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'siswa2@gmail.com',
         ]);
         $siswa2->assignRole('siswa');
-
-        $this->call([
-            TagSeeder::class,
-            ProjectSeeder::class,
-        ]);
 
         RegisterActive::create([
             'active' => true,

@@ -12,7 +12,7 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $projects = Project::with('developer', 'images', 'tags')->get();
+        $projects = Project::with('developer', 'images', 'tags')->take(6)->get();
 
         return view('home', compact('projects'));
     }
