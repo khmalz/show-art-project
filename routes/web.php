@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProjectListController;
 use App\Http\Controllers\Admin\ProjectShowController;
 use App\Http\Controllers\Admin\RegisterToggleController;
 use App\Http\Controllers\Admin\RegisterToggleSystemController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,7 @@ use App\Http\Controllers\Admin\RegisterToggleSystemController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', HomeController::class)->name('home');
 
 Route::middleware(['auth', 'role:siswa'])->group(function () {
     Route::get('/my-project', SiswaListProjectController::class)->name('my-project');
