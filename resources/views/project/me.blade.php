@@ -47,7 +47,10 @@
             </div>
 
             <div class="w-full lg:w-4/5">
-                <div class="mt-5 flex w-full justify-between self-baseline lg:justify-end">
+                <div class="mt-5 w-full">
+                    <h3 class="text-2xl font-semibold text-primary-600">List Your Project</h3>
+                </div>
+                <div class="mt-3 flex w-full justify-between self-baseline lg:justify-end">
                     <button
                         class="mb-2 me-2 block rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 lg:hidden"
                         data-drawer-target="drawer-contact" data-drawer-show="drawer-contact" type="button"
@@ -107,7 +110,7 @@
                             Data Not Found
                         </div>
                     @else
-                        <div class="mx-auto grid grid-cols-1 gap-7 lg:grid-cols-2">
+                        <div class="mx-auto grid grid-cols-1 gap-4 md:mx-0 md:grid-cols-2 xl:grid-cols-3">
                             @foreach ($projects as $project)
                                 <div
                                     class="flex max-w-lg flex-col justify-between rounded-lg border border-gray-200 bg-white shadow transition-transform duration-500 hover:scale-105">
@@ -133,24 +136,21 @@
                                         </div>
                                     </a>
                                     <div class="flex flex-col gap-y-3 p-5 md:flex-row md:items-center md:justify-between">
-                                        <p>By <span class="font-semibold">
+                                        <p class="text-sm md:text-base">By <span class="font-semibold">
                                                 You</span> |
                                             {{ $project->created_at->diffForHumans() }}
 
                                         </p>
-                                        @if (request()->routeIs('my-project'))
-                                            <div>
-                                                <a class="mb-2 rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300"
-                                                    href="{{ route('project.edit', $project) }}">Edit</a>
-                                                <form class="inline-block"
-                                                    action="{{ route('project.destroy', $project) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <a class="mb-2 cursor-pointer rounded-lg bg-red-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300"
-                                                        onclick="return confirm('Are you sure you want to delete?') ? this.parentElement.submit() : null">Delete</a>
-                                                </form>
-                                            </div>
-                                        @endif
+                                        <div class="flex items-center gap-x-1.5">
+                                            <a class="self-baseline rounded-lg bg-primary-700 px-4 py-2 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300"
+                                                href="{{ route('project.edit', $project) }}">Edit</a>
+                                            <form action="{{ route('project.destroy', $project) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <a class="cursor-pointer self-baseline rounded-lg bg-rose-700 px-4 py-2 text-sm font-medium text-white hover:bg-rose-800 focus:outline-none focus:ring-4 focus:ring-rose-300"
+                                                    onclick="return confirm('Are you sure you want to delete?') ? this.parentElement.submit() : null">Delete</a>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach

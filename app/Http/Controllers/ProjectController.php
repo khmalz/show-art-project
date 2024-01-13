@@ -18,7 +18,7 @@ class ProjectController extends Controller
     {
         $tags = Tag::all();
 
-        $projects = Project::with('developer', 'images', 'tags')
+        $projects = Project::with('developer', 'images', 'tags', 'bookmarks')
             ->when(request('searchBy') == 'title', function ($query) {
                 $query->where('title', 'like', '%' . request('title') . '%');
             })
@@ -33,7 +33,6 @@ class ProjectController extends Controller
                 });
             })
             ->get();
-
 
         return view("project.index", compact("projects", "tags"));
     }

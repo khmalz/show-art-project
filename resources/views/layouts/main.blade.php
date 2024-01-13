@@ -27,7 +27,7 @@
     @include('layouts.footer')
 
     <!-- Start Script -->
-    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/jquery.min.js') }}"></script> --}}
     <script src="{{ asset('assets/js/custom.js') }}"></script>
 
     @stack('scripts')

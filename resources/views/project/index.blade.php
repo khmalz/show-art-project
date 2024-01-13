@@ -11,7 +11,7 @@
                 <div class="h-full w-full border-r-2 border-gray-200/75 p-3 shadow-sm">
                     <div class="flex items-center justify-between">
                         <p>Filter By: </p>
-                        <a class="text-sm text-primary-700" href="{{ route('project.index') }}">Reset all filters</a>
+                        <a class="text-sm text-primary-600" href="{{ url()->current() }}">Reset all filters</a>
                     </div>
                     <div>
                         <form method="GET">
@@ -69,7 +69,10 @@
             </div>
 
             <div class="w-full lg:w-4/5">
-                <div class="mt-5 flex w-full justify-between self-baseline lg:justify-end">
+                <div class="mt-5 w-full">
+                    <h3 class="text-2xl font-semibold text-primary-600">{{ $title ?? 'List All Project' }}</h3>
+                </div>
+                <div class="mt-3 flex w-full justify-between self-baseline lg:justify-end">
                     <button
                         class="mb-2 me-2 block rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 lg:hidden"
                         data-drawer-target="drawer-contact" data-drawer-show="drawer-contact" type="button"
@@ -111,7 +114,8 @@
                             </div>
                             <div class="mb-5">
                                 <div id="titleInputDrawer">
-                                    <label class="mb-2 block text-sm font-medium text-gray-900" for="title">Title</label>
+                                    <label class="mb-2 block text-sm font-medium text-gray-900"
+                                        for="title">Title</label>
                                     <input
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 selection:bg-primary-500 selection:text-white focus:border-primary-500 focus:ring-primary-500"
                                         id="title" name="title" type="text" value="{{ request('title') }}"
@@ -150,7 +154,7 @@
                             Data Not Found
                         </div>
                     @else
-                        <div class="mx-auto grid grid-cols-1 gap-7 lg:grid-cols-2">
+                        <div class="mx-auto grid grid-cols-1 gap-4 md:mx-0 md:grid-cols-2 xl:grid-cols-3">
                             @foreach ($projects as $project)
                                 <div
                                     class="flex max-w-lg flex-col justify-between rounded-lg border border-gray-200 bg-white shadow transition-transform duration-500 hover:scale-105">
@@ -202,6 +206,15 @@
                                                         onclick="return confirm('Are you sure you want to delete?') ? this.parentElement.submit() : null">Delete</a>
                                                 </form>
                                             </div>
+                                        @endif
+
+                                        @if ($project->user_id !== auth()->id())
+                                            <form action="{{ route('project.bookmark', $project) }}" method="POST">
+                                                @csrf
+                                                @method('PATCH')
+                                                <button class="text-xl font-medium text-blue-600" type="submit"><i
+                                                        class="{{ $project->bookmarks->contains('user_id', auth()->id()) ? 'fas' : 'far' }} fa-bookmark"></i></button>
+                                            </form>
                                         @endif
                                     </div>
                                 </div>

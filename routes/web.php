@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProjectListController;
 use App\Http\Controllers\Admin\ProjectShowController;
 use App\Http\Controllers\Admin\RegisterToggleController;
 use App\Http\Controllers\Admin\RegisterToggleSystemController;
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -29,6 +30,8 @@ Route::middleware(['auth', 'role:siswa'])->group(function () {
     Route::get('/my-project', SiswaListProjectController::class)->name('my-project');
 
     Route::resource('project', ProjectController::class)->except('index', 'show');
+    Route::get('/project/bookmark', [BookmarkController::class, 'index'])->name('project.bookmark.index');
+    Route::patch('/project/{project}/bookmark', [BookmarkController::class, 'bookmark'])->name('project.bookmark');
 });
 
 Route::get('/project', [ProjectController::class, 'index'])->name('project.index');
