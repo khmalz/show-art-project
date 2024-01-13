@@ -3,16 +3,17 @@
 namespace App\Models;
 
 use Maize\Markable\Markable;
+use Maize\Markable\Models\Bookmark;
 use Illuminate\Database\Eloquent\Model;
+use RyanChandler\Comments\Concerns\HasComments;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Maize\Markable\Models\Bookmark;
 
 class Project extends Model
 {
-    use HasFactory, Markable;
+    use HasFactory, Markable, HasComments;
 
     protected static $marks = [
         Bookmark::class,

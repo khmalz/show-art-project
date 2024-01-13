@@ -88,7 +88,12 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        $project->load('developer', 'images', 'tags');
+        $project->load([
+            'developer', 'images', 'tags', 'comments' => function ($query) {
+                $query->whereNull('parent_id');
+            },
+            'comments.user',
+        ]);
 
         $imageChunk = $project->images->chunk(3);
 
