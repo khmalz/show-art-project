@@ -17,7 +17,7 @@
                             @foreach ($imageChunk as $chunk)
                                 @foreach ($chunk as $image)
                                     <a class="project-lightbox hidden duration-700 ease-in-out" data-carousel-item
-                                        href="{{ $image->path }}">
+                                        href="{{ \Illuminate\Support\Facades\Storage::url($image->path) }}">
                                         <img class="absolute left-1/2 top-1/2 block w-full -translate-x-1/2 -translate-y-1/2"
                                             src="{{ \Illuminate\Support\Facades\Storage::url($image->path) }}"
                                             alt="...">
@@ -196,22 +196,23 @@
                 </div>
             @endforeach
         </div>
-    @endsection
+    </div>
+@endsection
 
-    @push('scripts')
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const portfolioLightbox = GLightbox({
-                    selector: '.project-lightbox'
-                });
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const portfolioLightbox = GLightbox({
+                selector: '.project-lightbox'
             });
+        });
 
-            function showReply(id) {
-                $(`.reply-form${id}`).show();
-            }
+        function showReply(id) {
+            $(`.reply-form${id}`).show();
+        }
 
-            function cancelReply(id) {
-                $(`.reply-form${id}`).hide();
-            }
-        </script>
-    @endpush
+        function cancelReply(id) {
+            $(`.reply-form${id}`).hide();
+        }
+    </script>
+@endpush
