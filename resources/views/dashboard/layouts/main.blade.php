@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Showcase Project - Dashboard</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+    <title>Digiworks - Dashboard</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
 
     <!-- Favicons -->
     <link href="{{ asset('assets/admin/img/favicon.png') }}" rel="icon">
@@ -37,7 +37,7 @@
 
     @include('dashboard.layouts.sidebar')
 
-    <main id="main" class="main" style="min-height: 90vh" data-message="{{ session('success') }}">
+    <main class="main" id="main" data-message="{{ session('success') }}" style="min-height: 90vh">
 
         @yield('content')
 
@@ -45,7 +45,7 @@
 
     @include('dashboard.layouts.footer')
 
-    <a href="{{ url('#') }}" class="back-to-top d-flex align-items-center justify-content-center"><i
+    <a class="back-to-top d-flex align-items-center justify-content-center" href="{{ url('#') }}"><i
             class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->

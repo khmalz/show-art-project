@@ -10,8 +10,8 @@
                         <div class="col-xl-4 col-lg-6 col-md-8 d-flex flex-column align-items-center justify-content-center">
 
                             <div class="d-flex justify-content-center py-4">
-                                <a href="{{ route('home') }}" class="logo d-flex align-items-center w-auto">
-                                    <span class="d-none d-lg-block">Showcase Project</span>
+                                <a class="logo d-flex align-items-center w-auto" href="{{ route('home') }}">
+                                    <span class="d-none d-lg-block">Digiworks</span>
                                 </a>
                             </div>
 
@@ -27,12 +27,12 @@
                                         @csrf
 
                                         <div class="col-12">
-                                            <label for="yourName" class="form-label">Name</label>
+                                            <label class="form-label" for="yourName">Name</label>
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend"><i
                                                         class="bx bxs-user"></i></span>
-                                                <input type="name" name="name"
-                                                    class="form-control @error('name') is-invalid @enderror" id="yourName"
+                                                <input class="form-control @error('name') is-invalid @enderror"
+                                                    id="yourName" name="name" type="name"
                                                     value="{{ old('name') }}">
                                                 @error('name')
                                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -40,12 +40,12 @@
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <label for="yourEmail" class="form-label">Email</label>
+                                            <label class="form-label" for="yourEmail">Email</label>
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend"><i
                                                         class="bx bx-envelope"></i></span>
-                                                <input type="email" name="email"
-                                                    class="form-control @error('email') is-invalid @enderror" id="yourEmail"
+                                                <input class="form-control @error('email') is-invalid @enderror"
+                                                    id="yourEmail" name="email" type="email"
                                                     value="{{ old('email') }}">
                                                 @error('email')
                                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -53,20 +53,19 @@
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <label for="yourPassword" class="form-label">Password</label>
+                                            <label class="form-label" for="yourPassword">Password</label>
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend"><i
                                                         class='bx bxs-lock'></i></span>
-                                                <input type="password" name="password"
-                                                    class="form-control @error('password') is-invalid @enderror"
-                                                    id="yourPassword">
+                                                <input class="form-control @error('password') is-invalid @enderror"
+                                                    id="yourPassword" name="password" type="password">
                                                 @error('password')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="col-12 mt-2">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="showPassword">
+                                                    <input class="form-check-input" id="showPassword" type="checkbox">
                                                     <label class="form-check-label" for="showPassword">
                                                         Show Password
                                                     </label>

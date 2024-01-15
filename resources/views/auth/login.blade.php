@@ -11,7 +11,7 @@
 
                             <div class="d-flex justify-content-center py-4">
                                 <a class="logo d-flex align-items-center w-auto" href="{{ route('home') }}">
-                                    <span class="d-none d-lg-block">Showcase Project</span>
+                                    <span class="d-none d-lg-block">Digiworks</span>
                                 </a>
                             </div>
 

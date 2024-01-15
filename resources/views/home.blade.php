@@ -5,7 +5,7 @@
         style="background-image: url({{ asset('assets/img/header-bg.jpg') }});">
         <div
             class="flex w-full max-w-md flex-col items-center justify-center gap-y-3 rounded border-2 border-gray-300 bg-white px-5 py-10 text-black md:max-w-2xl">
-            <h3 class="text-3xl font-semibold md:text-5xl">Showcase Project</h3>
+            <h3 class="text-3xl font-semibold md:text-5xl">Digiworks</h3>
             <h5 class="text-lg md:text-xl">RPL - SMKN 46 Jakarta</h5>
         </div>
     </header>
