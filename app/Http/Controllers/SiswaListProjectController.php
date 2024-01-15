@@ -16,7 +16,7 @@ class SiswaListProjectController extends Controller
         $tags = Tag::all();
 
         $projects = Project::where('user_id', $request->user()->id)->with('developer', 'images', 'tags')
-            ->when(request('searchBy') == 'title', function ($query) {
+            ->when(request('title'), function ($query) {
                 $query->where('title', 'like', '%' . request('title') . '%');
             })
             ->when(request('tags'), function ($query) {
