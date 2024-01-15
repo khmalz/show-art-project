@@ -78,7 +78,7 @@
                                         <i class="fas fa-times text-2xl"></i>
                                     </button>
                                     <img class="h-56 w-full rounded-md border shadow-sm" data-name="${file.name}"
-                                        src="{{ \Illuminate\Support\Facades\Storage::url($image->path) }}"
+                                        src="{{ asset('assets/img/' . $image->path) }}"
                                         alt="image-ori{{ $image->id }}">
                                 </div>
                             @endforeach

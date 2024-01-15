@@ -73,7 +73,7 @@ class ProjectController extends Controller
 
         $images = $request->file('images');
         foreach ($images as $image) {
-            $imagePath = $image->store('images');
+            $imagePath = $image->store('projects');
 
             $project->images()->create([
                 'path' => $imagePath,
@@ -149,7 +149,7 @@ class ProjectController extends Controller
                 $images = $request->file('images');
 
                 foreach ($images as $image) {
-                    $imagePath = $image->store('images');
+                    $imagePath = $image->store('projects');
 
                     $project->images()->create([
                         'path' => $imagePath,

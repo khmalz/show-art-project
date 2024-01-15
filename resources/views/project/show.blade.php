@@ -5,10 +5,9 @@
         <div class="grid w-full grid-cols-1 gap-x-10 gap-y-3 lg:grid-cols-5">
             <div class="lg:col-span-3">
                 @if (count($project->images) > 0 && count($project->images) < 2)
-                    <a class="project-lightbox"
-                        href="{{ \Illuminate\Support\Facades\Storage::url($project->images[0]->path) }}">
+                    <a class="project-lightbox" href="{{ asset('assets/img/' . $project->images[0]->path) }}">
                         <img class="h-72 w-full object-cover lg:h-96"
-                            src="{{ \Illuminate\Support\Facades\Storage::url($project->images[0]->path) }}" alt="image 1">
+                            src="{{ asset('assets/img/' . $project->images[0]->path) }}" alt="image 1">
                     </a>
                 @else
                     <div class="relative w-full" id="controls-carousel" data-carousel="static">
@@ -17,10 +16,9 @@
                             @foreach ($imageChunk as $chunk)
                                 @foreach ($chunk as $image)
                                     <a class="project-lightbox hidden duration-700 ease-in-out" data-carousel-item
-                                        href="{{ \Illuminate\Support\Facades\Storage::url($image->path) }}">
+                                        href="{{ asset('assets/img/' . $image->path) }}">
                                         <img class="absolute left-1/2 top-1/2 block w-full -translate-x-1/2 -translate-y-1/2"
-                                            src="{{ \Illuminate\Support\Facades\Storage::url($image->path) }}"
-                                            alt="...">
+                                            src="{{ asset('assets/img/' . $image->path) }}" alt="...">
                                     </a>
                                 @endforeach
                             @endforeach

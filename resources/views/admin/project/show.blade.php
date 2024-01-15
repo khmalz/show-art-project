@@ -59,7 +59,7 @@
                                             <div class="col-md-6 col-lg-4">
                                                 <div style="width: 100%; height: 250px;">
                                                     <img class="img-fluid img-thumbnail w-100 h-100 border border-2"
-                                                        src="{{ \Illuminate\Support\Facades\Storage::url($image->path) }}"
+                                                        src="{{ asset('assets/img/' . $image->path) }}"
                                                         alt="gambar bukti {{ $loop->iteration }}"
                                                         style="object-fit:  cover">
                                                 </div>
