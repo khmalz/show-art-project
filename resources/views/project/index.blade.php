@@ -1,9 +1,5 @@
 @extends('layouts.main')
 
-@push('styles')
-    <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet" />
-@endpush
-
 @section('content')
     <div class="container mt-3">
         <div class="flex space-x-10">
@@ -114,8 +110,7 @@
                             </div>
                             <div class="mb-5">
                                 <div id="titleInputDrawer">
-                                    <label class="mb-2 block text-sm font-medium text-gray-900"
-                                        for="title">Title</label>
+                                    <label class="mb-2 block text-sm font-medium text-gray-900" for="title">Title</label>
                                     <input
                                         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 selection:bg-primary-500 selection:text-white focus:border-primary-500 focus:ring-primary-500"
                                         id="title" name="title" type="text" value="{{ request('title') }}"
@@ -227,8 +222,6 @@
 @endsection
 
 @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
-
     <script>
         function filterInput(el, drawer = false) {
             let inputPrefix = drawer ? 'Drawer' : '';
@@ -245,14 +238,14 @@
         }
 
 
-        let tomSelectLangFrame = new TomSelect('#langframew-select', {
-            allowEmptyOption: true,
-        });
-        let tomSelectLangDrawFrame = new TomSelect('#langframewdraw-select', {
-            allowEmptyOption: true,
-        });
-
         document.addEventListener('DOMContentLoaded', function() {
+            let tomSelectLangFrame = new TomSelect('#langframew-select', {
+                allowEmptyOption: true,
+            });
+            let tomSelectLangDrawFrame = new TomSelect('#langframewdraw-select', {
+                allowEmptyOption: true,
+            });
+
             const searchBySelect = $("#selectSearch").data('search-by');
 
             if (searchBySelect) {

@@ -13,6 +13,9 @@ window.jquery = window.jQuery = window.$ = $;
 import GLightbox from "glightbox";
 window.GLightbox = GLightbox;
 
+import TomSelect from "tom-select";
+window.TomSelect = TomSelect;
+
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
 /**

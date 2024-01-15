@@ -1,9 +1,5 @@
 @extends('layouts.main')
 
-@push('styles')
-    <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet" />
-@endpush
-
 @section('content')
     <div class="container mt-3">
         <div class="flex space-x-10">
@@ -162,17 +158,15 @@
 @endsection
 
 @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
-
     <script>
-        let tomSelectLangFrame = new TomSelect('#langframew-select', {
-            allowEmptyOption: true,
-        });
-        let tomSelectLangDrawFrame = new TomSelect('#langframewdraw-select', {
-            allowEmptyOption: true,
-        });
-
         document.addEventListener('DOMContentLoaded', function() {
+            let tomSelectLangFrame = new TomSelect('#langframew-select', {
+                allowEmptyOption: true,
+            });
+            let tomSelectLangDrawFrame = new TomSelect('#langframewdraw-select', {
+                allowEmptyOption: true,
+            });
+
             const tags = $("#langframew-select").data('tags');
 
             if (tags) {

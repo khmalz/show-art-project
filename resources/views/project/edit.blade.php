@@ -1,9 +1,5 @@
 @extends('layouts.main', ['grayBg' => true])
 
-@push('styles')
-    <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet" />
-@endpush
-
 @section('content')
     <div class="container pt-8">
 
@@ -99,14 +95,9 @@
 @endsection
 
 @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
-    <script></script>
-
     <script src="https://cdn.tiny.cloud/1/{{ config('app.tiny_api_key') }}/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
     <script>
-        let selectTom = new TomSelect('#select-tag');
-
         const dt = new DataTransfer();
 
         function deleteImageOri(el, imageId) {
@@ -198,6 +189,8 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
+            let selectTom = new TomSelect('#select-tag');
+
             let descriptionContent = $("#description").data('description')
 
             tinymce.init({
