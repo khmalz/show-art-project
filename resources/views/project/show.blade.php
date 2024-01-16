@@ -165,7 +165,7 @@
                                                     <h6 class="font-bold">{{ $child->user->name }}</h6>
                                                     <small>{{ $child->created_at->diffForHumans() }}</small>
                                                 </div>
-                                                @if ($child->user->id == auth()->id())
+                                                @if (auth()->check() && $child->user->id == auth()->id())
                                                     <div>
                                                         <form action="{{ route('comment.destroy', [$project, $child]) }}"
                                                             method="POST">
