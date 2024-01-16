@@ -189,6 +189,7 @@ class ProjectController extends Controller
             }
         }
 
+        $project->comments()->forceDelete();
         $project->delete();
 
         return to_route('my-project')->with("success", "Success delete your project");

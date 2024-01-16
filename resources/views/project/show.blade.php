@@ -59,8 +59,17 @@
                     <h6 class="text-sm font-semibold">{{ $project->developer->name }}</h6>
 
                     @if ($project->user_id === auth()->id())
-                        <a class="rounded-lg bg-primary-700 px-4 py-1.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-primary-300"
-                            href="{{ route('project.edit', $project) }}">Edit</a>
+                        <div>
+                            <a class="rounded-lg bg-primary-700 px-4 py-1.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-primary-300"
+                                href="{{ route('project.edit', $project) }}">Edit</a>
+                            <form class="inline-block" action="{{ route('project.destroy', $project) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <a class="rounded-lg bg-red-700 px-4 py-1.5 text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-red-300"
+                                    href="#"
+                                    onclick="return confirm('Apakah Anda yakin?') ? this.parentElement.submit() : null">Delete</a>
+                            </form>
+                        </div>
                     @endif
                 </div>
                 <h3 class="mb-1 text-xl">{{ $project->title }}</h3>
