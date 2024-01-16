@@ -121,7 +121,7 @@ class ProjectController extends Controller
     {
         $data = $request->validate([
             'title' => ['required', 'string'],
-            'tags' => ['required', 'array', 'min:1'],
+            'tags' => ['required', 'array', 'min:1', 'max:7'],
             'tags.*' => ['string'],
             'description' => ['required', 'string'],
             'images' => ['nullable', 'array'],
