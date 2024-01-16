@@ -25,7 +25,7 @@ class CommentController extends Controller
             'content_reply' => ['required']
         ]);
 
-        $project->comment($request->content_reply, parent: $comment);
+        $project->comment($request->content_reply, user: $request->user(), parent: $comment);
 
         return to_route('project.show', $project);
     }

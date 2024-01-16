@@ -162,8 +162,8 @@
                                         <div class="p-3">
                                             <div class="flex items-center justify-between">
                                                 <div class="flex items-center space-x-2">
-                                                    <h6 class="font-bold">{{ $comment->user->name }}</h6>
-                                                    <small>{{ $comment->created_at->diffForHumans() }}</small>
+                                                    <h6 class="font-bold">{{ $child->user->name }}</h6>
+                                                    <small>{{ $child->created_at->diffForHumans() }}</small>
                                                 </div>
                                                 @if ($child->user->id == auth()->id())
                                                     <div>
