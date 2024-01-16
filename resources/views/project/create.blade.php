@@ -33,11 +33,14 @@
                             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
                             id="title" name="title" type="text" value="{{ old('title') }}" placeholder="Title"
                             required>
+                        @error('title')
+                            <p class="mt-2 text-sm font-semibold text-rose-500">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label class="mb-2 block text-sm font-medium text-gray-900" for="select-tag">
                             Tags</label>
-                        <div class="relative flex w-full">
+                        <div class="relative flex w-full flex-col">
                             <select class="block w-full cursor-pointer rounded-sm focus:outline-none" id="select-tag"
                                 name="tags[]" data-tags="{{ !empty(old('tags')) ? implode(',', old('tags')) : null }}"
                                 multiple placeholder="Select tags..." autocomplete="off" multiple>
@@ -45,6 +48,9 @@
                                     <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                                 @endforeach
                             </select>
+                            @error('tags')
+                                <p class="mt-2 text-sm font-semibold text-rose-500">{{ $message }}</p>
+                            @enderror
                         </div>
                     </div>
                     <div class="mb-3">
@@ -52,15 +58,22 @@
                             Description</label>
                         <textarea id="description" name="description" data-description="{{ old('description') }}"
                             placeholder="Write your thoughts here..."></textarea>
+                        @error('description')
+                            <p class="mt-2 text-sm font-semibold text-rose-500">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <label class="mb-2 block text-sm font-medium text-gray-900" for="multipleFiles">Upload Photo</label>
                         <input
                             class="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 file:!bg-blue-600 file:text-blue-600 focus:outline-none"
-                            id="multipleFiles" name="images[]" type="file" onchange="previewImageMultiple()" multiple>
+                            id="multipleFiles" name="images[]" type="file" accept=".jpg, .jpeg, .png, .webp"
+                            onchange="previewImageMultiple()" multiple>
 
-                        <p class="mt-1 text-sm text-gray-500" id="file_input_help">SVG, PNG, JPG or GIF
+                        <p class="mt-1 text-sm text-gray-500" id="file_input_help">PNG, JPG, JPEG, or WEBP
                             (MAX. 2 MB).</p>
+                        @error('images')
+                            <p class="mt-2 text-sm font-semibold text-rose-500">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <div class="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3" id="image-container">
@@ -82,6 +95,28 @@
     <script>
         const dt = new DataTransfer();
 
+        const allowedExtensionsDesign = ["jpg", "jpeg", "png", "webp"];
+
+        const validateFile = (input, allowedExtensions) => {
+            const [file] = input.files;
+
+            if (file) {
+                const {
+                    name
+                } = file;
+                const fileExtension = name.split(".").pop().toLowerCase();
+
+                if (!allowedExtensions.includes(fileExtension)) {
+                    const validationHtml =
+                        `<p id="validationFile" class="mt-2 text-sm font-semibold text-rose-500" id="file-format-error">Hanya file dengan format yang diizinkan.</p>`
+
+                    $(input).next("#validationFile").remove().end().val("").after(validationHtml);
+                } else {
+                    $(input).next("#validationFile").remove();
+                }
+            }
+        };
+
         function deleteImagePre(el, imageId) {
             // Temukan elemen preview terdekat dengan ID yang sesuai
             const imageDiv = $(el).closest(`#image-pre${imageId}`);
@@ -102,6 +137,8 @@
         function previewImageMultiple() {
             const imageInput = document.querySelector("#multipleFiles");
             const imageContainer = $("#image-container");
+
+            validateFile(imageInput, allowedExtensionsDesign);
 
             const files = imageInput.files;
 
@@ -151,7 +188,9 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            let selectTom = new TomSelect('#select-tag');
+            let selectTom = new TomSelect('#select-tag', {
+                maxItems: 7
+            });
 
             let descriptionContent = $("#description").data('description')
 

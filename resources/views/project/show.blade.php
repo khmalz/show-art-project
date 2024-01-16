@@ -64,7 +64,7 @@
                     @endif
                 </div>
                 <h3 class="mb-1 text-xl">{{ $project->title }}</h3>
-                <div class="mb-6 flex gap-x-2.5">
+                <div class="mb-6 flex flex-wrap gap-x-2.5 gap-y-2">
                     @foreach ($project->tags as $tag)
                         <span
                             class="rounded bg-gray-800 px-2.5 py-0.5 text-xs font-medium text-white">{{ $tag->name }}</span>

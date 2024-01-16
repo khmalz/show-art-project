@@ -54,11 +54,11 @@ class ProjectController extends Controller
     {
         $request->validate([
             'title' => ['required', 'string'],
-            'tags' => ['required', 'array', 'min:1'],
+            'tags' => ['required', 'array', 'min:1', 'max:7'],
             'tags.*' => ['string'],
             'description' => ['required', 'string'],
             'images' => ['required', 'array', 'min:1'],
-            'images.*' => ['file', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+            'images.*' => ['file', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
         ]);
 
         $user = $request->user();
