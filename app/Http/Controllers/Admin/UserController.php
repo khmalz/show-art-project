@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\Rules;
+use RyanChandler\Comments\Models\Comment;
 
 class UserController extends Controller
 {
@@ -55,6 +56,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        Comment::where('parent_id', $user->id)->orWhere('user_id', $user->id)->forceDelete();
+
         $user->projects->each(function ($project) {
             if ($project->images->count() > 0) {
                 $project->images->each(function ($image) {
