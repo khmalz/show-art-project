@@ -158,35 +158,38 @@
                         @if (!empty($comment->children))
                             <div class="comment-content p-3">
                                 @foreach ($comment->children as $child)
-                                    <div class="mb-2 rounded border-2 bg-white shadow-md">
-                                        <div class="p-3">
-                                            <div class="flex items-center justify-between">
-                                                <div class="flex items-center space-x-2">
-                                                    <h6 class="font-bold">{{ $child->user->name }}</h6>
-                                                    <small>{{ $child->created_at->diffForHumans() }}</small>
-                                                </div>
-                                                @if (auth()->check() && $child->user->id == auth()->id())
-                                                    <div>
-                                                        <form action="{{ route('comment.destroy', [$project, $child]) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <a class="mb-2 me-2 cursor-pointer rounded-lg bg-red-700 px-2 py-1 text-xs font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300"
-                                                                onclick="return confirm('Are you sure you want to delete?') ? this.parentElement.submit() : null">Delete
-                                                                Reply</a>
-                                                        </form>
+                                    @if (!empty($child->user))
+                                        <div class="mb-2 rounded border-2 bg-white shadow-md">
+                                            <div class="p-3">
+                                                <div class="flex items-center justify-between">
+                                                    <div class="flex items-center space-x-2">
+                                                        <h6 class="font-bold">{{ $child->user->name }}</h6>
+                                                        <small>{{ $child->created_at->diffForHumans() }}</small>
                                                     </div>
-                                                @endif
+                                                    @if (auth()->check() && $child->user->id == auth()->id())
+                                                        <div>
+                                                            <form
+                                                                action="{{ route('comment.destroy', [$project, $child]) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <a class="mb-2 me-2 cursor-pointer rounded-lg bg-red-700 px-2 py-1 text-xs font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300"
+                                                                    onclick="return confirm('Are you sure you want to delete?') ? this.parentElement.submit() : null">Delete
+                                                                    Reply</a>
+                                                            </form>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class="p-3">
+                                                <small>
+                                                    <p class="text-sm">
+                                                        {{ $child->content }}
+                                                    </p>
+                                                </small>
                                             </div>
                                         </div>
-                                        <div class="p-3">
-                                            <small>
-                                                <p class="text-sm">
-                                                    {{ $child->content }}
-                                                </p>
-                                            </small>
-                                        </div>
-                                    </div>
+                                    @endif
                                 @endforeach
                             </div>
                         @endif
