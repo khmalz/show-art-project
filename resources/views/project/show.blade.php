@@ -97,104 +97,107 @@
             </div>
 
             @foreach ($project->comments as $comment)
-                <div class="mb-2 rounded border-2 bg-white shadow-md">
-                    <div class="p-3">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-2">
-                                <h6 class="font-bold">{{ $comment->user->name }}</h6>
-                                <small>{{ $comment->created_at->diffForHumans() }}</small>
+                @if (!empty($comment->user))
+                    <div class="mb-2 rounded border-2 bg-white shadow-md">
+                        <div class="p-3">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-2">
+                                    <h6 class="font-bold">{{ $comment->user->name }}</h6>
+                                    <small>{{ $comment->created_at->diffForHumans() }}</small>
+                                </div>
+                                @if ($comment->user->id == auth()->id())
+                                    <div>
+                                        <form action="{{ route('comment.destroy', [$project, $comment]) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <a class="mb-2 me-2 cursor-pointer rounded-lg bg-red-700 px-2 py-1 text-xs font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300"
+                                                onclick="return confirm('Are you sure you want to delete?') ? this.parentElement.submit() : null">Delete
+                                                Comment</a>
+                                        </form>
+                                    </div>
+                                @endif
                             </div>
-                            @if ($comment->user->id == auth()->id())
-                                <div>
-                                    <form action="{{ route('comment.destroy', [$project, $comment]) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <a class="mb-2 me-2 cursor-pointer rounded-lg bg-red-700 px-2 py-1 text-xs font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300"
-                                            onclick="return confirm('Are you sure you want to delete?') ? this.parentElement.submit() : null">Delete
-                                            Comment</a>
-                                    </form>
+                        </div>
+                        <div class="p-3">
+                            <small>
+                                <p class="text-sm">
+                                    {{ $comment->content }}
+                                </p>
+                            </small>
+                            <button class="mt-2 rounded bg-gray-200 px-2 py-1 text-sm text-gray-700"
+                                id="replyButton{{ $comment->id }}"
+                                onclick="showReply({{ $comment->id }})">Reply</button>
+
+                            <div class="reply-form{{ $comment->id }}" style="display: none">
+                                <form action="{{ route('comment.reply', [$project, $comment]) }}" method="POST">
+                                    @csrf
+                                    <div class="mt-3">
+                                        <div class="form-group">
+                                            <textarea
+                                                class="w-full border border-primary-500 bg-white text-sm text-gray-900 focus:border-primary-600 focus:outline-none focus:ring-0"
+                                                id="reply" name="content_reply" rows="2" placeholder="Write a reply..."></textarea>
+                                            @error('content_reply')
+                                                <div class="mt-1 text-xs text-red-500">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <button
+                                            class="inline-flex items-center rounded bg-primary-700 px-2 py-1.5 text-center text-xs font-medium text-white hover:bg-primary-800 focus:ring-2 focus:ring-primary-200"
+                                            type="submit">
+                                            Reply
+                                        </button>
+                                        <button
+                                            class="inline-flex items-center rounded bg-red-700 px-2 py-1.5 text-center text-xs font-medium text-white hover:bg-red-800 focus:ring-2 focus:ring-red-200"
+                                            id="cancelButton{{ $comment->id }}" type="button"
+                                            onclick="cancelReply({{ $comment->id }})">
+                                            Cancel
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            @if (!empty($comment->children))
+                                <div class="comment-content p-3">
+                                    @foreach ($comment->children as $child)
+                                        @if (!empty($child->user))
+                                            <div class="mb-2 rounded border-2 bg-white shadow-md">
+                                                <div class="p-3">
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center space-x-2">
+                                                            <h6 class="font-bold">{{ $child->user->name }}</h6>
+                                                            <small>{{ $child->created_at->diffForHumans() }}</small>
+                                                        </div>
+                                                        @if (auth()->check() && $child->user->id == auth()->id())
+                                                            <div>
+                                                                <form
+                                                                    action="{{ route('comment.destroy', [$project, $child]) }}"
+                                                                    method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <a class="mb-2 me-2 cursor-pointer rounded-lg bg-red-700 px-2 py-1 text-xs font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300"
+                                                                        onclick="return confirm('Are you sure you want to delete?') ? this.parentElement.submit() : null">Delete
+                                                                        Reply</a>
+                                                                </form>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="p-3">
+                                                    <small>
+                                                        <p class="text-sm">
+                                                            {{ $child->content }}
+                                                        </p>
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
                                 </div>
                             @endif
                         </div>
                     </div>
-                    <div class="p-3">
-                        <small>
-                            <p class="text-sm">
-                                {{ $comment->content }}
-                            </p>
-                        </small>
-                        <button class="mt-2 rounded bg-gray-200 px-2 py-1 text-sm text-gray-700"
-                            id="replyButton{{ $comment->id }}" onclick="showReply({{ $comment->id }})">Reply</button>
-
-                        <div class="reply-form{{ $comment->id }}" style="display: none">
-                            <form action="{{ route('comment.reply', [$project, $comment]) }}" method="POST">
-                                @csrf
-                                <div class="mt-3">
-                                    <div class="form-group">
-                                        <textarea
-                                            class="w-full border border-primary-500 bg-white text-sm text-gray-900 focus:border-primary-600 focus:outline-none focus:ring-0"
-                                            id="reply" name="content_reply" rows="2" placeholder="Write a reply..."></textarea>
-                                        @error('content_reply')
-                                            <div class="mt-1 text-xs text-red-500">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
-                                    <button
-                                        class="inline-flex items-center rounded bg-primary-700 px-2 py-1.5 text-center text-xs font-medium text-white hover:bg-primary-800 focus:ring-2 focus:ring-primary-200"
-                                        type="submit">
-                                        Reply
-                                    </button>
-                                    <button
-                                        class="inline-flex items-center rounded bg-red-700 px-2 py-1.5 text-center text-xs font-medium text-white hover:bg-red-800 focus:ring-2 focus:ring-red-200"
-                                        id="cancelButton{{ $comment->id }}" type="button"
-                                        onclick="cancelReply({{ $comment->id }})">
-                                        Cancel
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-
-                        @if (!empty($comment->children))
-                            <div class="comment-content p-3">
-                                @foreach ($comment->children as $child)
-                                    @if (!empty($child->user))
-                                        <div class="mb-2 rounded border-2 bg-white shadow-md">
-                                            <div class="p-3">
-                                                <div class="flex items-center justify-between">
-                                                    <div class="flex items-center space-x-2">
-                                                        <h6 class="font-bold">{{ $child->user->name }}</h6>
-                                                        <small>{{ $child->created_at->diffForHumans() }}</small>
-                                                    </div>
-                                                    @if (auth()->check() && $child->user->id == auth()->id())
-                                                        <div>
-                                                            <form
-                                                                action="{{ route('comment.destroy', [$project, $child]) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <a class="mb-2 me-2 cursor-pointer rounded-lg bg-red-700 px-2 py-1 text-xs font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300"
-                                                                    onclick="return confirm('Are you sure you want to delete?') ? this.parentElement.submit() : null">Delete
-                                                                    Reply</a>
-                                                            </form>
-                                                        </div>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <div class="p-3">
-                                                <small>
-                                                    <p class="text-sm">
-                                                        {{ $child->content }}
-                                                    </p>
-                                                </small>
-                                            </div>
-                                        </div>
-                                    @endif
-                                @endforeach
-                            </div>
-                        @endif
-                    </div>
-                </div>
+                @endif
             @endforeach
         </div>
     </div>
