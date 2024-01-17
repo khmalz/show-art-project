@@ -32,12 +32,14 @@ class DatabaseSeeder extends Seeder
             'email' => 'siswa1@gmail.com',
         ]);
         $siswa1->assignRole('siswa');
+        $siswa1->siswa()->create(['generation_year' => '2023/2024']);
 
         $siswa2 = User::factory()->create([
             'name' => 'Siswa 2',
             'email' => 'siswa2@gmail.com',
         ]);
         $siswa2->assignRole('siswa');
+        $siswa2->siswa()->create(['generation_year' => '2023/2024']);
 
         RegisterActive::create([
             'active' => true,

@@ -29,6 +29,7 @@
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Name</th>
+                                    <th scope="col">Generation</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -38,9 +39,10 @@
                                     <tr>
                                         <th scope="row">{{ $loop->iteration }}</th>
                                         <td>{{ $user->name }}</td>
+                                        <td>{{ $user->siswa->generation_year }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>
-                                            <a class="text-white btn btn-info btn-sm"
+                                            <a class="btn btn-info btn-sm text-white"
                                                 href="{{ route('admin.user.edit', $user) }}">
                                                 <i class='bx bxs-pencil'></i>
                                                 Edit
@@ -52,8 +54,8 @@
                                             </button>
                                         </td>
                                     </tr>
-                                    <div class="modal fade" id="modalDelete{{ $user->id }}" aria-labelledby="modalDeleteLabel"
-                                        aria-hidden="true" tabindex="-1">
+                                    <div class="modal fade" id="modalDelete{{ $user->id }}"
+                                        aria-labelledby="modalDeleteLabel" aria-hidden="true" tabindex="-1">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">

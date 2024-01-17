@@ -55,8 +55,9 @@
                 @endif
             </div>
             <div class="w-full border bg-white p-5 shadow-sm lg:col-span-2">
-                <div class="mb-8 flex items-center justify-between">
-                    <h6 class="text-sm font-semibold">{{ $project->developer->name }}</h6>
+                <div class="mb-8 flex flex-col space-y-3 md:flex-row md:items-center md:justify-between md:space-y-0">
+                    <h6 class="text-sm font-semibold">{{ $project->developer->name }} | Generation
+                        {{ $project->developer->siswa->generation_year }}</h6>
 
                     @if ($project->user_id === auth()->id())
                         <div>

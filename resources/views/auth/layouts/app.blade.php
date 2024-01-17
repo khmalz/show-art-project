@@ -22,6 +22,7 @@
     <!-- Vendor CSS Files -->
     <link href="{{ asset('assets/admin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/admin/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin/vendor/datetime-picker/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/admin/css/style.css') }}" rel="stylesheet">
@@ -37,12 +38,17 @@
     <!-- Vendor JS Files -->
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/datetime-picker/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/datetime-picker/bootstrap-datetimepicker.id.js') }}"></script>
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/admin/js/main.js') }}"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            dateTime('#generation_year_1')
+            processGenerationData()
+
             $('#showPassword').click(function() {
                 if ($(this).is(':checked')) {
                     $('#yourPassword').attr('type', 'text');
@@ -51,6 +57,30 @@
                 }
             });
         });
+
+        function processGenerationData() {
+            const oldGeneration = $('#generation_year_1').data('old-generation');
+            $('#generation_year_1').val(oldGeneration).trigger('change');
+        }
+
+        function dateTime(id) {
+            $(id).datetimepicker({
+                language: 'id',
+                todayBtn: true,
+                format: "yyyy",
+                startView: 'decade',
+                minView: 'decade',
+                viewSelect: 'decade',
+                autoclose: true,
+            });
+        }
+
+        function fillGen2(input) {
+            let year = parseInt(input.value);
+            let nextYear = !isNaN(year) ? year + 1 : '';
+
+            document.getElementById('generation_year_2').value = nextYear;
+        }
     </script>
 </body>
 

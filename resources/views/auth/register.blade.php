@@ -40,6 +40,31 @@
                                             </div>
                                         </div>
                                         <div class="col-12">
+                                            <label class="form-label" for="yourGeneration">Generation</label>
+                                            <div class="input-group has-validation">
+                                                <span class="input-group-text" id="inputGroupPrepend1"><i
+                                                        class="bx bxs-school"></i></span>
+                                                <input
+                                                    class="form-control @error('generation_year_1') is-invalid @enderror rounded"
+                                                    id="generation_year_1" name="generation_year_1"
+                                                    data-old-generation="{{ old('generation_year_1') }}" type="datetime"
+                                                    value="{{ old('generation_year_1') }}" min="{{ date('Y') }}"
+                                                    autocomplete="off" onchange="fillGen2(this)" />
+
+                                                <div class="input-group-text p-2"
+                                                    style="border:none; background-color:transparent;">/</div>
+
+                                                <input class="form-control rounded" id="generation_year_2"
+                                                    name="generation_year_2" type="text"
+                                                    value="{{ old('generation_year_2') }}" readonly>
+
+                                                @error('generation_year_1')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
+                                        </div>
+                                        <div class="col-12">
                                             <label class="form-label" for="yourEmail">Email</label>
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend"><i

@@ -36,9 +36,12 @@ class UserController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'generation_year_1' => ['required', 'numeric', 'digits:4'],
             'email' => ['required', 'string', 'email:dns', 'max:255'],
             'password' => ['nullable', Rules\Password::defaults()],
         ]);
+
+        $generation = "$request->generation_year_1/$request->generation_year_2";
 
         if (!empty($data['password'])) {
             $data['password'] = bcrypt($data['password']);
@@ -47,6 +50,7 @@ class UserController extends Controller
         }
 
         $user->update($data);
+        $user->siswa()->update(['generation_year' => $generation]);
 
         return to_route('admin.user.index')->with('success', 'Successfully edited a user');
     }

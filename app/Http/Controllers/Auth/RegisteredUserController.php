@@ -28,13 +28,16 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'generation_year_1' => ['required', 'numeric', 'digits:4'],
             'email' => ['required', 'string', 'lowercase', 'email:dns', 'max:255', 'unique:' . User::class],
             'password' => ['required', Rules\Password::defaults()],
         ]);
+
+        $generation = "$request->generation_year_1/$request->generation_year_2";
 
         $user = User::create([
             'name' => $request->name,
@@ -43,6 +46,8 @@ class RegisteredUserController extends Controller
         ]);
 
         $user->assignRole('siswa');
+
+        $user->siswa()->create(['generation_year' => $generation]);
 
         event(new Registered($user));
 

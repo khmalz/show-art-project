@@ -173,43 +173,47 @@
                                                 {{ $project->title }}</h5>
                                         </div>
                                     </a>
-                                    <div class="flex flex-col gap-y-3 p-5 md:flex-row md:items-center md:justify-between">
-                                        <p>By <a class="font-semibold hover:underline"
-                                                data-tooltip-target="tooltip-default{{ $loop->iteration }}"
-                                                data-tooltip-placement="bottom"
-                                                href="{{ route('project.index', ['searchBy' => 'developer', 'developer' => $project->developer->name]) }}">
-                                                {{ $project->developer->name }}</a> |
-                                            {{ $project->created_at->diffForHumans() }}
-
-                                        <div class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-1.5 py-2 text-xs font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
-                                            id="tooltip-default{{ $loop->iteration }}" role="tooltip">
-                                            see their project
-                                            <div class="tooltip-arrow" data-popper-arrow></div>
-                                        </div>
-
-                                        </p>
-                                        @if (request()->routeIs('my-project'))
-                                            <div>
-                                                <a class="mb-2 rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300"
-                                                    href="{{ route('project.edit', $project) }}">Edit</a>
-                                                <form class="inline-block"
-                                                    action="{{ route('project.destroy', $project) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <a class="mb-2 cursor-pointer rounded-lg bg-red-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300"
-                                                        onclick="return confirm('Are you sure you want to delete?') ? this.parentElement.submit() : null">Delete</a>
-                                                </form>
+                                    <div class="flex flex-col space-y-2.5 p-5">
+                                        <div class="flex flex-col gap-y-3 md:flex-row md:items-center md:justify-between">
+                                            <p>By <a class="font-semibold hover:underline"
+                                                    data-tooltip-target="tooltip-default{{ $loop->iteration }}"
+                                                    data-tooltip-placement="bottom"
+                                                    href="{{ route('project.index', ['searchBy' => 'developer', 'developer' => $project->developer->name]) }}">
+                                                    {{ $project->developer->name }}</a> | Generation
+                                                {{ $project->developer->siswa->generation_year }}
+                                            </p>
+                                            <div class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-1.5 py-2 text-xs font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
+                                                id="tooltip-default{{ $loop->iteration }}" role="tooltip">
+                                                see their project
+                                                <div class="tooltip-arrow" data-popper-arrow></div>
                                             </div>
-                                        @endif
+                                        </div>
+                                        <div class="flex flex-col gap-y-3 md:flex-row md:items-center md:justify-between">
+                                            <p>{{ $project->created_at->diffForHumans() }}</p>
 
-                                        @if ($project->user_id !== auth()->id())
-                                            <form action="{{ route('project.bookmark', $project) }}" method="POST">
-                                                @csrf
-                                                @method('PATCH')
-                                                <button class="text-xl font-medium text-blue-600" type="submit"><i
-                                                        class="{{ $project->bookmarks->contains('user_id', auth()->id()) ? 'fas' : 'far' }} fa-bookmark"></i></button>
-                                            </form>
-                                        @endif
+                                            @if (request()->routeIs('my-project'))
+                                                <div>
+                                                    <a class="mb-2 rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300"
+                                                        href="{{ route('project.edit', $project) }}">Edit</a>
+                                                    <form class="inline-block"
+                                                        action="{{ route('project.destroy', $project) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <a class="mb-2 cursor-pointer rounded-lg bg-red-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300"
+                                                            onclick="return confirm('Are you sure you want to delete?') ? this.parentElement.submit() : null">Delete</a>
+                                                    </form>
+                                                </div>
+                                            @endif
+
+                                            @if ($project->user_id !== auth()->id())
+                                                <form action="{{ route('project.bookmark', $project) }}" method="POST">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button class="text-xl font-medium text-blue-600" type="submit"><i
+                                                            class="{{ $project->bookmarks->contains('user_id', auth()->id()) ? 'fas' : 'far' }} fa-bookmark"></i></button>
+                                                </form>
+                                            @endif
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach

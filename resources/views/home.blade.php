@@ -43,21 +43,22 @@
                                         {{ $project->title }}</h5>
                                 </div>
                             </a>
-                            <div class="flex flex-col gap-y-3 p-5 md:flex-row md:items-center md:justify-between">
+                            <div class="flex flex-col space-y-1 p-5">
                                 <p>By <a class="font-semibold hover:underline"
                                         data-tooltip-target="tooltip-default{{ $loop->iteration }}"
                                         data-tooltip-placement="bottom"
                                         href="{{ route('project.index', ['searchBy' => 'developer', 'developer' => $project->developer->name]) }}">
-                                        {{ $project->developer->name }}</a> |
-                                    {{ $project->created_at->diffForHumans() }}
+                                        {{ $project->developer->name }}</a> | Generation
+                                    {{ $project->developer->siswa->generation_year }}
 
                                 <div class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-1.5 py-2 text-xs font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
                                     id="tooltip-default{{ $loop->iteration }}" role="tooltip">
                                     see their project
                                     <div class="tooltip-arrow" data-popper-arrow></div>
                                 </div>
-
                                 </p>
+
+                                <p>{{ $project->created_at->diffForHumans() }}</p>
 
                             </div>
                         </div>
