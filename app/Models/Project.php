@@ -5,6 +5,7 @@ namespace App\Models;
 use Maize\Markable\Markable;
 use Maize\Markable\Models\Bookmark;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 use RyanChandler\Comments\Concerns\HasComments;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Project extends Model
 {
-    use HasFactory, Markable, HasComments;
+    use HasFactory, Markable, HasComments, Sluggable;
 
     protected static $marks = [
         Bookmark::class,
@@ -38,5 +39,24 @@ class Project extends Model
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class, "project_tag");
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return "slug";
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 }
