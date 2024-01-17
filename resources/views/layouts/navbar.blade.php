@@ -72,6 +72,9 @@
                             href="{{ route('home') }}" aria-current="page">Home</a>
                     </li>
                     <li>
+                        <a class="block rounded px-3 py-2" href="#about" aria-current="page">About</a>
+                    </li>
+                    <li>
                         <a class="{{ request()->routeIs('project.*') || request()->routeIs('my-project') ? 'nav-active' : 'nav-unactive' }} block rounded px-3 py-2"
                             href="{{ route('project.index') }}">Project</a>
                     </li>

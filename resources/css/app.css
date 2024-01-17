@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
 @layer components {
     .nav-active {
         @apply bg-primary-500 text-white md:bg-transparent md:p-0 md:text-primary-700;

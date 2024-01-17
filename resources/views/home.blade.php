@@ -6,11 +6,46 @@
         <div
             class="flex w-full max-w-md flex-col items-center justify-center gap-y-3 rounded border-2 border-gray-300 bg-white px-5 py-10 text-black md:max-w-2xl">
             <h3 class="text-3xl font-semibold md:text-5xl">Digiworks</h3>
-            <h5 class="text-lg md:text-xl">RPL - SMKN 46 Jakarta</h5>
+            <h5 class="text-lg md:text-xl">SE - SMKN 46 Jakarta</h5>
         </div>
     </header>
 
-    <main class="container" id="project">
+    <div class="container" id="about">
+        <div class="mt-10 flex flex-col items-center gap-y-5">
+            <h2 class="text-6xl font-thin">About</h2>
+            <h6 class="text-lg">About Us - Digiworks 46</h6>
+            <div class="grid grid-cols-1 items-center justify-between space-x-5 space-y-5 lg:grid-cols-2 lg:space-y-0">
+                <div class="flex flex-col space-y-3">
+                    <p class="text-justify text-xl font-medium">
+                        Welcome to our digital platform!
+                    </p>
+                    <p class="text-justify">
+                        We present a variety of recent projects from students majoring in
+                        Software Engineering (SE) at SMK Negeri 46 Jakarta.
+                    </p>
+                    <p class="text-justify">
+                        Through this platform, our goal is to
+                        facilitate the
+                        exploration of students' creativity and achievements in various aspects of IT, including the
+                        development of
+                        mobile applications, software solutions, and other projects. From complex coding to appealing user
+                        interface
+                        designs, we showcase a diverse range of projects as a reflection of the dedication, hard work, and
+                        technical
+                        skills of our students. Join us in exploring the ever-evolving world of digital innovation from the
+                        next
+                        generation in the field of Information Technology.
+                    </p>
+                </div>
+                <div class="flex p-2">
+                    <img class="rounded border shadow-lg lg:w-[600px]" src="{{ asset('assets/img/about/workspace.jpg') }}"
+                        alt="workspace digital">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container mb-5" id="project">
         <div class="mt-10 flex flex-col items-center gap-y-5">
             <h2 class="text-6xl font-thin">Project</h2>
             <h6 class="text-lg">Kumpulan hasil-hasil project dari jurusan RPL</h6>
