@@ -224,6 +224,10 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             let selectTom = new TomSelect('#select-tag', {
+                sortField: {
+                    field: "text",
+                    direction: "asc"
+                },
                 maxItems: 7
             });
 

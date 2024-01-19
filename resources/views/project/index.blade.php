@@ -245,9 +245,17 @@
         document.addEventListener('DOMContentLoaded', function() {
             let tomSelectLangFrame = new TomSelect('#langframew-select', {
                 allowEmptyOption: true,
+                sortField: {
+                    field: "text",
+                    direction: "asc"
+                },
             });
             let tomSelectLangDrawFrame = new TomSelect('#langframewdraw-select', {
                 allowEmptyOption: true,
+                sortField: {
+                    field: "text",
+                    direction: "asc"
+                },
             });
 
             const searchBySelect = $("#selectSearch").data('search-by');
