@@ -22,7 +22,7 @@
                                     <div class="pb-2 pt-4">
                                         <h5 class="card-title fs-4 pb-0 text-center">Login to Your Account</h5>
                                         @if ($errors->any())
-                                            <p class="small text-danger text-center">Email/Password salah</p>
+                                            <p class="small text-danger mb-0 text-center">Email/Password salah</p>
                                         @endif
                                     </div>
 

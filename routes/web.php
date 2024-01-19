@@ -7,6 +7,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\SiswaListProjectController;
 use App\Http\Controllers\Admin\ProjectListController;
@@ -44,6 +45,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/list/project/{project}', ProjectShowController::class)->name('project.show');
 
             Route::resource('user', UserController::class)->except('create', 'store', 'show');
+            Route::get('/admin', [AdminController::class, 'index'])->name('account.index');
+            Route::patch('/admin/{user}', [AdminController::class, 'update'])->name('account.update');
             Route::resource('tag', TagController::class)->except('show');
 
             Route::get('/register-toogle', RegisterToggleController::class)->name('register-toggle');

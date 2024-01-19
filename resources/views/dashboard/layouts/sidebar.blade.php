@@ -32,6 +32,14 @@
          <li class="nav-heading">Account</li>
 
          <li class="nav-item">
+             <a class="nav-link {{ request()->routeIs('admin.user.admin.*') ? null : 'collapsed' }}"
+                 href="{{ route('admin.account.index') }}">
+                 <i class="bi bi-person-gear"></i>
+                 <span>Admin</span>
+             </a>
+         </li>
+
+         <li class="nav-item">
              <a class="nav-link {{ request()->routeIs('admin.user.*') ? null : 'collapsed' }}"
                  href="{{ route('admin.user.index') }}">
                  <i class="bi bi-person"></i>
