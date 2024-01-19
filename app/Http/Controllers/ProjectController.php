@@ -141,7 +141,7 @@ class ProjectController extends Controller
                 $imagesToDelete->each->delete();
             }
 
-            if (!$request->hasFile('images') && empty($project->images)) {
+            if (!$request->hasFile('images') && $project->images->isEmpty()) {
                 return back()->withErrors(['images' => 'At least one image must be uploaded or kept.'])->withInput();
             }
 
@@ -183,7 +183,7 @@ class ProjectController extends Controller
     {
         abort_if($project->user_id !== auth()->user()->id, 403, 'Not Your Project');
 
-        if (count($project->images) > 0) {
+        if ($project->images->isNotEmpty()) {
             foreach ($project->images as $image) {
                 Storage::delete($image->path);
             }
