@@ -128,6 +128,8 @@ class ProjectController extends Controller
             'images.*' => ['file', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
         ]);
 
+        $imageException = false;
+
         DB::beginTransaction();
 
         try {
@@ -142,7 +144,8 @@ class ProjectController extends Controller
             }
 
             if (!$request->hasFile('images') && $project->images->isEmpty()) {
-                return back()->withErrors(['images' => 'At least one image must be uploaded or kept.'])->withInput();
+                $imageException = true;
+                throw new \Exception('Fake error to trigger catch block');
             }
 
             if ($request->hasFile('images')) {
@@ -167,10 +170,14 @@ class ProjectController extends Controller
 
             DB::commit();
 
-            return to_route('my-project', $project)->with('success', 'Successfully updated your project');
+            return to_route('my-project')->with('success', 'Successfully updated your project');
         } catch (\Exception $e) {
             // Rollback database transaksi jika terjadi error
             DB::rollback();
+
+            if ($imageException) {
+                return back()->withErrors(['images' => 'At least one image must be uploaded or kept.'])->withInput();
+            }
 
             return back()->with('error', 'Failed to save changes: ' . $e->getMessage());
         }

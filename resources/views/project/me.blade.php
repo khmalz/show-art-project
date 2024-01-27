@@ -131,7 +131,7 @@
                                         </div>
                                     </a>
                                     <div class="flex flex-col gap-y-3 p-5 md:flex-row md:items-center md:justify-between">
-                                        <p class="text-sm md:text-base">By <span class="font-semibold">
+                                        <p class="text-sm">By <span class="font-semibold">
                                                 You</span> |
                                             {{ $project->created_at->diffForHumans() }}
 

@@ -132,60 +132,11 @@
 
                 // Update file name display
                 $('#file-name').text(fileNameDisplay);
+            } else {
+                $('#file-name').html(
+                    `<span class="font-semibold">Click to upload</span> or drag and drop`
+                );
             }
-        }
-
-        function previewImageMultiple() {
-            const imageInput = document.querySelector("#multipleFiles");
-            const imageContainer = $("#image-container");
-
-            validateFile(imageInput, allowedExtensionsDesign);
-
-            const files = imageInput.files;
-
-            for (let i = 0; i < files.length; i++) {
-                let duplicate = false;
-                const file = files[i];
-
-                if (file) {
-
-                    for (let i = 0; i < dt.items.length; i++) {
-                        if (file.name === dt.items[i].getAsFile().name) {
-                            duplicate = true;
-                            break;
-                        } else {
-                            duplicate = false
-                        }
-                    }
-
-                    if (!duplicate) {
-                        dt.items.add(file);
-
-                        const blob = URL.createObjectURL(file);
-
-                        // Buat elemen gambar dengan template literal dan jQuery
-                        const imageHTML = `
-                            <div class="relative" id="image-pre${i}">
-                                <button type="button"  onclick="deleteImagePre(this, ${i})"
-                                    class="absolute left-0 px-2 m-4 text-white rounded-full delete-button -top-2 bg-gray-100/80 focus:border-blue-300 focus:outline-none focus:ring-bg-gray-100/80">
-                                    <i class="text-2xl fas fa-times"></i>
-                                </button>
-                                <img class="w-full h-56 border rounded-md shadow-sm"
-                                src="${blob}"
-                                data-name="${file.name}"
-                                alt="image-pre${i}">
-                            </div>
-                        `;
-
-                        // Tambahkan elemen gambar ke dalam container menggunakan jQuery
-                        imageContainer.append(imageHTML);
-                    } else {
-                        alert('Tidak bisa upload image yang sama')
-                    }
-                }
-            }
-
-            imageInput.files = dt.files;
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -220,10 +171,10 @@
 
                 for (let i = 0; i < files.length; i++) {
                     let duplicate = false;
-                    const fileName = files[i].name;
+                    const file = files[i];
 
                     for (let i = 0; i < dt.items.length; i++) {
-                        if (fileName === dt.items[i].getAsFile().name) {
+                        if (file.name === dt.items[i].getAsFile().name) {
                             duplicate = true;
                             break;
                         } else {
@@ -233,7 +184,7 @@
 
                     if (!duplicate) {
                         // Validate file extension
-                        const fileExtension = fileName.split(".").pop().toLowerCase();
+                        const fileExtension = file.name.split(".").pop().toLowerCase();
                         if (!allowedExtensionsDesign.includes(fileExtension)) {
                             const validationHtml =
                                 `<p id="validationFile" class="mt-2 text-sm font-semibold text-rose-500">Hanya file dengan format yang diizinkan.</p>`
@@ -241,22 +192,22 @@
                         } else {
                             dropzoneLabel.next("#validationFile").remove();
 
-                            dt.items.add(files[i]);
+                            dt.items.add(file);
 
                             // Preview image
-                            const blob = URL.createObjectURL(files[i]);
+                            const blob = URL.createObjectURL(file);
                             const imageHTML = `
-                            <div class="relative" id="image-pre${i}">
-                                <button type="button" onclick="deleteImagePre(this, ${i})"
-                                    class="absolute left-0 px-2 m-4 text-white rounded-full delete-button -top-2 bg-gray-100/80 focus:border-blue-300 focus:outline-none focus:ring-bg-gray-100/80">
-                                    <i class="text-2xl fas fa-times"></i>
-                                </button>
-                                <img class="w-full h-56 border rounded-md shadow-sm"
-                                    src="${blob}"
-                                    data-name="${fileName}"
-                                    alt="image-pre${i}">
-                            </div>
-                        `;
+                                <div class="relative" id="image-pre${i}">
+                                    <button type="button" onclick="deleteImagePre(this, ${i})"
+                                        class="absolute left-0 px-2 m-4 text-white rounded-full delete-button -top-2 bg-gray-100/80 focus:border-blue-300 focus:outline-none focus:ring-bg-gray-100/80">
+                                        <i class="text-2xl fas fa-times"></i>
+                                    </button>
+                                    <img class="w-full h-56 border rounded-md shadow-sm"
+                                        src="${blob}"
+                                        data-name="${file.name}"
+                                        alt="image-pre${i}">
+                                </div>
+                            `;
                             imageContainer.append(imageHTML);
                         }
                     } else {

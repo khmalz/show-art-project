@@ -64,15 +64,26 @@
                             <p class="mt-2 text-sm font-semibold text-rose-500">{{ $message }}</p>
                         @enderror
                     </div>
-                    <div class="mb-3">
-                        <label class="mb-2 block text-sm font-medium text-gray-900" for="multipleFiles">Upload Photo</label>
-                        <input
-                            class="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 file:!bg-blue-600 file:text-blue-600 focus:outline-none"
-                            id="multipleFiles" name="images[]" type="file" accept=".jpg, .jpeg, .png, .webp"
-                            onchange="previewImageMultiple()" multiple>
-
-                        <p class="mt-1 text-sm text-gray-500" id="file_input_help">PNG, JPG, JPEG, or WEBP
-                            (MAX. 2 MB).</p>
+                    <div class="mb-3 flex w-full flex-col justify-center">
+                        <label class="mb-2 block text-sm font-medium text-gray-900" for="dropzone-file">Upload New
+                            Photo</label>
+                        <label
+                            class="flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100"
+                            id="dropzone-label" for="dropzone-file">
+                            <div class="flex flex-col items-center justify-center pb-6 pt-5">
+                                <svg class="mb-4 h-8 w-8 text-gray-500" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                </svg>
+                                <p class="mb-2 text-sm text-gray-500" id="file-name"><span class="font-semibold">Click to
+                                        upload</span> or drag and drop</p>
+                                <p class="text-xs text-gray-500">PNG, JPG, JPEG, or WEBP (MAX. 2 MB).</p>
+                            </div>
+                            <input class="hidden" id="dropzone-file" name="images[]" type="file" multiple
+                                accept=".jpg, .jpeg, .png, .webp" />
+                        </label>
                         @error('images')
                             <p class="mt-2 text-sm font-semibold text-rose-500">{{ $message }}</p>
                         @enderror
@@ -83,12 +94,12 @@
                             @foreach ($project->images as $image)
                                 <div class="relative" id="image-ori{{ $image->id }}">
                                     <button
-                                        class="delete-button focus:ring-bg-gray-100/80 absolute -top-2 left-0 m-4 rounded-full bg-gray-100/80 px-2 text-white focus:border-blue-300 focus:outline-none"
+                                        class="delete-button focus:ring-bg-gray-100/80 absolute -top-2 left-0 m-4 rounded-full bg-gray-200/80 px-2 text-white focus:border-blue-300 focus:outline-none"
                                         type="button" onclick="deleteImageOri(this, {{ $image->id }})">
-                                        <i class="fas fa-times text-2xl"></i>
+                                        <i class="fas fa-times text-xl"></i>
                                     </button>
-                                    <img class="h-56 w-full rounded-md border shadow-sm" data-name="${file.name}"
-                                        src="{{ asset('assets/img/' . $image->path) }}"
+                                    <img class="h-56 w-full rounded-md border-2 border-primary-500 shadow-sm"
+                                        data-name="${file.name}" src="{{ asset('assets/img/' . $image->path) }}"
                                         alt="image-ori{{ $image->id }}">
                                 </div>
                             @endforeach
@@ -109,28 +120,6 @@
         referrerpolicy="origin"></script>
     <script>
         const dt = new DataTransfer();
-
-        const allowedExtensionsDesign = ["jpg", "jpeg", "png", "webp"];
-
-        const validateFile = (input, allowedExtensions) => {
-            const [file] = input.files;
-
-            if (file) {
-                const {
-                    name
-                } = file;
-                const fileExtension = name.split(".").pop().toLowerCase();
-
-                if (!allowedExtensions.includes(fileExtension)) {
-                    const validationHtml =
-                        `<p id="validationFile" class="mt-2 text-sm font-semibold text-rose-500" id="file-format-error">Hanya file dengan format yang diizinkan.</p>`
-
-                    $(input).next("#validationFile").remove().end().val("").after(validationHtml);
-                } else {
-                    $(input).next("#validationFile").remove();
-                }
-            }
-        };
 
         function deleteImageOri(el, imageId) {
             // Temukan elemen terdekat dengan ID yang sesuai
@@ -166,22 +155,59 @@
                     dt.items.remove(i);
                 }
             }
-            document.getElementById('multipleFiles').files = dt.files;
+            document.getElementById('dropzone-file').files = dt.files;
+
+            handleFileCount()
         }
 
-        function previewImageMultiple() {
-            const imageInput = document.querySelector("#multipleFiles");
-            const imageContainer = $("#image-container");
+        function handleFileCount() {
+            const fileCount = dt.files.length;
 
-            validateFile(imageInput, allowedExtensionsDesign);
+            if (fileCount > 0) {
+                const fileNameDisplay = fileCount === 1 ? dt.items[0].getAsFile().name : `${fileCount} files`;
 
-            const files = imageInput.files;
+                // Update file name display
+                $('#file-name').text(fileNameDisplay);
+            } else {
+                $('#file-name').html(
+                    `<span class="font-semibold">Click to upload</span> or drag and drop`
+                );
+            }
+        }
 
-            for (let i = 0; i < files.length; i++) {
-                let duplicate = false;
-                const file = files[i];
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropzoneLabel = $('#dropzone-label');
+            const dropzoneFileInput = $('#dropzone-file');
+            const allowedExtensionsDesign = ["jpg", "jpeg", "png", "webp"];
 
-                if (file) {
+            dropzoneLabel.on('dragover', function(e) {
+                e.preventDefault();
+                $(this).addClass('border-primary-500');
+            });
+
+            dropzoneLabel.on('dragleave', function() {
+                $(this).removeClass('border-primary-500');
+            });
+
+            dropzoneLabel.on('drop', function(e) {
+                e.preventDefault();
+                $(this).removeClass('border-primary-500');
+
+                const droppedFiles = e.originalEvent.dataTransfer.files;
+                handleFiles(droppedFiles);
+            });
+
+            dropzoneFileInput.change(function() {
+                const selectedFiles = this.files;
+                handleFiles(selectedFiles);
+            });
+
+            function handleFiles(files) {
+                const imageContainer = $("#image-container");
+
+                for (let i = 0; i < files.length; i++) {
+                    let duplicate = false;
+                    const file = files[i];
 
                     for (let i = 0; i < dt.items.length; i++) {
                         if (file.name === dt.items[i].getAsFile().name) {
@@ -193,36 +219,42 @@
                     }
 
                     if (!duplicate) {
-                        dt.items.add(file);
+                        // Validate file extension
+                        const fileExtension = file.name.split(".").pop().toLowerCase();
+                        if (!allowedExtensionsDesign.includes(fileExtension)) {
+                            const validationHtml =
+                                `<p id="validationFile" class="mt-2 text-sm font-semibold text-rose-500">Hanya file dengan format yang diizinkan.</p>`
+                            dropzoneLabel.next("#validationFile").remove().end().val("").after(validationHtml);
+                        } else {
+                            dropzoneLabel.next("#validationFile").remove();
 
-                        const blob = URL.createObjectURL(file);
+                            dt.items.add(file);
 
-                        // Buat elemen gambar dengan template literal dan jQuery
-                        const imageHTML = `
-                            <div class="relative" id="image-pre${i}">
-                                <button type="button"  onclick="deleteImagePre(this, ${i})"
-                                    class="absolute left-0 px-2 m-4 text-white rounded-full delete-button -top-2 bg-gray-100/80 focus:border-blue-300 focus:outline-none focus:ring-bg-gray-100/80">
-                                    <i class="text-2xl fas fa-times"></i>
-                                </button>
-                                <img class="w-full h-56 border rounded-md shadow-sm"
-                                src="${blob}"
-                                data-name="${file.name}"
-                                alt="image-pre${i}">
-                            </div>
-                        `;
-
-                        // Tambahkan elemen gambar ke dalam container menggunakan jQuery
-                        imageContainer.append(imageHTML);
+                            // Preview image
+                            const blob = URL.createObjectURL(file);
+                            const imageHTML = `
+                                <div class="relative" id="image-pre${i}">
+                                    <button type="button" onclick="deleteImagePre(this, ${i})"
+                                        class="absolute left-0 px-2 m-4 text-white rounded-full delete-button -top-2 bg-gray-100/80 focus:border-blue-300 focus:outline-none focus:ring-bg-gray-100/80">
+                                        <i class="text-2xl fas fa-times"></i>
+                                    </button>
+                                    <img class="w-full h-56 border rounded-md shadow-sm"
+                                        src="${blob}"
+                                        data-name="${file.name}"
+                                        alt="image-pre${i}">
+                                </div>
+                            `;
+                            imageContainer.append(imageHTML);
+                        }
                     } else {
                         alert('Tidak bisa upload image yang sama')
                     }
                 }
+
+                dropzoneFileInput[0].files = dt.files;
+                handleFileCount()
             }
 
-            imageInput.files = dt.files;
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
             let selectTom = new TomSelect('#select-tag', {
                 sortField: {
                     field: "text",
