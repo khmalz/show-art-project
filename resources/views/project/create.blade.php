@@ -62,15 +62,25 @@
                             <p class="mt-2 text-sm font-semibold text-rose-500">{{ $message }}</p>
                         @enderror
                     </div>
-                    <div class="mb-3">
-                        <label class="mb-2 block text-sm font-medium text-gray-900" for="multipleFiles">Upload Photo</label>
-                        <input
-                            class="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 file:!bg-blue-600 file:text-blue-600 focus:outline-none"
-                            id="multipleFiles" name="images[]" type="file" accept=".jpg, .jpeg, .png, .webp"
-                            onchange="previewImageMultiple()" multiple>
-
-                        <p class="mt-1 text-sm text-gray-500" id="file_input_help">PNG, JPG, JPEG, or WEBP
-                            (MAX. 2 MB).</p>
+                    <div class="mb-3 flex w-full flex-col justify-center">
+                        <label class="mb-2 block text-sm font-medium text-gray-900" for="dropzone-file">Upload Photo</label>
+                        <label
+                            class="flex h-64 w-full cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 hover:bg-gray-100"
+                            id="dropzone-label" for="dropzone-file">
+                            <div class="flex flex-col items-center justify-center pb-6 pt-5">
+                                <svg class="mb-4 h-8 w-8 text-gray-500" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                </svg>
+                                <p class="mb-2 text-sm text-gray-500" id="file-name"><span class="font-semibold">Click to
+                                        upload</span> or drag and drop</p>
+                                <p class="text-xs text-gray-500">PNG, JPG, JPEG, or WEBP (MAX. 2 MB).</p>
+                            </div>
+                            <input class="hidden" id="dropzone-file" name="images[]" type="file" multiple
+                                accept=".jpg, .jpeg, .png, .webp" />
+                        </label>
                         @error('images')
                             <p class="mt-2 text-sm font-semibold text-rose-500">{{ $message }}</p>
                         @enderror
@@ -95,28 +105,6 @@
     <script>
         const dt = new DataTransfer();
 
-        const allowedExtensionsDesign = ["jpg", "jpeg", "png", "webp"];
-
-        const validateFile = (input, allowedExtensions) => {
-            const [file] = input.files;
-
-            if (file) {
-                const {
-                    name
-                } = file;
-                const fileExtension = name.split(".").pop().toLowerCase();
-
-                if (!allowedExtensions.includes(fileExtension)) {
-                    const validationHtml =
-                        `<p id="validationFile" class="mt-2 text-sm font-semibold text-rose-500" id="file-format-error">Hanya file dengan format yang diizinkan.</p>`
-
-                    $(input).next("#validationFile").remove().end().val("").after(validationHtml);
-                } else {
-                    $(input).next("#validationFile").remove();
-                }
-            }
-        };
-
         function deleteImagePre(el, imageId) {
             // Temukan elemen preview terdekat dengan ID yang sesuai
             const imageDiv = $(el).closest(`#image-pre${imageId}`);
@@ -131,7 +119,20 @@
                     dt.items.remove(i);
                 }
             }
-            document.getElementById('multipleFiles').files = dt.files;
+            document.getElementById('dropzone-file').files = dt.files;
+
+            handleFileCount()
+        }
+
+        function handleFileCount() {
+            const fileCount = dt.files.length;
+
+            if (fileCount > 0) {
+                const fileNameDisplay = fileCount === 1 ? dt.items[0].getAsFile().name : `${fileCount} files`;
+
+                // Update file name display
+                $('#file-name').text(fileNameDisplay);
+            }
         }
 
         function previewImageMultiple() {
@@ -188,6 +189,85 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
+            const dropzoneLabel = $('#dropzone-label');
+            const dropzoneFileInput = $('#dropzone-file');
+            const allowedExtensionsDesign = ["jpg", "jpeg", "png", "webp"];
+
+            dropzoneLabel.on('dragover', function(e) {
+                e.preventDefault();
+                $(this).addClass('border-primary-500');
+            });
+
+            dropzoneLabel.on('dragleave', function() {
+                $(this).removeClass('border-primary-500');
+            });
+
+            dropzoneLabel.on('drop', function(e) {
+                e.preventDefault();
+                $(this).removeClass('border-primary-500');
+
+                const droppedFiles = e.originalEvent.dataTransfer.files;
+                handleFiles(droppedFiles);
+            });
+
+            dropzoneFileInput.change(function() {
+                const selectedFiles = this.files;
+                handleFiles(selectedFiles);
+            });
+
+            function handleFiles(files) {
+                const imageContainer = $("#image-container");
+
+                for (let i = 0; i < files.length; i++) {
+                    let duplicate = false;
+                    const fileName = files[i].name;
+
+                    for (let i = 0; i < dt.items.length; i++) {
+                        if (fileName === dt.items[i].getAsFile().name) {
+                            duplicate = true;
+                            break;
+                        } else {
+                            duplicate = false
+                        }
+                    }
+
+                    if (!duplicate) {
+                        // Validate file extension
+                        const fileExtension = fileName.split(".").pop().toLowerCase();
+                        if (!allowedExtensionsDesign.includes(fileExtension)) {
+                            const validationHtml =
+                                `<p id="validationFile" class="mt-2 text-sm font-semibold text-rose-500">Hanya file dengan format yang diizinkan.</p>`
+                            dropzoneLabel.next("#validationFile").remove().end().val("").after(validationHtml);
+                        } else {
+                            dropzoneLabel.next("#validationFile").remove();
+
+                            dt.items.add(files[i]);
+
+                            // Preview image
+                            const blob = URL.createObjectURL(files[i]);
+                            const imageHTML = `
+                            <div class="relative" id="image-pre${i}">
+                                <button type="button" onclick="deleteImagePre(this, ${i})"
+                                    class="absolute left-0 px-2 m-4 text-white rounded-full delete-button -top-2 bg-gray-100/80 focus:border-blue-300 focus:outline-none focus:ring-bg-gray-100/80">
+                                    <i class="text-2xl fas fa-times"></i>
+                                </button>
+                                <img class="w-full h-56 border rounded-md shadow-sm"
+                                    src="${blob}"
+                                    data-name="${fileName}"
+                                    alt="image-pre${i}">
+                            </div>
+                        `;
+                            imageContainer.append(imageHTML);
+                        }
+                    } else {
+                        alert('Tidak bisa upload image yang sama')
+                    }
+                }
+
+                dropzoneFileInput[0].files = dt.files;
+                handleFileCount()
+            }
+
             let selectTom = new TomSelect('#select-tag', {
                 sortField: {
                     field: "text",
