@@ -116,7 +116,8 @@
 @endsection
 
 @push('scripts')
-    <script src="https://cdn.tiny.cloud/1/{{ config('app.tiny_api_key') }}/tinymce/6/tinymce.min.js"
+    <script
+        src="{{ !empty(config('app.tiny_api_key')) ? 'https://cdn.tiny.cloud/1/' . config('app.tiny_api_key') . '/tinymce/6/tinymce.min.js' : 'https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js' }}"
         referrerpolicy="origin"></script>
     <script>
         const dt = new DataTransfer();
