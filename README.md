@@ -33,7 +33,7 @@ composer install
 npm install
 ```
 
-**Config Environtemtn**
+**Config Environment**
 
 ```shell
 cp .env.example .env
@@ -53,6 +53,12 @@ DB_PORT=
 DB_DATABASE=
 DB_USERNAME=
 DB_PASSWORD=
+```
+
+**Build Assets**
+
+```shell
+npm run build
 ```
 
 **Migrate Database**
